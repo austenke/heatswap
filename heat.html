@@ -1,7 +1,7 @@
 <html>
 
 	<head>
-		  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 	</head>
 
@@ -32,7 +32,8 @@
 				gameScore.save(null, {
   					success: function(gameScore) {
   				  // Execute any logic that should take place after the object is saved.
-  						  alert('New object created with objectId: ' + gameScore.id);
+  						  alert('ID if you want it: ' + gameScore.id);
+  						  location.reload();
  					 },
  					 error: function(gameScore, error) {
     				// Execute any logic that should take place if the save fails.
@@ -64,21 +65,17 @@
 
 					  		var object = returnObj[i];
 
-					  		// Find a <table> element with id="myTable":
 							var table = document.getElementById("myTable");
 
-							// Create an empty <tr> element and add it to the 1st position of the table:
-							var row = table.insertRow(i);
+								var row = table.insertRow(i);
 
-							// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-							var cell1 = row.insertCell(0);
-							var cell2 = row.insertCell(1);
+									var cell1 = row.insertCell(0);
+									var cell2 = row.insertCell(1);
 
-							// Add some text to the new cells:
-							cell1.innerHTML = object.id;
-							cell2.innerHTML = object.get("price");
+										cell1.innerHTML = object.id;
+										cell2.innerHTML = object.get("price");
 
-					  		   					}
+					  	}
   					},
   						error: function(error) {
   					  alert("Error: " + error.code + " " + error.message);
