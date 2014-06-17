@@ -8,8 +8,9 @@
 
 
 	<body>
-		<input type="text" name="name" id="item"/>
-		<input type="text" name="name" id="price"/>
+		<input type="text" name="name" id="item" placeholder="item name"/>
+		<input type="text" name="name" id="image" placeholder="image URL"/>
+		<input type="text" name="name" id="price" placeholder="price"/>
 
 		<button type="button" onclick="foo()">Click Me!</button>
 
@@ -17,22 +18,25 @@
 
 		<table id="myTable" border="1" style="margin-top:40px; width:300px;">
 
+		<button type="button" onclick="grabStuff()">Me Too!</button>
+
 		</table>
 
 
 		<script>
-			var infoSaveStuff = function(items,prices) {
+			var infoSaveStuff = function(items,prices,image) {
 				Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-				var GameScore = Parse.Object.extend("GameScore");
-				var gameScore = new GameScore();
+				var courrier = Parse.Object.extend("courrier");
+				var mail = new courrier();
  
-				gameScore.set("item", items);
-				gameScore.set("price", prices);
+				mail.set("item", items);
+				mail.set("price", prices);
+				mail.set("image", image);
  
-				gameScore.save(null, {
+				mail.save(null, {
   					success: function(gameScore) {
   				  // Execute any logic that should take place after the object is saved.
-  						  alert('ID if you want it: ' + gameScore.id);
+  						  alert('You sent mail!: ' + gameScore.id);
   						  location.reload();
  					 },
  					 error: function(gameScore, error) {
@@ -48,19 +52,19 @@
 			var foo = function() {
 				var itemStuff = document.getElementById("item").value;
 				var priceStuff = document.getElementById("price").value;
-				infoSaveStuff (itemStuff,priceStuff);
+				var imageStuff = document.getElementById("image").value;
+				infoSaveStuff (itemStuff,priceStuff,imageStuff);
 			}
 
 
 
 			var grabStuff = function() {
 				Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-				var GameScore = Parse.Object.extend("GameScore");
-					var query = new Parse.Query(GameScore);
-					query.exists("item");
-					query.find({
+				var courrier = Parse.Object.extend("courrier");
+					var mailbox = new Parse.Query(courrier);
+					mailbox.exists("item");
+					mailbox.find({
 					  success: function(returnObj) {
-					  	alert(returnObj.length)
 					  	for (var i = 0; i < returnObj.length; i++) { 
 
 					  		var object = returnObj[i];
@@ -71,9 +75,11 @@
 
 									var cell1 = row.insertCell(0);
 									var cell2 = row.insertCell(1);
+									var cell3 = row.insertCell(2);
 
-										cell1.innerHTML = object.id;
+										cell1.innerHTML = object.get("item");
 										cell2.innerHTML = object.get("price");
+										cell3.innerHTML = "<img src="+object.get("image")+" height='90' width='100'> </img>"
 
 					  	}
   					},
@@ -83,7 +89,14 @@
 				});
 			}
 
+
+
+
 		</script>
+
+
+
+
 	</body>
 
 </html>
