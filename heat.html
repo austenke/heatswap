@@ -1,0 +1,93 @@
+<html>
+
+	<head>
+		  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  		<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+	</head>
+
+
+
+	<body>
+		<input type="text" name="name" id="item"/>
+		<input type="text" name="name" id="price"/>
+
+		<button type="button" onclick="foo()">Click Me!</button>
+
+
+
+		<table id="myTable" border="1" style="margin-top:40px; width:300px;">
+
+		</table>
+
+
+		<script>
+			var infoSaveStuff = function(items,prices) {
+				Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+				var GameScore = Parse.Object.extend("GameScore");
+				var gameScore = new GameScore();
+ 
+				gameScore.set("item", items);
+				gameScore.set("price", prices);
+ 
+				gameScore.save(null, {
+  					success: function(gameScore) {
+  				  // Execute any logic that should take place after the object is saved.
+  						  alert('New object created with objectId: ' + gameScore.id);
+ 					 },
+ 					 error: function(gameScore, error) {
+    				// Execute any logic that should take place if the save fails.
+    				// error is a Parse.Error with an error code and description.
+    					alert('Failed to create new object, with error code: ' + error.description);
+  					}
+				});				
+			}
+
+
+
+			var foo = function() {
+				var itemStuff = document.getElementById("item").value;
+				var priceStuff = document.getElementById("price").value;
+				infoSaveStuff (itemStuff,priceStuff);
+			}
+
+
+
+			var grabStuff = function() {
+				Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+				var GameScore = Parse.Object.extend("GameScore");
+					var query = new Parse.Query(GameScore);
+					query.exists("item");
+					query.find({
+					  success: function(returnObj) {
+					  	alert(returnObj.length)
+					  	for (var i = 0; i < returnObj.length; i++) { 
+
+					  		var object = returnObj[i];
+
+					  		// Find a <table> element with id="myTable":
+							var table = document.getElementById("myTable");
+
+							// Create an empty <tr> element and add it to the 1st position of the table:
+							var row = table.insertRow(i);
+
+							// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+							var cell1 = row.insertCell(0);
+							var cell2 = row.insertCell(1);
+
+							// Add some text to the new cells:
+							cell1.innerHTML = object.id;
+							cell2.innerHTML = object.get("price");
+
+					  		   					}
+  					},
+  						error: function(error) {
+  					  alert("Error: " + error.code + " " + error.message);
+ 						 }
+				});
+			}
+
+		</script>
+	</body>
+
+</html>
+
