@@ -5,7 +5,7 @@ This project implements a trading system for buying and selling collectible athl
 
  * Client side UI built using jQuery
  * Server side built using Parse.js
- * Check-out using Paypall
+ * Check-out using Paypal
         
 License and Author
 ==================
