@@ -1,0 +1,451 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: 16px;
+}
+p {font-size: 1em;}
+h1, .h1 {font-size: 3em;}
+h2, .h2 {font-size: 2.750em;}
+
+h4, .h4 {font-size: 1.125em;}
+
+.blue {color: #276E85;}
+.red {color: #D9562A;}
+.alt-hr {border-color: #bbb;}
+
+.well {background-color: #eee;}
+
+/* header area ============================== */
+/* ========================================== */
+.navbar {
+  margin-bottom: 20px;
+}
+
+#logo-navbar {margin-bottom: 1px;}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #fff;
+}
+
+/* nested dropdown menu */
+
+.dropdown-submenu {
+    position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+.dropdown-submenu.pull-left {
+    float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+}
+#main-nav-social-icons.navbar-nav.navbar-right:last-child {margin-right: 0;}
+/*
+.form-control:focus {
+  border-color: #D9562A;  
+}
+*/
+
+/* login area ============================== */
+/* ========================================= */
+#main-nav-social-icons {margin-top:-54px;} 
+#login-menu #main-nav-social-icons li:last-child {background-color: #fff;}
+
+#login-menu {margin-top: 90px;}
+
+#login-menu ul {font-size: 0.875em;}
+
+#login-menu ul li:last-child {background-color: #eee;}
+
+#login-menu .navbar-nav.navbar-right:last-child {margin-right: 0;}
+
+.logo-row-menu .menu>li {
+  position: relative;
+  float: left;
+  display: inline-block;
+  border-right: 1px solid #eee;
+}  
+
+/* tagline and subnav area ============================== */
+/* ====================================================== */
+#tagline {
+  color: #276e85;
+  }
+  #tagline span {
+    color: #d9562a;
+    }
+    #tagline h1 {
+      font-size: 3.5em;
+      text-transform: uppercase;
+      text-align: center;
+      }
+
+#subnav .nav>li>a {
+  padding-left: 0.500em;
+  padding-right: 0.500em;
+  color: #276E85;
+}
+  #subnav .nav>li>a:hover {color: #D9562A;}
+  
+#subnav .nav.nav-justified {margin-bottom: 0.938em;}
+
+
+/* hot kicks section on home pg ========================== */
+/* ======================================================= */
+div#hotkicks-header {
+  margin-bottom: 20px;
+  }
+  #hotkicks-header img {
+    display: inline-block;
+    }
+    #hotkicks-header h2 {
+      padding-right: 20px;
+      padding-left: 15px;
+      display: inline-block;
+      }
+#hotkicks {
+  background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(227,48,6, 0.85), 
+      rgba(227,48,6, 0.85)
+    ),
+    /* bottom, image */
+    url(/images/hero-bg.png);
+}
+#hotkicks {color: #fff;}
+
+
+/* carousel */
+/* MIGHT NEED TO SPECIFY .JUMBOTRON TO ISOLATE THESE EFFECTS TO JUST THIS SLIDESHOW */
+/* ALSO MIGHT NEED TO CHANGE JUMBOTRON TO WELL */
+#hotkicks .carousel a {color: #fff;}
+
+.carousel.slide img {
+  width:100%;
+  height:auto;
+  margin: 0 auto;
+}
+.carousel-indicators {
+  position: relative;
+  bottom: 0;
+  padding-top: 10px;
+  }
+  .carousel-indicators li {
+    border: 1px solid #fff;  
+    }
+
+.col-item .info {
+  padding: 10px;
+  margin-top: 1px;
+}
+
+#home-carousel .thumbnail {margin-bottom: 10px;}
+
+/*
+#hotkicks
+  a.thumbnail:hover,
+  a.thumbnail:focus,
+  a.thumbnail:active {
+    border-color: #2A5469;
+  }
+*/
+#hotkicks .col-item:hover .info {
+    background-color: rgba(42, 84, 105, 0.6);
+    transition: all 0.2s ease-in-out 0s;
+}
+
+.col-item .info .hotkicks-shoe-price {
+  text-align: right;
+}
+
+.col-item .info .hotkicks-shoe-price.col-md-4 p {margin-top: 24px;}
+
+.col-item .separator {
+  border-top: 1px solid #fff;
+  border-bottom: 2px solid #fff;
+  }
+.controls {
+  margin-top: 20px;
+}
+[data-slide="prev"]
+{
+  margin-right: 10px;
+}
+
+
+/* popular section on home pg ============================= */
+/* ======================================================== */
+div#popular-header {
+  margin-bottom: 20px;
+  }
+  #popular-header img {
+    display: inline-block;
+    }
+    #popular-header h2 {
+      padding-right: 20px;
+      padding-left: 15px;
+      display: inline-block;
+      color: #276E85;
+      } 
+      
+#popular .thumbnail {margin-bottom: 10px;}
+
+
+/* change the default panel colors to blue and white for home page */
+/* div#popular .caption {
+  color: #fff;
+  background-color: #2a5469;
+}
+*/
+#popular .panel-primary {
+  border-color: #2a5469;
+}   
+
+#popular .panel-primary .panel-heading {
+  background-color: #276E85;
+  border-color: #555;
+}
+
+#popular .panel-primary .panel-heading a {color: #fff;}
+
+#popular .panel-primary .panel-heading a:hover {
+    color: #D9562A;
+    text-decoration: none;
+  }
+
+/* price overlay */
+#popular .popular-price {
+  background: none repeat scroll 0 0 rgba(42, 84, 105, 0.6);
+  right: 20px;
+  /* bottom: 66px; */
+  padding: 3px;
+  position: absolute;
+  color: #fff;
+}
+
+/* push the hr away from the see more button */
+#popular-see-more {
+  padding-left: 17px;
+}
+
+
+/* wells on bottom of most pages ============================ */
+/* ========================================================== */
+.bottom-well {
+  margin-top: 60px;
+  margin-bottom: 0;
+}
+
+footer {
+  min-height: 60px;
+  border: 1px solid #214151;
+  color: white;
+  background-color: #276E85;
+  text-align: center;
+  padding-top: 1.1em;
+  font-size: 0.875em;
+  }
+  footer a:active,
+  footer a:hover {
+    color: #D9562A;
+    text-decoration: none;
+  }
+.footer-text {color: #bbb;}
+
+
+/* popular pg =============================================== */
+/* ========================================================== */
+.page-header {color: #D9562A;}
+.breadcrumb {
+  font-size: 0.875em;
+  display: inline-block;
+  margin-bottom: 0;
+  padding: 0;
+}
+.control-label {
+  color: #aaa;
+  font-weight: normal;
+  font-size: 0.90em;
+}
+.form-inline .form-group {margin-left: 15px;}
+
+#popular-pg-dropdowns.form-inline {margin-top: -0.375em;}
+
+#row-popular-pg {
+  margin-top: 0.625em;
+}
+#row-popular-pg .thumbnail {
+  margin: 1.250em 0.313em;
+}
+#row-popular-pg .thumbnail .caption a {
+  color: #276E85;
+  }
+  #row-popular-pg .thumbnail .caption a:hover {
+    color: #D9562A;
+    text-decoration: none;
+    }
+    
+/* buy pg =================================================== */
+/* ========================================================== */
+.buy-page-main-body {margin-top: 2em;}
+
+.buy-page-side-well {margin-bottom: 2.500em;}
+
+.chosen-shoe img {
+  margin-left: auto;
+  margin-right: auto;
+}
+/*
+.blue-thumbnail
+  a.thumbnail:hover,
+  a.thumbnail:focus,
+  a.thumbnail:active {
+    border-color: #276E85;
+}
+*/
+.nav.nav-tabs {
+  margin-top: 20px;
+  margin-bottom: 15px; 
+}
+
+
+/* good story pg ============================================= */
+/* ========================================================== */
+
+#good-story-well {
+  background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(227,48,6, 0.85), 
+      rgba(227,48,6, 0.85)
+    ),
+    /* bottom, image */
+    url(/images/hero-bg.png);
+  margin-top: 20px;
+}
+#good-story-well .thumbnail {margin-bottom: 0;}
+
+.good-story-tagline {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  }
+  .good-story-tagline > span {
+    position: relative;
+    display: inline-block;
+    }
+    .good-story-tagline > span:before,
+    .good-story-tagline > span:after {
+      content: "";
+      position: absolute;
+      top: 70%;
+      width: 100%;
+      height: 2px;
+      background: #276E85;
+    }
+    .good-story-tagline > span:before {
+      right: 100%;
+      margin-right: 1em;
+    }
+    .good-story-tagline > span:after {
+      left: 100%;
+      margin-left: 1em;
+    }
+    
+.good-story-tagline h2 {font-weight: 400;}
+
+#good-story-thumbs h3 {margin-top: 0.313em;}
+
+#good-story-thumbs {margin-bottom: 2.500em;}
+
+#good-story-thumbs .panel {
+  color: #fff;
+  background-color: #276E85;
+}
+#good-story-thumbs .thumbnail {margin-bottom: 10px;}
+
+
+/* team pg ================================================== */
+/* ========================================================== */
+
+#our-team-summary {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  }
+  #our-team-summary img {
+    float: left;
+  }
+hr.team-page-thumbs {
+  border-width: 3px 0 0;
+  margin: 15px 30px 20px;
+}
+.team-bios-row {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.team-page-bios {
+  padding-left: 2em;
+  padding-right: 2em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-right: 1px solid #ddd;
+  }
+  .team-page-bios:last-child {
+  border-right: none;
+  }
+
+/* sell pg =================================================== */
+/* ========================================================== */
+#spread-heat-well {margin-top: 1.25em;}
+#sell-bottom-thumbnails {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+#why-heatswap {margin: 3.750em 0;}
+
+/* store pg ================================================== */
+/* ========================================================== */
+
+.store-page-main-body {margin-top: 2em;}
+
+.store-banner-image {
+  margin-bottom: 20px;
+}   
+
+.store-page-seemore .thumbnail .caption a {
+  color: #276E85;
+  }
+  .store-page-seemore .thumbnail .caption a:hover {
+    color: #D9562A;
+    text-decoration: none;
+    }
+ 

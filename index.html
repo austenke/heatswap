@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+
+    <title>Heat Swap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+        
+  <body>
+    
+    <div class="container">
+      
+      <!-- logo row -->
+      <div class="row navbar" id="logo-navbar">
+        <div class="col-md-4">
+          <a href="index.html"><img src="/images/logo.png" class="img-responsive" alt="logo" /></a>
+        </div>
+        <div class="col-md-8"  id="login-menu">
+          <ul class="nav navbar-nav navbar-right" id="main-nav-social-icons">
+              <li><a href="https://www.youtube.com/user/HeatSwapTV" target="_blank"><img src="images/YouTube-social-squircle_red_24px.png" class="img-responsive" alt="YouTube"></a>
+              </li>
+              <li><a href="http://instagram.com/heatswap" target="_blank"><img src="images/Instagram_Icon_24px.png" class="img-responsive" alt="Instagram"></a>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right" id="loginItems">
+              <li><a data-toggle="modal" role="button" href="#loginModal"><span class="glyphicon glyphicon-lock"></span> login</a>
+              </li>
+              <li><a data-toggle="modal" role="button" href="#signupModal"><span class="glyphicon glyphicon-user"></span> sign up</a>
+              </li>
+              <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> items in cart: <span style="color:#2A5469">00</span></a>
+              </li>
+     </ul>
+                        <script>
+                      Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                      var currentUser = Parse.User.current();
+                      if (currentUser) {
+                        var pStuff = document.getElementById("loginItems");
+                        pStuff.innerHTML = "<li style='padding-top:15px;padding-bottom:15px;'><span class=''></span> What's up "+ currentUser.get("username") +"? <li style='cursor:pointer;'><a onclick='logOut()''><span class='glyphicon glyphicon-lock'></span> logout</a>  <li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>";
+                      }
+
+                      var logOut = function() {
+                        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                        Parse.User.logOut();
+                        var currentUser = Parse.User.current();
+                        location.reload();
+                      }
+              </script>
+        </div>
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center blue">login</h1>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="username" placeholder="username">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="password" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="logIn()">sign in</button>
+                    <p class="pull-right"><a href="#">register</a></p><p><a href="#">forgot password?</a></p>
+                  </div>
+                <script>
+                  var logIn = function(){
+                    alert ("success1")
+                  Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                  var nameStuff = document.getElementById("username").value;
+                    var passStuff = document.getElementById("password").value;
+                   Parse.User.logIn(nameStuff, passStuff, {
+                    success: function(user) {
+                      alert("login is go");
+                      location.reload();
+                  },
+                  error: function(user, error) {
+                    alert("login is no go" + error.code)
+                  }
+                });
+                }
+                </script>
+              </div><!-- /modal-body -->
+              <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">cancel</button>   
+              </div>
+            </div><!-- /modal-content -->
+          </div><!-- /modal-dialog -->
+        </div><!-- /loginModal -->
+        
+        <div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center blue">sign up</h1>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="username123" placeholder="username">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control input-lg" id="email123" placeholder="email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="password123" placeholder="password">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" id="password2123" placeholder="re-type password">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="signUp();">sign up</button>
+
+
+
+                    <script>
+
+                          var signUp = function() {
+        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+        var nameStuff = document.getElementById("username123").value;
+        var passStuff = document.getElementById("password123").value;
+        var passStuff2 = document.getElementById("password2123").value;
+        var emailStuff = document.getElementById("email123").value;
+
+        if (passStuff2 === passStuff) {
+
+        var user = new Parse.User();
+          user.set("username", nameStuff);
+          user.set("password", passStuff);
+          user.set("email", emailStuff);
+  
+   
+        user.signUp(null, {
+          success: function(user) {
+              alert("Congrats "+nameStuff+", please verify your email");
+              location.reload();
+          },
+          error: function(user, error) {
+            alert("Error: " + error.code + " " + error.message);
+           }
+        });
+      }
+    else {
+      var woahThere = document.getElementById("nonsense10");
+      woahThere.innerHTML = "Woah! Your passwords don't match man"
+    }
+  }
+</script>
+
+                    <p id="nonsense10"><a href="#">forgot password?</a></p>
+                  </div>
+              </div><!-- /modal-body -->
+              <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">cancel</button>
+              </div>
+            </div><!-- /modal-content -->
+          </div><!-- /modal-dialog -->
+        </div><!-- /signupModal -->
+        
+      </div><!-- /logo row -->
+      
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">home</a>
+          </div><!-- /header -->
+          
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">buy <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="popular.html">popular</a></li>
+                  <li><a href="buy.html">buy page</a></li>
+                  <li><a href="store.html">store</a></li>
+                  <li class="dropdown-submenu"><a href="#">brand</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Adidas</a></li>
+                      <li><a href="#">Air Jordan</a></li>
+                      <li><a href="#">Asics</a></li>
+                      <li><a href="#">Converse</a></li>
+                      <li><a href="#">New Balance</a></li>
+                      <li><a href="#">Nike</a></li>
+                      <li><a href="#">Puma</a></li>
+                      <li><a href="#">Reebok</a></li>
+                      <li><a href="#">Saucony</a></li>
+                      <li><a href="#">Vans</a></li>
+                      <li><a href="#">Others</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="sell.html">sell</a></li>
+              <li><a href="media.html">media</a></li>
+              <li><a href="team.html">our team</a></li>
+              <li><a href="story.html">a good story</a></li>
+            </ul>
+            
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+
+      <div id="main-wrap"><!-- Main content wrapper -->
+        
+        <div id="tagline" class="page-header hidden-xs">
+          <h1>Cop Heat. <span>Swap Heat.</span> Be Authentic.</h1>
+        </div>
+        
+        <div id="subnav" class="hidden-xs">
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#">Adidas</a></li>
+            <li><a href="#">Air Jordan</a></li>
+            <li><a href="#">Asics</a></li>
+            <li><a href="#">Converse</a></li>
+            <li><a href="#">New Balance</a></li>
+            <li><a href="#">Nike</a></li>
+            <li><a href="#">Puma</a></li>
+            <li><a href="#">Reebok</a></li>
+            <li><a href="#">Saucony</a></li>
+            <li><a href="#">Vans</a></li>
+            <li><a href="#">Others</a></li>
+          </ul>
+        </div>
+        
+        <div class="well" id="hotkicks">
+          <div class="row" id="hotkicks-header">
+            <div class="col-xs-9">
+              <div>
+                <h2><b><span class="glyphicon glyphicon-fire"></span> hot kicks</b></h2>
+              </div>
+              <!--
+              <div style="float:left">
+                <img src="/images/logo-small-notext.png" class="img-responsive" alt="..."><h2><b>hot kicks</b></h2>
+              </div>
+              -->
+            </div>
+            
+            <!-- CAROUSEL CONTROLS -->
+            <!-- ///////////////// -->
+            <div class="col-md-3 visible-md visible-lg"> 
+              <div class="controls pull-right">
+                <a class="left fa fa-chevron-left btn btn-default" href="#home-carousel" data-slide="prev"></a>
+                <a class="right fa fa-chevron-right btn btn-default" href="#home-carousel" data-slide="next"></a>
+              </div>
+            </div> <!-- /col-md-3 -->
+            <!-- Carousel Controls for SM devices -->
+            <div class="col-sm-3 visible-sm"> 
+              <div class="controls pull-right">
+                <a class="left fa fa-chevron-left btn btn-default" href="#home-carousel-sm" data-slide="prev"></a>
+                <a class="right fa fa-chevron-right btn btn-default" href="#home-carousel-sm" data-slide="next"></a>
+              </div>
+            </div> <!-- /col-md-3 -->
+            <!-- Carousel Controls for XS devices -->
+            <div class="col-xs-3 visible-xs"> 
+              <div class="controls pull-right">
+                <a class="left fa fa-chevron-left btn btn-default" href="#home-carousel-xs" data-slide="prev"></a>
+                <a class="right fa fa-chevron-right btn btn-default" href="#home-carousel-xs" data-slide="next"></a>
+              </div>
+            </div><!-- /col-md-3 -->
+          </div> <!-- /row hotkicks-header -->
+          
+          <!-- CAROUSEL FOR MD & LG DEVICES -->
+          <div id="home-carousel" class="carousel slide visible-md visible-lg" data-interval="5000" data-ride="carousel" data-pause="hover">
+            
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <!-- slide 1 -->
+              <div class="item active">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$100.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 2 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$200.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 3 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$300.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 4 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$400.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                </div><!-- /row -->
+              </div><!-- /item-active -->
+
+              <!-- slide 2 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-m-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="images/promo.png" class="img-responsive" alt="promo" />
+                        </a>
+                      </div>
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              
+              <!-- slide 3 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 5 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$500.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 6 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$600.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 7 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$700.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                  <div class="col-md-3">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-md-8">
+                                <h3>Shoe 8 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-md-4">
+                                <p>$800.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-md-3 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+
+            </div><!-- /carousel-inner -->
+              <!-- Indicators -->
+              <ol class="carousel-indicators hidden-xs hidden-sm">
+                <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#home-carousel" data-slide-to="1"></li>
+                <li data-target="#home-carousel" data-slide-to="2"></li>
+              </ol>
+          </div><!-- /home-carousel -->
+          
+          <!-- CAROUSEL FOR sm DEVICES -->
+          <div id="home-carousel-sm" class="carousel slide visible-sm" data-interval="5000" data-ride="carousel" data-pause="hover">
+            
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <!-- slide 1 -->
+              <div class="item active">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$100.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe 2 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$200.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe 3 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$300.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                </div><!-- /row -->
+              </div><!-- /item-active -->
+
+              <!-- slide 2 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="images/promo.png" class="img-responsive" alt="promo" />
+                        </a>
+                      </div>
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              
+              <!-- slide 3 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe 4 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$400.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe 5 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$500.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                  <div class="col-sm-4">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-sm-8">
+                                <h3>Shoe 6 Name</h3>
+                              </div>
+                              <div class="hotkicks-shoe-price col-sm-4">
+                                <p>$600.00</p>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-sm-4 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+
+            </div><!-- /carousel-inner -->
+              <!-- Indicators -->
+              <ol class="carousel-indicators visible-sm">
+                <li data-target="#home-carousel-sm" data-slide-to="0" class="active"></li>
+                <li data-target="#home-carousel-sm" data-slide-to="1"></li>
+                <li data-target="#home-carousel-sm" data-slide-to="2"></li>
+              </ol>
+          </div><!-- /home-carousel-sm -->
+          
+          <!-- CAROUSEL FOR xs DEVICES -->
+          <div id="home-carousel-xs" class="carousel slide visible-xs" data-interval="false" data-ride="carousel">
+            
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+              <!-- slide 1 -->
+              <div class="item active">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="images/promo.png" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item-active -->
+              <!-- slide 2 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 2 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$200.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 3 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 3 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$300.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 4 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 4 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$400.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 5 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 5 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$500.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 6 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 6 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$600.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 7 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 7 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$700.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+              <!-- slide 8 -->
+              <div class="item">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <div class="col-item">
+                      <div class="photo">
+                        <a href="#" class="thumbnail">
+                          <img src="http://placehold.it/222x190" class="img-responsive" alt="sneaker" />
+                        </a>
+                      </div>
+                      <div class="info">
+                        <a href="#">
+                          <div class="separator">
+                            <div class="row">
+                              <div class="hotkicks-shoe-name col-xs-8">
+                                <h3>Shoe 8 Name</h3>
+                              </div>
+                              <div class="price col-xs-4">
+                                <h4>$800.00</h4>
+                              </div>
+                            </div><!-- /row -->
+                          </div>
+                        </a>
+                      </div> <!-- /info -->
+                    </div> <!-- /col-item -->
+                  </div> <!-- /col-xs-12 -->
+                </div><!-- /row -->
+              </div><!-- /item -->
+
+            </div><!-- /carousel-inner -->
+              <!-- Indicators -->
+              <ol class="carousel-indicators visible-xs">
+                <li data-target="#home-carousel-xs" data-slide-to="0" class="active"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="1"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="2"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="3"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="4"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="5"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="6"></li>
+                <li data-target="#home-carousel-xs" data-slide-to="7"></li>
+              </ol>
+          </div><!-- /home-carousel-xs -->
+        </div><!-- /well hotkicks -->
+        
+        <div id="popular-header" class="clearfix">
+          <div style="float:left">
+            <img src="/images/logo-small-notext.png" class="img-responsive" alt="..."><h2><b>popular</b></h2>
+          </div>
+          <hr style="margin-top:40px" /> 
+        </div>
+
+        <div class="row  blue-thumbnail" id="popular">   <!-- Row popular start -->
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$100.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$200.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name 2</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$300.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name 3</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$400.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name 4</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$500.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name 5</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-2">
+            <a href="#" class="thumbnail">
+              <p class="popular-price">$600.00</p>
+              <img src="http://placehold.it/182x156" class="img-responsive" alt="...">
+            </a>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <a href="#">
+                  <h3 class="panel-title">Shoe Name 6</h3>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div><!-- /row popular -->  
+        
+ <script>       
+Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+        var courrier = Parse.Object.extend("courrier");
+          var mailbox = new Parse.Query(courrier);
+          mailbox.exists("item");
+          mailbox.limit(6);
+          mailbox.find({
+            success: function(returnObj) {
+
+              var finalObj = ""
+
+              for (var i = 0; i < returnObj.length; i++) { 
+
+                var item = returnObj[i];
+
+                finalObj += "<div class='col-sm-4 col-md-2'>\n<a href='#'' class='thumbnail'>\n";
+                finalObj += "<p class='popular-price'> $" + item.get("price") + "</p>\n";
+                finalObj += "<img src='" + item.get("image") + "' height='182' width='156' >\n"
+                finalObj += "</a>\n"
+                finalObj += "<div class='panel panel-primary'>\n"
+                finalObj += "<div class='panel-heading'>\n"
+                finalObj += "<a href='#'>\n"
+                finalObj += "<h3 class='panel-title'>" + item.get("item") + "</h3>"
+                finalObj += "</a>"
+                finalObj += "</div>"
+                finalObj += "</div>"
+                finalObj += "</div> \n"
+
+            }
+
+            var insertNonsense = document.getElementById("popular");
+            insertNonsense.innerHTML = finalObj
+
+
+
+
+            },
+              error: function(error) {
+                  alert("Error: " + error.code + " " + error.message);
+             }
+        });
+</script>
+
+
+
+        <div id="popular-see-more" class="pull-right">
+          <a class="btn btn-lg btn-primary" href="popular.html" role="button">see more &raquo;</a>  
+        </div>
+        <hr style="margin-top:44px" />
+        
+        <div class="well well-lg bottom-well">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <img src="http://placehold.it/310x240" class="thumbnail img-responsive" alt="...">
+            </div>
+            <div class="col-md-8">
+              <h2><span class="blue">start something</span></h2>
+              <h4><span class="red">Generate some heat for kids.</span></h4>
+              <p>Every time you buy or sell sneakers on HeatSwap you're helping build a better future for kids who could use a break. We donate a percentage of every transaction to our partner organizations, which are creating educational and healthy play opportunities for children here and around the world. Please join us in showing how much good that Sneakerheads - and some heat-swapping - can do for the world.</p>
+              <a class="pull-right btn btn-lg btn-primary" href="story.html" role="button">read more &raquo;</a>
+            </div>
+          </div><!-- /row -->   
+        </div><!-- /well -->
+        
+      </div><!-- /main -->
+      
+      <footer>
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="#" class="footer-text">terms</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">privacy</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">help</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <p class="footer-text">&copy; 2014 HeatSwap, all rights reserved</p>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="https://www.youtube.com/user/HeatSwapTV" target="_blank" class="footer-text"><i class="fa fa-youtube-play fa-lg"></i></a>
+              <li><a href="http://instagram.com/heatswap" target="_blank" class="footer-text"><i class="fa fa-instagram fa-lg"></i></a>
+            </ul>
+          </div>
+        </div><!-- /row -->
+      </footer>
+      
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.carousel.slide').carousel();
+      });
+    </script>
+  </body>
+</html>
