@@ -221,32 +221,40 @@
 
         <script>
 
+          var iName = document.getElementById("username123").value;
+          var iDesc = document.getElementById("username123").value;
+          var iPrice = document.getElementById("username123").value;
+          var iBrand = document.getElementById("username123").value;
+          var iCondition = document.getElementById("username123").value;
+          var iSize = document.getElementById("username123").value;
+          var iMainImage = document.getElementById("username123").value;
+          var iSecondImage = document.getElementById("username123").value;
+          var iThirdImage = document.getElementById("username123").value;
+          var iPaypal = document.getElementById("username123").value;
+
           Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
-          var GameScore = Parse.Object.extend("GameScore");
-          var gameScore = new GameScore();
+          var courrier = Parse.Object.extend("courrier");
+          var postOffice = new courrier();
  
-          gameScore.set("itemName", 1337);
-          gameScore.set("itemDesc", "Sean Plott");
-          gameScore.set("itemPrice", false);
-          gameScore.set("brand", false);
-          gameScore.set("condition", false);
-          gameScore.set("size", false);
-          gameScore.set("mainImage", false);
-          gameScore.set("secondImage", false);
-          gameScore.set("thirdImage", false);
-          gameScore.set("paypalEmail", false);
-          gameScore.set("user", Parse.User.current());
+          postOffice.set("itemName", iName);
+          postOffice.set("itemDesc", iDesc);
+          postOffice.set("itemPrice", iPrice);
+          postOffice.set("brand", iBrand);
+          postOffice.set("condition", iCondition);
+          postOffice.set("size", iSize);
+          postOffice.set("mainImage", iMainImage);
+          postOffice.set("secondImage", iSecondImage);
+          postOffice.set("thirdImage", iThirdImage);
+          postOffice.set("paypalEmail", iPaypal);
+          postOffice.set("user", Parse.User.current());
 
  
-          gameScore.save(null, {
-            success: function(gameScore) {
-              // Execute any logic that should take place after the object is saved.
-              alert('New object created with objectId: ' + gameScore.id);
+          postOffice.save(null, {
+            success: function(postOffice) {
+
           },
-          error: function(gameScore, error) {
-              // Execute any logic that should take place if the save fails.
-              // error is a Parse.Error with an error code and description.
+          error: function(postOffice, error) {
               alert('Failed to create new object, with error code: ' + error.message);
           }
           });
@@ -257,6 +265,6 @@
 
 
   </body>
-
-
 </html>
+
+
