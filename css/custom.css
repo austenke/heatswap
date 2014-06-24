@@ -139,7 +139,7 @@ div#hotkicks-header {
       rgba(227,48,6, 0.85)
     ),
     /* bottom, image */
-    url(/images/hero-bg.png);
+    url(images/hero-bg.png);
 }
 #hotkicks {color: #fff;}
 
