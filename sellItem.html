@@ -214,14 +214,47 @@
           <div>
 
 
-          
+        </div>
 
 
         </div>
 
+        <script>
+
+          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+          var GameScore = Parse.Object.extend("GameScore");
+          var gameScore = new GameScore();
+ 
+          gameScore.set("itemName", 1337);
+          gameScore.set("itemDesc", "Sean Plott");
+          gameScore.set("itemPrice", false);
+          gameScore.set("brand", false);
+          gameScore.set("condition", false);
+          gameScore.set("size", false);
+          gameScore.set("mainImage", false);
+          gameScore.set("secondImage", false);
+          gameScore.set("thirdImage", false);
+          gameScore.set("paypalEmail", false);
+          gameScore.set("user", Parse.User.current());
+
+ 
+          gameScore.save(null, {
+            success: function(gameScore) {
+              // Execute any logic that should take place after the object is saved.
+              alert('New object created with objectId: ' + gameScore.id);
+          },
+          error: function(gameScore, error) {
+              // Execute any logic that should take place if the save fails.
+              // error is a Parse.Error with an error code and description.
+              alert('Failed to create new object, with error code: ' + error.message);
+          }
+          });
 
 
-        </div>
+        </script>
+
+
 
   </body>
 
