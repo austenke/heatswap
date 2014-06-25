@@ -20,6 +20,7 @@ h4, .h4 {font-size: 1.125em;}
 .navbar {
   margin-bottom: 20px;
 }
+.without-subnav {margin-bottom: 0;}
 
 #logo-navbar {margin-bottom: 1px;}
 
