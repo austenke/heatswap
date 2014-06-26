@@ -148,7 +148,7 @@ div#hotkicks-header {
       rgba(227,48,6, 0.85)
     ),
     /* bottom, image */
-    url(images/hero-bg.png);
+    url(../images/hero-bg.png);
 }
 #hotkicks {color: #fff;}
 
@@ -358,7 +358,7 @@ footer {
       rgba(227,48,6, 0.85)
     ),
     /* bottom, image */
-    url(images/hero-bg.png);
+    url(../images/hero-bg.png);
   margin-top: 20px;
 }
 #good-story-well .thumbnail {margin-bottom: 0;}
