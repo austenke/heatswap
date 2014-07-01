@@ -67,7 +67,7 @@
                   </div>
                   <div class="form-group">
                     <button class="btn btn-primary btn-lg btn-block">sign in</button>
-                    <p class="pull-right"><a href="#">register</a></p><p><a href="#">forgot password?</a></p>
+                    <p class="pull-right"><a href="#signupModal">register</a></p><p><a href="#">forgot password?</a></p>
                   </div>
                 </form>
               </div><!-- /modal-body -->
@@ -186,7 +186,7 @@
         <div class="well text-center" id="spread-heat-well">
           <h2 class="blue">spread some heat</h2>
 		      <p>
-		        <button type="button" class="btn btn-primary btn-lg">open your own store</button>
+		        <a data-toggle="modal" role="button" class="btn btn-primary btn-lg" href="#loginModal">open your own store</a>
 		      </p>
           <img src="http://placehold.it/900x400" class="thumbnail img-responsive" alt="start here video" style="margin-left:auto; margin-right:auto">
           <h3>want to sell some shoes? check this out first</h3>
@@ -233,7 +233,10 @@
             <img class="img-thumbnail img-responsive" src="http://placehold.it/300x250" alt="...">
           </div><!-- /col-sm-3 -->        
         </div><!-- /row -->
-               
+        
+        <div id="sell-bottom-faqs">
+          <a href="#"><h4><span class="glyphicon glyphicon-question-sign"></span> F.A.Q. Questions about opening your own store go here?</h4></a>
+        </div>       
       </div><!-- /main -->
       
       <footer>
