@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>  
   <head>
     <meta charset="utf-8">
@@ -119,24 +120,35 @@
           <hr class="breadcrumb-hr" />
         </div>
 
-        <div class="well" id="submitItem">
+        <div class="well" id="storeName">
           <form class="form-horizontal" role="form">
+            <div class="form-group form-group-lg">
+              <label for="nameStore" class="col-sm-2 control-label">name your store</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="nameStore" placeholder="Sweet Stuff">
+            </div>
+            </div>
             <div class="form-group">
-              <label for="exampleInputEmail1" class="col-sm-2 control-label">name of your store</label>
+              <label for="describeStore" class="col-sm-2 control-label">describe your store</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Sweet Stuff">
+                <textarea id="describeStore" class="form-control" rows="3" placeholder="describe your store in a sentence or two here..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div><!-- /storeName -->
+        
+        <div class="well" id="shoeUpload">
+          <form class="form-horizontal" role="form">            
+            <div class="form-group">
+              <label for="shoeName" class="col-sm-2 control-label">name of shoe</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="shoeName" placeholder="Jordan 11">
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1" class="col-sm-2 control-label">name of shoe</label>
+              <label for="shoeBrand" class="col-sm-2 control-label">brand</label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Jordan 11">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1" class="col-sm-2 control-label">brand</label>
-              <div class="col-sm-10">
-                <select id="select04" class="form-control">
+                <select id="shoeBrandSelect" class="form-control">
                   <option>select brand</option>
                   <option>kaepa</option>
                   <option>roos</option>
@@ -146,9 +158,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1" class="col-sm-2 control-label">size</label>
+              <label for="shoeSize" class="col-sm-2 control-label">size</label>
               <div class="col-sm-10">
-                <select id="select05" class="form-control">
+                <select id="shoeSizeSelect" class="form-control">
                   <option>select size</option>
                   <option>6</option>
                   <option>6.5</option>
@@ -158,9 +170,9 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword1" class="col-sm-2 control-label">condition</label>
+              <label for="shoeCondition" class="col-sm-2 control-label">condition</label>
               <div class="col-sm-10">
-                <select id="select06" class="form-control">
+                <select id="shoeConditionSelect" class="form-control">
                   <option>select condition</option>
                   <option>deadstock</option>
                   <option>slightly used</option>
@@ -170,56 +182,112 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="input-group">
-                <label for="exampleInputEmail1" class="col-sm-2 control-label">price</label>
-                <div class="col-sm-10">
-                  <span class="input-group-addon">@</span>
-                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="350">
+              <label for="shoePrice" class="col-sm-2 control-label">price</label>
+              <div class="col-sm-10">
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input type="text" class="form-control" id="shoePrice" placeholder="350">
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputFile" class="col-sm-2 control-label">upload image</label>
+              <label for="uploadImages" class="col-sm-2 control-label">upload images</label>
               <div class="col-sm-10">
-                <input type="file" id="exampleInputFile">
-                <p class="help-block">Something helpful here, perhaps.</p>
+                <input type="file" id="uploadImages">
+                <span class="help-block">max of 5 images</span>
               </div>
             </div>
             <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
+              <label for="shoeDescription" class="col-sm-2 control-label">shoe details</label>
+              <div class="col-sm-10">
+                <textarea id="shoeDescription" class="form-control" rows="3" placeholder="describe your shoes here..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div><!-- /shoeUpload -->
+        
+        <div class="well" id="shoeShipping">
+          <form class="form-horizontal" role="form">                
+            <div class="form-group">
+              <label for="shoeShipping" class="col-sm-2 control-label">shipping</label>
+              <div class="col-sm-5">
+                <select id="shippingLocationSelect" class="form-control">
+                  <option>your location</option>
+                  <option>USA</option>
+                  <option>Uganda</option>
+                  <option>Alaska</option>
+                  <option>Atlantis</option>
+                </select>
+              </div>
+              <div class="col-sm-5">
+                <select id="shippingTimeSelect" class="form-control">
+                  <option>handling time</option>
+                  <option>two business days</option>
+                  <option>three business days</option>
+                  <option>four business days</option>
+                  <option>one week</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-5">
+                <select id="shippingMethodSelect" class="form-control">
+                  <option>shipping method</option>
+                  <option>USPS standard</option>
+                  <option>USPS first class</option>
+                  <option>UPS ground</option>
+                  <option>FedEx ground</option>
+                </select>
+              </div>
+              <div class="col-sm-5">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> Remember this
+                    <input type="checkbox"> free shipping
                   </label>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">submit</button>
+              <label for="shoeShippingDescription" class="col-sm-2 control-label">shipping policy</label>
+              <div class="col-sm-10">
+                <textarea id="shoeShippingDescription" class="form-control" rows="3" placeholder="describe your shipping policy here..."></textarea>
+              </div>
+            </div>
+            
+            <hr class="alt-hr" />
+            
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-5">
+                <button type="submit" class="btn btn-lg btn-primary">preview listing</button>
+              </div>
+              <div class="col-sm-5">
+                <button type="submit" class="btn btn-lg btn-default">upload another pair of shoes</button>
               </div>
             </div>
           </form>
-        </div><!-- /submitItem -->
-        
-        <div id='submitItem'>
+        </div><!-- /shoeShipping -->
+      </div><!-- /main-wrap -->
+      
+<!-- It was easier for me to just make something from scratch, Austen, so I commented out what you had started below -->
+<!--        
+        <div id="submitItem">
 
         <u><h4>Information</h4></u>
 
           <div style="margin-top:30px; line-height:10%;">
           <p>Item Name</p>
           <input id="itemName" />
-          <div>
+          </div>
 
           <div style="margin-top:30px; line-height:10%;">
             <p>Item Price</p>
             <input id="itemName" />
-          <div>
+          </div>
 
           <div style="margin-top:30px; line-height:10%;">
           <p>Item Description</p>
           <textarea style="margin-top:0px;line-height:100%;" id="itemDesc" rows="5" cols="60"></textarea>
-          <div>
+          </div>
 
           <div style="margin-top:30px; line-height:10%;">
             <p>Tags</p>
@@ -265,17 +333,13 @@
           </div>          
 
 
-        <u><h4 style="margin-top:50px;">Payment</h1></u>
+        <u><h4 style="margin-top:50px;">Payment</h4></u>
         <p style="font-size:80%;line-height:100%; margin-right:40%">In order to ensure that all transactions are secure and easy, we only accept payments through Paypal. Please make sure that you enter your Paypal email correctly, because it is how you will be paid.</p>
 
           <div style="margin-top:30px; line-height:10%;">
             <p>Paypal</p>
             <input id="itemName" />
-          <div>
-
-
-        </div>
-
+          </div>
 
         </div>
 
@@ -321,9 +385,31 @@
 
 
         </script>
+-->
 
-
-
+      <footer>
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="#" class="footer-text">terms</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">privacy</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">help</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <p class="footer-text">&copy; 2014 HeatSwap, all rights reserved</p>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="https://www.youtube.com/user/HeatSwapTV" target="_blank" class="footer-text"><i class="fa fa-youtube-play fa-lg"></i></a>
+              <li><a href="http://instagram.com/heatswap" target="_blank" class="footer-text"><i class="fa fa-instagram fa-lg"></i></a>
+            </ul>
+          </div>
+        </div><!-- /row -->
+      </footer>
+      
+  </div><!-- /container -->
   </body>
 </html>
 
