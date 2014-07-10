@@ -107,47 +107,54 @@
 
       <div id="main-wrap"><!-- Main content wrapper -->
 
-        <ol class="breadcrumb pull-right breadcrumb-right">
-          <li><a href="index.html">home</a></li>
-          <li><a href="sell.html">sell</a></li>
-          <li class="active">shop setup</li>
-        </ol>
+        <div style="margin-bottom:1em">
+          <ol class="breadcrumb pull-right breadcrumb-right">
+            <li><a href="index.html">home</a></li>
+            <li><a href="sell.html">sell</a></li>
+            <li class="active">shop setup</li>
+          </ol>
 
-        <div class="clearfix">
-          <div class="pull-left">
-            <h1 style="margin-right:10px" class="red">Set Up Your Shop</h1>
+          <div class="clearfix">
+            <div class="pull-left">
+              <h1 style="margin-right:10px" class="red">set up your shop</h1>
+            </div>
+            <hr class="breadcrumb-hr" />
           </div>
-          <hr class="breadcrumb-hr" />
         </div>
 
         <div class="well" id="storeName">
           <form class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
-              <label for="nameStore" class="col-sm-2 control-label">name your store</label>
-            <div class="col-sm-10">
+              <label for="nameStore" class="col-sm-2 col-sm-offset-1 control-label">name your store</label>
+            <div class="col-sm-4">
               <input type="text" class="form-control" id="nameStore" placeholder="Sweet Stuff">
             </div>
             </div>
             <div class="form-group">
-              <label for="describeStore" class="col-sm-2 control-label">describe your store</label>
-              <div class="col-sm-10">
+              <label for="describeStore" class="col-sm-2 col-sm-offset-1 control-label">describe your store</label>
+              <div class="col-sm-8">
                 <textarea id="describeStore" class="form-control" rows="3" placeholder="describe your store in a sentence or two here..."></textarea>
               </div>
             </div>
           </form>
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-8">
+              <button type="submit" class="btn btn-sm btn-primary">save</button>
+            </div>
+          </div>
         </div><!-- /storeName -->
         
         <div class="well" id="shoeUpload">
           <form class="form-horizontal" role="form">            
             <div class="form-group">
-              <label for="shoeName" class="col-sm-2 control-label">name of shoe</label>
-              <div class="col-sm-10">
+              <label for="shoeName" class="col-sm-2 col-sm-offset-1 control-label">name of shoe</label>
+              <div class="col-sm-4">
                 <input type="text" class="form-control" id="shoeName" placeholder="Jordan 11">
               </div>
             </div>
             <div class="form-group">
-              <label for="shoeBrand" class="col-sm-2 control-label">brand</label>
-              <div class="col-sm-10">
+              <label for="shoeBrand" class="col-sm-2 col-sm-offset-1 control-label">brand</label>
+              <div class="col-sm-4">
                 <select id="shoeBrandSelect" class="form-control">
                   <option>select brand</option>
                   <option>kaepa</option>
@@ -158,8 +165,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="shoeSize" class="col-sm-2 control-label">size</label>
-              <div class="col-sm-10">
+              <label for="shoeSize" class="col-sm-2 col-sm-offset-1 control-label">size</label>
+              <div class="col-sm-4">
                 <select id="shoeSizeSelect" class="form-control">
                   <option>select size</option>
                   <option>6</option>
@@ -170,8 +177,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="shoeCondition" class="col-sm-2 control-label">condition</label>
-              <div class="col-sm-10">
+              <label for="shoeCondition" class="col-sm-2 col-sm-offset-1 control-label">condition</label>
+              <div class="col-sm-4">
                 <select id="shoeConditionSelect" class="form-control">
                   <option>select condition</option>
                   <option>deadstock</option>
@@ -182,8 +189,8 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="shoePrice" class="col-sm-2 control-label">price</label>
-              <div class="col-sm-10">
+              <label for="shoePrice" class="col-sm-2 col-sm-offset-1 control-label">price</label>
+              <div class="col-sm-4">
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
                   <input type="text" class="form-control" id="shoePrice" placeholder="350">
@@ -191,26 +198,31 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="uploadImages" class="col-sm-2 control-label">upload images</label>
-              <div class="col-sm-10">
+              <label for="uploadImages" class="col-sm-2 col-sm-offset-1 control-label">upload images</label>
+              <div class="col-sm-8">
                 <input type="file" id="uploadImages">
                 <span class="help-block">max of 5 images</span>
               </div>
             </div>
             <div class="form-group">
-              <label for="shoeDescription" class="col-sm-2 control-label">shoe details</label>
-              <div class="col-sm-10">
+              <label for="shoeDescription" class="col-sm-2 col-sm-offset-1 control-label">shoe details</label>
+              <div class="col-sm-8">
                 <textarea id="shoeDescription" class="form-control" rows="3" placeholder="describe your shoes here..."></textarea>
               </div>
             </div>
           </form>
+          <div class="row">
+            <div class="col-sm-offset-3 col-sm-8">
+              <button type="submit" class="btn btn-sm btn-primary">save</button>
+            </div>
+          </div>
         </div><!-- /shoeUpload -->
         
         <div class="well" id="shoeShipping">
           <form class="form-horizontal" role="form">                
             <div class="form-group">
-              <label for="shoeShipping" class="col-sm-2 control-label">shipping</label>
-              <div class="col-sm-5">
+              <label for="shoeShipping" class="col-sm-2 col-sm-offset-1 control-label">shipping</label>
+              <div class="col-sm-4">
                 <select id="shippingLocationSelect" class="form-control">
                   <option>your location</option>
                   <option>USA</option>
@@ -219,7 +231,7 @@
                   <option>Atlantis</option>
                 </select>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <select id="shippingTimeSelect" class="form-control">
                   <option>handling time</option>
                   <option>two business days</option>
@@ -230,7 +242,7 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-5">
+              <div class="col-sm-offset-3 col-sm-4">
                 <select id="shippingMethodSelect" class="form-control">
                   <option>shipping method</option>
                   <option>USPS standard</option>
@@ -239,7 +251,7 @@
                   <option>FedEx ground</option>
                 </select>
               </div>
-              <div class="col-sm-5">
+              <div class="col-sm-4">
                 <div class="checkbox">
                   <label>
                     <input type="checkbox"> free shipping
@@ -248,24 +260,29 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="shoeShippingDescription" class="col-sm-2 control-label">shipping policy</label>
-              <div class="col-sm-10">
+              <label for="shoeShippingDescription" class="col-sm-2 col-sm-offset-1 control-label">shipping policy</label>
+              <div class="col-sm-8">
                 <textarea id="shoeShippingDescription" class="form-control" rows="3" placeholder="describe your shipping policy here..."></textarea>
               </div>
             </div>
-            
-            <hr class="alt-hr" />
-            
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-5">
-                <button type="submit" class="btn btn-lg btn-primary">preview listing</button>
-              </div>
-              <div class="col-sm-5">
-                <button type="submit" class="btn btn-lg btn-default">upload another pair of shoes</button>
-              </div>
-            </div>
           </form>
+          
+          <hr class="alt-hr" />
+           
+          <div class="row">
+            <div class="col-sm-offset-1 col-sm-5">
+              <p>
+              <button type="submit" class="btn btn-lg btn-block btn-primary">save and preview listing</button>
+              </p>
+            </div>
+            <div class="col-sm-5">
+              <p>
+              <button type="submit" class="btn btn-lg btn-block btn-default">upload another pair of shoes</button>
+              </p>
+            </div>
+          </div><!-- /row -->
         </div><!-- /shoeShipping -->
+      
       </div><!-- /main-wrap -->
       
 <!-- It was easier for me to just make something from scratch, Austen, so I commented out what you had started below -->
