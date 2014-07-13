@@ -8,6 +8,8 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
+            <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
     <title>Popular</title>
 
@@ -55,179 +57,76 @@
               </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-              <li><a data-toggle="modal" role="button" href="#accountModal"><span class="glyphicon glyphicon-lock"></span> login</a>
+              <li><a data-toggle="modal" role="button" href="#loginModal"><span class="glyphicon glyphicon-lock"></span> login</a>
               </li>
-              <li><a data-toggle="modal" role="button" href="#accountModal"><span class="glyphicon glyphicon-user"></span> sign up</a>
+              <li><a data-toggle="modal" role="button" href="#signupModal"><span class="glyphicon glyphicon-user"></span> sign up</a>
               </li>
               <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> items in cart: <span style="color:#2A5469">00</span></a>
               </li>
           </ul>
         </div>
-        
-        <!-- Modal -->
-        <div id="accountModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div id="loginModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h1 class="text-center blue">welcome!</h1>
+                <h1 class="text-center blue">Login</h1>
               </div>
               <div class="modal-body">
-                <div>
-                  <ul id="myTab" class="nav nav-tabs">
-                    <li class="active"><a href="#signIn" data-toggle="tab"><span class="glyphicon glyphicon-lock"></span> sign in</a></li>
-                    <li class=""><a href="#signUp" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> sign up</a></li>
-                    <li class=""><a href="#account" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> account</a></li>
-                  </ul>
-                </div>
-                
-                <div id="myTabContent" class="tab-content">
-                  
-                  <!-- SIGN IN -->
-                  <div class="tab-pane fade active in" id="signIn">
-                    <form role="form" action="">
-                                            
-                      <!-- Email input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">@</div>
-                          <input required="" id="emailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
-                        </div>
-                      </div>
-
-                      <!-- Password input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon"><span class="fa fa-key"</span></div>
-                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
-                        </div>
-                      </div>
-                                      
-                      <!-- Checkbox -->
-                      <div class="form-group">                        
-                        <div class="checkbox">
-                          <label>
-                            <input type="checkbox" name="rememberMe" id="rememberMe" value="rememberMe">remember me
-                          </label>
-                        </div>
-                      </div>
-
-                      <!-- Button -->
-                      <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> log in</button>
-                      </div>
-                      <p><a href="#">forgot password?</a></p>
-                        
-                    </form>
-                  </div><!-- /signIn -->
-                  
-                  <!-- SIGN UP -->
-                  <div class="tab-pane fade in" id="signUp">
-                    <form role="form" action="">
-                                            
-                      <!-- first input-->
-                      <div class="form-group">
-                        <input required="" id="fNameInput" name="fNameInput" type="text" class="form-control input-lg" placeholder="first name">
-                      </div>
-                      
-                      <!-- last name input-->
-                      <div class="form-group">
-                        <input required="" id="lNameInput" name="lNameInput" type="text" class="form-control input-lg" placeholder="last name">
-                      </div>
-                      
-                      <!-- username input-->
-                      <div class="form-group">
-                        <input required="" id="usernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
-                        <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
-                      </div>
-                      
-                      <!-- Email input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">@</div>
-                          <input required="" id="emailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
-                        </div>
-                      </div>
-
-                      <!-- Password input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon"><span class="fa fa-key"</span></div>
-                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
-                        </div>
-                      </div>
-                      
-                      <!-- check password input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon"><span class="fa fa-key"</span></div>
-                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="re-type password">
-                        </div>
-                      </div>
-                      
-                      <!-- Button -->
-                      <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> sign up</button>
-                      </div>
-                        
-                    </form>
-                  </div><!-- /signUp -->
-                  
-                  <!-- ACCOUNT SETTINGS -->
-                  <div class="tab-pane fade in" id="account">
-                    <form role="form" action="">
-                    
-                      <!-- email change-->
-                      <div class="form-group">
-                        <label class="form-label" for="emailChange">change your email:</label>
-                        <div class="input-group">
-                          <div class="input-group-addon">@</div>
-                          <input required="" id="emailChange" name="emailChange" type="text" class="form-control input-lg" placeholder="enter new email">
-                        </div>  
-                      </div><!-- /form-group -->
-                    
-                      <!-- password change-->
-                      <div class="form-group">
-                        <label class="form-label" for="passwordChange">change your password:</label>
-                        <div class="input-group">
-                          <div class="input-group-addon"><span class="fa fa-key"</span></div>
-                          <input required="" id="passwordChange" name="passwordChange" class="form-control input-lg" type="password" placeholder="enter new password">
-                        </div>
-                      </div>
-                                          
-                      <!-- check password input-->
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon"><span class="fa fa-key"</span></div>
-                          <input required="" id="changePasswordCheck" name="changePasswordCheck" class="form-control input-lg" type="password" placeholder="re-type new password">
-                        </div>
-                      </div>
-                      
-                      <!-- username change-->
-                      <div class="form-group">
-                        <label class="form-label" for="usernameChange">change your user name:</label>
-                        <input required="" id="usernameChange" name="usernameChange" class="form-control input-lg" type="password" placeholder="enter new user name">
-                      </div>
-                      
-                      <!-- BUTTON -->
-                      <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> save and close</button>
-                      </div>
-                      
-                     </form> 
-                     <a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a>
-                  </div><!-- /account -->
-                  
-                </div><!-- /myTabContent -->
+                <form action="">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block">Sign In</button>
+                    <p class="pull-right"><a href="#">Register</a></p><p><a href="#">Need help?</a></p>
+                  </div>
+                </form>
               </div><!-- /modal-body -->
-              
               <div class="modal-footer">
-                  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">cancel</button>   
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>   
               </div>
-              
             </div><!-- /modal-content -->
           </div><!-- /modal-dialog -->
-        </div><!-- /accountModal -->
+        </div><!-- /loginModal -->
+        
+        <div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center blue">Sign Up</h1>
+              </div>
+              <div class="modal-body">
+                <form action="">
+                  <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="Re-type Password">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control input-lg" placeholder="Other Stuff?">
+                  </div>
+                  <div class="form-group">
+                    <button class="btn btn-primary btn-lg btn-block">Sign Up</button>
+                    <p><a href="#">Need help?</a></p>
+                  </div>
+                </form>
+              </div><!-- /modal-body -->
+              <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+              </div>
+            </div><!-- /modal-content -->
+          </div><!-- /modal-dialog -->
+        </div><!-- /signupModal -->
         
       </div><!-- /logo row -->
       
@@ -349,172 +248,52 @@
             </select>
           </div><!-- /form-group -->
         </form>
-        
-        <!-- Pushes first shoe down where it belongs -->
-        <div class="clearfix hidden-sm"></div>
-        
+
         <div class="row" id="row-popular-pg">
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$100</h4>
-                <h4><a href="#">Name of Brand</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$200</h4>
-                <h4><a href="#">Name of Brand 2</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$300</h4>
-                <h4><a href="#">Name of Brand 3</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$400</h4>
-                <h4><a href="#">Name of Brand 4</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$500</h4>
-                <h4><a href="#">Name of Brand 5</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$600</h4>
-                <h4><a href="#">Name of Brand 6</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$700</h4>
-                <h4><a href="#">Name of Brand 7</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$800</h4>
-                <h4><a href="#">Name of Brand 8</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$900</h4>
-                <h4><a href="#">Name of Brand 9</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,000</h4>
-                <h4><a href="#">Name of Brand 10</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,100</h4>
-                <h4><a href="#">Name of Brand 11</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,200</h4>
-                <h4><a href="#">Name of Brand 12</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,300</h4>
-                <h4><a href="#">Name of Brand 13</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,400</h4>
-                <h4><a href="#">Name of Brand 14</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,500</h4>
-                <h4><a href="#">Name of Brand 15</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->
-          <div class="col-sm-4 col-md-3">
-            <div class="thumbnail">
-              <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
-              <div class="caption">
-                <h4 class="pull-right">$1,600</h4>
-                <h4><a href="#">Name of Brand 16</a></h4>
-                <p class="text-muted">Released on 12/20/14</p>
-              </div><!-- /caption -->
-            </div><!-- /thumbnail -->
-          </div><!-- /col-sm-3 -->        
-        </div><!-- /row popular-pg -->
+        </div>
+
+        
+<script>       
+Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+        var courrier = Parse.Object.extend("courrier");
+          var mailbox = new Parse.Query(courrier);
+          mailbox.exists("item");
+          mailbox.limit(16);
+          mailbox.find({
+            success: function(returnObj) {
+
+              var finalObj = ""
+
+              for (var i = 0; i < returnObj.length; i++) { 
+
+                var item = returnObj[i];
+
+                finalObj += "<div class='col-sm-4 col-md-3'>\n"
+                //<a href='#'' class='thumbnail'>\n";
+                finalObj += "<div class='thumbnail'>\n"
+                finalObj += "<a href='#'><img src='" + item.get("image") + "' height='300' width='200' >"
+                finalObj += "</a>\n"
+                finalObj += "<div class='caption'>"
+                finalObj += "<h4 class='pull-right'> $" + item.get("price") + "</h4>\n"
+                finalObj += "<h4><a href='#'>"+item.get("brand")+"</a></h4>\n"
+                finalObj += "<p class='text-muted'>" + item.get("createdAt") + "</p>\n"
+                finalObj += "</div>"
+                finalObj += "</div>"
+                finalObj += "</div> \n"
+            }
+
+            var insertNonsense = document.getElementById("row-popular-pg");
+            insertNonsense.innerHTML = finalObj
+
+
+
+
+            },
+              error: function(error) {
+                  alert("Error: " + error.code + " " + error.message);
+             }
+        });
+</script>
         
         <div id="pagination-popular" class="clearfix">
           <ul class="pagination pull-right">
@@ -532,7 +311,7 @@
               <h2><span class="blue">young sneakerheads</span></h2>
               <h4><span class="red">Generate some heat for kids.</span></h4>
               <p>Every time you buy or sell sneakers on HeatSwap you're helping build a better future for kids who could use a break. We donate a percentage of every transaction to our partner organizations, which are creating educational and healthy play opportunities for children here and around the world. Please join us in showing how much good that Sneakerheads - and some heat-swapping - can do for the world.</p>
-              <p><a class="btn btn-lg btn-primary" href="story.html" role="button">read more &raquo;</a></p>
+              <a class="btn btn-lg btn-primary" href="story.html" role="button">read more &raquo;</a>
             </div>
             <div class="col-sm-6 col-md-4">
               <img src="http://placehold.it/310x240" class="thumbnail img-responsive" alt="...">
