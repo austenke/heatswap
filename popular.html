@@ -365,6 +365,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
           mailbox.limit(16);
+          mailbox.descending("createdAt");
           mailbox.find({
             success: function(returnObj) {
 

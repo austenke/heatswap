@@ -8,8 +8,6 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
     <title>Heat Swap</title>
 
@@ -145,7 +143,7 @@
         </div><!-- /storeName -->
         
         <div class="well" id="shoeUpload">
-          <form class="form-horizontal" role="form">            
+          <div class="form-horizontal" role="form">            
             <div class="form-group">
               <label for="shoeName" class="col-sm-2 col-sm-offset-1 control-label">name of shoe</label>
               <div class="col-sm-4">
@@ -200,8 +198,8 @@
             <div class="form-group">
               <label for="uploadImages" class="col-sm-2 col-sm-offset-1 control-label">upload images</label>
               <div class="col-sm-8">
-                <input type="file" id="uploadImages">
-                <span class="help-block">max of 5 images</span>
+                <input type="text" class="form-control" id="mainImageURL" placeholder="image url">
+                <span class="help-block">max of 1 image</span>
               </div>
             </div>
             <div class="form-group">
@@ -214,21 +212,20 @@
               <div class="col-sm-4 col-sm-offset-3">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> make this my featured shoe
+                    <input type="checkbox" onclick="return false;" disabled="disabled"> make this my featured shoe
                   </label>
                 </div>
               </div>
             </div>
-          </form>
+          </div>
           <div class="row">
             <div class="col-sm-offset-3 col-sm-8">
-              <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> save</button>
             </div>
           </div>
         </div><!-- /shoeUpload -->
         
         <div class="well" id="shoeShipping">
-          <form class="form-horizontal" role="form">                
+          <div class="form-horizontal" role="form">                
             <div class="form-group">
               <label for="shoeShipping" class="col-sm-2 col-sm-offset-1 control-label">shipping</label>
               <div class="col-sm-4">
@@ -241,13 +238,10 @@
                 </select>
               </div>
               <div class="col-sm-4">
-                <select id="shippingTimeSelect" class="form-control">
-                  <option>handling time</option>
-                  <option>two business days</option>
-                  <option>three business days</option>
-                  <option>four business days</option>
-                  <option>one week</option>
-                </select>
+                <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control" id="shippingprice" placeholder="shipping cost">
+                </div>
               </div>
             </div>
             <div class="form-group">
@@ -263,7 +257,7 @@
               <div class="col-sm-4">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox"> free shipping
+                    <input id="checkBoxStuff" onclick="coolChange()" type="checkbox"> free shipping
                   </label>
                 </div>
               </div>
@@ -274,14 +268,13 @@
                 <textarea id="shoeShippingDescription" class="form-control" rows="3" placeholder="describe your shipping policy here..."></textarea>
               </div>
             </div>
-          </form>
           
           <hr class="alt-hr" />
            
           <div class="row">
             <div class="col-sm-offset-1 col-sm-5">
               <p>
-              <button type="submit" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-floppy-saved"></span> save and preview listing</button>
+              <button onclick="sellItem()" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-floppy-saved"></span> save and show listing</button>
               </p>
             </div>
             <div class="col-sm-5">
@@ -293,125 +286,6 @@
         </div><!-- /shoeShipping -->
       
       </div><!-- /main-wrap -->
-      
-<!-- It was easier for me to just make something from scratch, Austen, so I commented out what you had started below -->
-<!--        
-        <div id="submitItem">
-
-        <u><h4>Information</h4></u>
-
-          <div style="margin-top:30px; line-height:10%;">
-          <p>Item Name</p>
-          <input id="itemName" />
-          </div>
-
-          <div style="margin-top:30px; line-height:10%;">
-            <p>Item Price</p>
-            <input id="itemName" />
-          </div>
-
-          <div style="margin-top:30px; line-height:10%;">
-          <p>Item Description</p>
-          <textarea style="margin-top:0px;line-height:100%;" id="itemDesc" rows="5" cols="60"></textarea>
-          </div>
-
-          <div style="margin-top:30px; line-height:10%;">
-            <p>Tags</p>
-              <select>
-               <option value="volvo">Brand</option>
-               <option value="saab">Saab</option>
-               <option value="mercedes">Mercedes</option>
-               <option value="audi">Audi</option>
-              </select>
-
-              <select>
-               <option value="volvo">Condition</option>
-               <option value="saab">Saab</option>
-               <option value="mercedes">Mercedes</option>
-               <option value="audi">Audi</option>
-              </select>
-
-              <select>
-               <option value="volvo">Size</option>
-               <option value="saab">Saab</option>
-               <option value="mercedes">Mercedes</option>
-               <option value="audi">Audi</option>
-              </select>
-          </div>
-
-
-        <u><h4 style="margin-top:50px;">Images</h1></u>
-
-
-          <div style="margin-top:30px; line-height:10%;">
-          <p>Main image</p>
-            <input id="itemName" />
-          </div>   
-
-          <div style="margin-top:30px; line-height:10%;">
-          <p>Second Image</p>
-            <input id="itemName" />
-          </div>  
-
-          <div style="margin-top:30px; line-height:10%;">
-          <p>Third Image</p>
-            <input id="itemName" />
-          </div>          
-
-
-        <u><h4 style="margin-top:50px;">Payment</h4></u>
-        <p style="font-size:80%;line-height:100%; margin-right:40%">In order to ensure that all transactions are secure and easy, we only accept payments through Paypal. Please make sure that you enter your Paypal email correctly, because it is how you will be paid.</p>
-
-          <div style="margin-top:30px; line-height:10%;">
-            <p>Paypal</p>
-            <input id="itemName" />
-          </div>
-
-        </div>
-
-        <script>
-
-          var iName = document.getElementById("username123").value;
-          var iDesc = document.getElementById("username123").value;
-          var iPrice = document.getElementById("username123").value;
-          var iBrand = document.getElementById("username123").value;
-          var iCondition = document.getElementById("username123").value;
-          var iSize = document.getElementById("username123").value;
-          var iMainImage = document.getElementById("username123").value;
-          var iSecondImage = document.getElementById("username123").value;
-          var iThirdImage = document.getElementById("username123").value;
-          var iPaypal = document.getElementById("username123").value;
-
-          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-
-          var courrier = Parse.Object.extend("courrier");
-          var postOffice = new courrier();
- 
-          postOffice.set("itemName", iName);
-          postOffice.set("itemDesc", iDesc);
-          postOffice.set("itemPrice", iPrice);
-          postOffice.set("brand", iBrand);
-          postOffice.set("condition", iCondition);
-          postOffice.set("size", iSize);
-          postOffice.set("mainImage", iMainImage);
-          postOffice.set("secondImage", iSecondImage);
-          postOffice.set("thirdImage", iThirdImage);
-          postOffice.set("paypalEmail", iPaypal);
-          postOffice.set("user", Parse.User.current());
-
- 
-          postOffice.save(null, {
-            success: function(postOffice) {
-
-          },
-          error: function(postOffice, error) {
-              alert('Failed to create new object, with error code: ' + error.message);
-          }
-          });
-
-
-        </script>
--->
 
       <footer>
         <div class="row">
@@ -436,6 +310,79 @@
       </footer>
       
   </div><!-- /container -->
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+
+    <script>
+
+    var sellItem = function () {
+
+      console.log("Hi")
+
+      var iName = document.getElementById("shoeName").value;
+      var iDesc = document.getElementById("shoeDescription").value;
+      var iPrice = document.getElementById("shoePrice").value;
+      var iBrand = document.getElementById("shoeBrandSelect").value;
+      var iCondition = document.getElementById("shoeConditionSelect").value;
+      var iSize = document.getElementById("shoeSizeSelect").value;
+      var iMainImage = document.getElementById("mainImageURL").value;
+      //var iSecondImage = document.getElementById("username123").value;
+      //var iThirdImage = document.getElementById("username123").value;
+      var iLocation = document.getElementById("shippingLocationSelect").value;
+      var iShipMethod = document.getElementById("shippingMethodSelect").value;
+      var iShipPrice = document.getElementById("shippingprice").value;
+      var iShipPolicy = document.getElementById("shippingprice").value;
+
+      Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+      var courrier = Parse.Object.extend("courrier");
+      var postOffice = new courrier();
+
+      postOffice.set("item", iName);
+      postOffice.set("itemDesc", iDesc);
+      postOffice.set("price", iPrice);
+      postOffice.set("brand", iBrand);
+      postOffice.set("condition", iCondition);
+      postOffice.set("size", iSize);
+      postOffice.set("image", iMainImage);
+      //postOffice.set("secondImage", iSecondImage);
+      //postOffice.set("thirdImage", iThirdImage);
+      postOffice.set("Location", iLocation);
+      postOffice.set("shipMethod", iShipMethod);
+      postOffice.set("shipPrice", iShipPrice);
+      postOffice.set("shipPolicy", iShipPolicy);
+      postOffice.set("user", Parse.User.current());
+
+
+      postOffice.save(null, {
+        success: function(postOffice) {
+
+          alert("Successful upload with ID: "+postOffice.id);
+      },
+      error: function(postOffice, error) {
+          alert('Failed to create new object, with error code: ' + error.message);
+      }
+      });
+    }
+
+
+
+    var coolChange = function() {
+      if (document.getElementById("checkBoxStuff").checked == true) {
+        document.getElementById("shippingprice").setAttribute("disabled","disabled");
+        document.getElementById("shippingprice").setAttribute("background-color","DCDAD1");
+      }
+      else {
+        document.getElementById("shippingprice").removeAttribute("disabled");
+        document.getElementById("shippingprice").setAttribute("background-color","ffffff");
+      }
+    }
+        </script>
+
+
+
+
   </body>
 </html>
 
