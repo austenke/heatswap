@@ -386,30 +386,32 @@
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
         
         var docURL= document.URL;
-		var pulledUser=(docURL.split("com/").pop());
-		alert(pulledUser)
+		var pulledUser=(docURL.split("html/").pop());
+		alert(pulledUser);
+		alert('here');
         
         var courrier = Parse.Object.extend("courrier");
         var mailbox = new Parse.Query(courrier);
-          
+        //if(pulledUser!=""){  
           mailbox.exists("item");
-          mailbox.limit(4);
+         // mailbox.limit(4);
           mailbox.find({
             success: function(returnObj) {
 
               var finalObj = ""
+				var found=0;
+				
 
-              for (var i = 0; i < returnObj.length; i++) { 
-				if(pulledUser=mailbox.shoeCreator){
+              for (var i = 0; i < returnObj.length && found<4; i++) { 
                 var item = returnObj[i];
-
+				if(pulledUser==item.shoeCreator){
                 finalObj += "<div class='col-sm-6'>\n"
                 finalObj += "<a class='thumbnail' href='#'>"
                 finalObj += "<img src='"+ item.get("image") + "'height='300' width='250' class='img-responsive'></a> \n"
                 finalObj += "</div> \n"
-                }else(
-                	i=i-1
-                )
+                found++;
+                }else{
+                }
                 
             }
 
@@ -422,6 +424,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             },
               error: function(error) {
                   alert("Error: " + error.code + " " + error.message);
+           //  }
              }
         });
 </script>
