@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -404,10 +404,10 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
 
               for (var i = 0; i < returnObj.length && found<4; i++) { 
                 var item = returnObj[i];
-				if(pulledUser==item.shoeCreator){
+				if(pulledUser=!item.shoeCreator){
                 finalObj += "<div class='col-sm-6'>\n"
-                finalObj += "<a class='thumbnail' href='#'>"
-                finalObj += "<img src='"+ item.get("image") + "'height='300' width='250' class='img-responsive'></a> \n"
+                finalObj += "<a class='thumbnail' href='#' style='height:250px;vertical-align:middle;'>"
+                finalObj += "<img src='"+ item.get("image") + "' Xheight='250' xwidth='300' xclass='img-responsive' ></a> \n"
                 finalObj += "</div> \n"
                 found++;
                 }else{
