@@ -323,9 +323,35 @@
 -->               
         <div class="row buy-page-main-body">
           <div class="col-md-8">
-            <div class="chosen-shoe">
+            <div class="chosen-shoe" id="bigShoe">
               <img src="http://placehold.it/700x500" class="img-responsive" alt="shoe">
             </div>
+<script>
+Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+	var docURL= document.URL;
+	var shoeID=(docURL.split("/").pop());
+	var courrier = Parse.Object.extend("courrier");
+	var mailbox = new Parse.Query(courrier);
+	
+	mailbox.get(shoeID, {
+  	success: function(returnObj) {
+			var finalObj="";
+			finalObj += "<div class='chosen-shoe'>\n"
+			finalObj += "<img src='" + mailbox.get("image") + "'height='500' width='700' class='img-responsive' alt='shoe'>\n"
+			finalObj += "</div>"
+			
+			var insertNonsense = document.getElementById("bigShoe");
+            insertNonsense.innerHTML = finalObj
+		},
+		error: function(object, error) {
+			//alert("Failure " + shoeID);
+		}
+	});
+	
+	
+	
+</script>
             <ul class="nav nav-tabs">
               <li class="active"><a href="#shoe-detials" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> shoe details</a></li>
               <li><a href="#reviews" data-toggle="tab"><i class="fa fa-pencil"></i> reviews</a></li>
@@ -383,12 +409,11 @@
             </div><!-- /row -->
             
 <script>       
-Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
         
         var docURL= document.URL;
 		var pulledUser=(docURL.split("html/").pop());
-		alert(pulledUser);
-		alert('here');
+		//alert(pulledUser);
+		//alert('here');
         
         var courrier = Parse.Object.extend("courrier");
         var mailbox = new Parse.Query(courrier);
@@ -404,6 +429,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
 
               for (var i = 0; i < returnObj.length && found<4; i++) { 
                 var item = returnObj[i];
+                //  vvv this should be equals but set to != to test cropping vvv
 				if(pulledUser=!item.shoeCreator){
                 finalObj += "<div class='col-sm-6'>\n"
                 finalObj += "<a class='thumbnail' href='#' style='height:250px;vertical-align:middle;'>"
