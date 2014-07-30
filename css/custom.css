@@ -85,10 +85,8 @@ h4, .h4 {font-size: 1.125em;}
 
 /* login area ============================== */
 /* ========================================= */
-#main-nav-social-icons {margin-top:-54px;} 
+ 
 #login-menu #main-nav-social-icons li:last-child {background-color: #fff;}
-
-#login-menu {margin-top: 90px;}
 
 #login-menu ul {font-size: 0.875em;}
 
@@ -457,4 +455,20 @@ hr.team-page-thumbs {
     color: #D9562A;
     text-decoration: none;
     }
- 
+
+/* my media queries ============================================ */
+/* ========================================================== */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+  #main-nav-social-icons {
+    margin-top: 40px;
+    }
+  }
+
+/*
+Also need...
+#main-nav-social-icons {
+  class="navbar-right" at medium and above ONLY
+}
+*/
