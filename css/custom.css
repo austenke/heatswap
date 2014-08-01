@@ -460,15 +460,9 @@ hr.team-page-thumbs {
 /* ========================================================== */
 
 /* Small devices (tablets, 768px and up) */
-@media (min-width: @screen-sm-min) {
-  #main-nav-social-icons {
+@media (min-width: 992px) {
+  #logo-navbar #main-nav-social-icons {
     margin-top: 40px;
+    float: right;
     }
   }
-
-/*
-Also need...
-#main-nav-social-icons {
-  class="navbar-right" at medium and above ONLY
-}
-*/
