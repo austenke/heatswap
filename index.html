@@ -263,9 +263,28 @@
                       
                       <!-- BUTTON -->
                       <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block"><span class="glyphicon glyphicon-ok"></span> save and close</button>
+                        <button class="btn btn-primary btn-lg btn-block" onClick="saveClose()"><span class="glyphicon glyphicon-ok"></span> save and close</button>
                       </div>
-                      
+                      <script> 
+                        var saveClose = function(){
+                          //checks if current user is logged in
+                          var currentUser = Parse.User.current();
+                          if(currentUser=null||currentUser=""){
+                            alert("Please log in to continue")
+                          }else{
+                            if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
+                                user.set("email", emailChange);
+                            }
+                            if(document.getElementById("passwordChange")!=null||document.getElementById("passwordChange")!=""){
+                              
+                            }
+                            if(document.getElementById("usernameChange")!=null||document.getElementById("usernameChange")!=""){
+                              user.set("username", nameStuff);
+                            }
+                          }
+                        }
+                        }
+                      </script>
                      </form> 
                      <a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a>
                   </div><!-- /account -->
