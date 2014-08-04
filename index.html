@@ -273,13 +273,17 @@
                             alert("Please log in to continue")
                           }else{
                             if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
-                                user.set("email", emailChange);
+                                user.set("email", document.getElementById("emailChange"));
                             }
                             if(document.getElementById("passwordChange")!=null||document.getElementById("passwordChange")!=""){
-                              
+                              if(document.getElementById("passwordChange")=document.getElementById("changePasswordCheck")){
+                                user.set("password", document.getElementById("passwordChange"))
+                              }else{
+                                alert("Your passwords do not match")
+                              }
                             }
                             if(document.getElementById("usernameChange")!=null||document.getElementById("usernameChange")!=""){
-                              user.set("username", nameStuff);
+                              user.set("username", document.getElementById("usernameChange"));
                             }
                           }
                         }
