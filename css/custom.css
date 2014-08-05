@@ -459,10 +459,13 @@ hr.team-page-thumbs {
 /* my media queries ============================================ */
 /* ========================================================== */
 
-/* Small devices (tablets, 768px and up) */
+/* Small screens and up */
 @media (min-width: 992px) {
   #logo-navbar #main-nav-social-icons {
     margin-top: 40px;
+    float: right;
+    }
+  #popular-pg-dropdowns.form-inline {
     float: right;
     }
   }
