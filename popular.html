@@ -256,7 +256,7 @@
 				 <li><a href="store.html">store</a></li>
                   <li class="dropdown-submenu"><a href="#">brand</a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Adidas</a></li>
+                      <li><a href="dev.heatswap.com/popular.html?brand=adidas">Adidas</a></li>
                       <li><a href="#">Air Jordan</a></li>
                       <li><a href="#">Asics</a></li>
                       <li><a href="#">Converse</a></li>
@@ -360,10 +360,27 @@
 
         
 <script>       
+
+var urlParams;
+(window.onpopstate = function () {
+  var match,
+    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+    search = /([^&=]+)=?([^&]*)/g,
+    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+    query  = window.location.search.substring(1);
+
+  urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var queryItem = urlParams["brand"];
+
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
         var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
+          if (queryItem !== undefined) mailbox.equalTo("brand", queryItem);
           mailbox.limit(16);
           mailbox.descending("createdAt");
           mailbox.find({
@@ -400,6 +417,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                   alert("Error: " + error.code + " " + error.message);
              }
         });
+
 </script>
         
         <div id="pagination-popular" class="clearfix">
