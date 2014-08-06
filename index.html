@@ -287,7 +287,7 @@
                           }else{
                             if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
                                 user.set("email", document.getElementById("emailChange"));
-                                alert(emailChange);
+                                alert("email changed to " + emailChange);
                             }
                             if(document.getElementById("passwordChange")!=null||document.getElementById("passwordChange")!=""){
                               if(document.getElementById("passwordChange")==document.getElementById("changePasswordCheck")){
@@ -298,6 +298,7 @@
                             }
                             if(document.getElementById("usernameChange")!=null||document.getElementById("usernameChange")!=""){
                               user.set("username", document.getElementById("usernameChange"));
+                              alert("username changed to " + usernameChange)
                             }
                           }
                         }
@@ -1203,7 +1204,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
 
 
         <div id="popular-see-more" class="pull-right">
-          <a class="btn btn-lg btn-primary" href="popular.html" role="button">see more &raquo;</a>  
+          <a class="btn btn-lg btn-primary" href="popular.html" role="button">more &raquo;</a>  
         </div>
         <hr style="margin-top:44px" />
         
@@ -1216,7 +1217,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
               <h2><span class="blue">start something</span></h2>
               <h4><span class="red">Generate some heat for kids.</span></h4>
               <p>Every time you buy or sell sneakers on HeatSwap you're helping build a better future for kids who could use a break. We donate a percentage of every transaction to our partner organizations, which are creating educational and healthy play opportunities for children here and around the world. Please join us in showing how much good that Sneakerheads - and some heat-swapping - can do for the world.</p>
-              <a class="pull-right btn btn-lg btn-primary" href="story.html" role="button">read more &raquo;</a>
+              <a class="pull-right btn btn-lg btn-primary" href="story.html" role="button">more &raquo;</a>
             </div>
           </div><!-- /row -->   
         </div><!-- /well -->
