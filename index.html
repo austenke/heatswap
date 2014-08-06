@@ -88,11 +88,21 @@
                   <div class="tab-pane fade active in" id="signIn">
                     <form role="form" action="">
                                             
-                      <!-- Email input-->
+                      
+                      <!-- Email input
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon">@</div>
                           <input required="" id="emailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
+                        </div>
+                      </div>
+                      -->
+
+                      <!--Username input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"></div>
+                          <input required="" id="usernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="username">
                         </div>
                       </div>
 
@@ -119,20 +129,21 @@
                       </div>
                         <script>
                           var logIn = function(){
+                            
+                            Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                            var nameStuff = document.getElementById("usernameInput").value;
+                            var passStuff = document.getElementById("passwordInput").value;
                             alert ("success1")
-                          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                          var nameStuff = document.getElementById("username").value;
-                            var passStuff = document.getElementById("password").value;
-                           Parse.User.logIn(nameStuff, passStuff, {
-                            success: function(user) {
-                              alert("login is go");
-                              location.reload();
-                          },
-                          error: function(user, error) {
-                            alert("login is no go" + error.code)
+                            Parse.User.logIn(nameStuff, passStuff, {
+                              success: function(user) {
+                                alert("login is go");
+                                location.reload();
+                              },
+                              error: function(user, error) {
+                                alert("login is no go" + error.code)
+                              }
+                            });
                           }
-                        });
-                        }
                         </script>                      
                       <p><a href="#">forgot password?</a></p>
                         
@@ -158,7 +169,7 @@
                         <input required="" id="usernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
                         <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
                       </div>
-                      
+
                       <!-- Email input-->
                       <div class="form-group">
                         <div class="input-group">
@@ -223,6 +234,8 @@
                     </form>
                   </div><!-- /signUp -->
                   
+
+                  
                   <!-- ACCOUNT SETTINGS -->
                   <div class="tab-pane fade in" id="account">
                     <form role="form" action="">
@@ -232,7 +245,7 @@
                         <label class="form-label" for="emailChange">change your email:</label>
                         <div class="input-group">
                           <div class="input-group-addon">@</div>
-                          <input required="" id="emailChange" name="emailChange" type="text" class="form-control input-lg" placeholder="enter new email">
+                          <input  id="emailChange" name="emailChange" type="text" class="form-control input-lg" placeholder="enter new email">
                         </div>  
                       </div><!-- /form-group -->
                     
@@ -241,7 +254,7 @@
                         <label class="form-label" for="passwordChange">change your password:</label>
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                          <input required="" id="passwordChange" name="passwordChange" class="form-control input-lg" type="password" placeholder="enter new password">
+                          <input  id="passwordChange" name="passwordChange" class="form-control input-lg" type="password" placeholder="enter new password">
                         </div>
                       </div>
                                           
@@ -249,14 +262,14 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                          <input required="" id="changePasswordCheck" name="changePasswordCheck" class="form-control input-lg" type="password" placeholder="re-type new password">
+                          <input  id="changePasswordCheck" name="changePasswordCheck" class="form-control input-lg" type="password" placeholder="re-type new password">
                         </div>
                       </div>
                       
                       <!-- username change-->
                       <div class="form-group">
                         <label class="form-label" for="usernameChange">change your user name:</label>
-                        <input required="" id="usernameChange" name="usernameChange" class="form-control input-lg" type="password" placeholder="enter new user name">
+                        <input  id="usernameChange" name="usernameChange" class="form-control input-lg" type="password" placeholder="enter new user name">
                       </div>
                       
                       <!-- BUTTON -->
@@ -265,16 +278,19 @@
                       </div>
                       <script> 
                         var saveClose = function(){
+                          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                          alert(Parse.User.current())
                           //checks if current user is logged in
                           var currentUser = Parse.User.current();
-                          if(currentUser=null||currentUser=""){
+                          if(currentUser==null||currentUser==""){
                             alert("Please log in to continue")
                           }else{
                             if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
                                 user.set("email", document.getElementById("emailChange"));
+                                alert(emailChange);
                             }
                             if(document.getElementById("passwordChange")!=null||document.getElementById("passwordChange")!=""){
-                              if(document.getElementById("passwordChange")=document.getElementById("changePasswordCheck")){
+                              if(document.getElementById("passwordChange")==document.getElementById("changePasswordCheck")){
                                 user.set("password", document.getElementById("passwordChange"))
                               }else{
                                 alert("Your passwords do not match")
@@ -284,7 +300,6 @@
                               user.set("username", document.getElementById("usernameChange"));
                             }
                           }
-                        }
                         }
                       </script>
                      </form> 
