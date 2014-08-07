@@ -425,7 +425,7 @@ var urlParams;
 
 var queryItem = urlParams["item"];
 
-        
+     Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
         var courrier = Parse.Object.extend("courrier");
         var mailbox = new Parse.Query(courrier);
         mailbox.get(queryItem, {
@@ -437,12 +437,37 @@ var queryItem = urlParams["item"];
             document.getElementById("itemSize").innerHTML = woot.get("size");
             document.getElementById("releaseDate").innerHTML = woot.createdAt;
             document.getElementById("itemCondition").innerHTML = woot.get("condition");
+
+            populateSecond(woot.get("user"))
+
           },
           error: function(object, error) {
             // The object was not retrieved successfully.
             // error is a Parse.Error with an error code and description.
           }
         }); 
+
+        var populateSecond = function(user) {
+        var delivery = new Parse.Query("courrier");
+        delivery.exists("item");
+        delivery.limit(4);
+        delivery.equalTo("user", user);
+        delivery.find({
+          success: function(food) {
+            var finalObj = "";
+            for (var i = 0; i < food.length; i++) { 
+              var item = food[i];
+                finalObj += "<div class='col-sm-6'>\n"
+                finalObj += "<a class='thumbnail' href='dev.heatswap.com/buy.html?item="+item.id+"'>"
+                finalObj += "<img src='"+ item.get("image") + "' Xheight='250' xwidth='300' xclass='img-responsive' ></a> \n"
+                finalObj += "</div> \n"
+            }
+                
+            var insertNonsense = document.getElementById("otherShoes");
+            insertNonsense.innerHTML = finalObj
+        }
+      })
+      }
 </script>
             
           </div>
