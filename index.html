@@ -133,7 +133,8 @@
                             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                             var nameStuff = document.getElementById("usernameInput").value;
                             var passStuff = document.getElementById("passwordInput").value;
-                            alert ("success1")
+
+                            alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
                                 alert("login is go");
@@ -166,7 +167,7 @@
                       
                       <!-- username input-->
                       <div class="form-group">
-                        <input required="" id="usernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
+                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
                         <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
                       </div>
 
@@ -174,7 +175,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon">@</div>
-                          <input required="" id="emailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
+                          <input required="" id="SUemailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
                         </div>
                       </div>
 
@@ -182,7 +183,7 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
+                          <input required="" id="SUpasswordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
                         </div>
                       </div>
                       
@@ -190,22 +191,24 @@
                       <div class="form-group">
                         <div class="input-group">
                           <div class="input-group-addon"><span class="fa fa-key"></span></div>
-                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="re-type password">
+                          <input required="" id="SUpassword2Input" name="password2Input" class="form-control input-lg" type="password" placeholder="re-type password">
                         </div>
                       </div>
                       
                       <!-- Button -->
                       <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block" onclick="signUp()"><span class="glyphicon glyphicon-ok"></span> sign up</button>
+                        <button class="btn btn-primary btn-lg btn-block" onclick="signUp();return false;"><span class="glyphicon glyphicon-ok"></span> sign up</button>
                       </div>
                         <script>
                           var signUp = function() {
+                                alert('here');
                                 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-
-                                var nameStuff = document.getElementById("username123").value;
-                                var passStuff = document.getElementById("password123").value;
-                                var passStuff2 = document.getElementById("password2123").value;
-                                var emailStuff = document.getElementById("email123").value;
+                                alert('here2')
+                            
+                                var nameStuff = document.getElementById("SUusernameInput").value;
+                                var passStuff = document.getElementById("SUpasswordInput").value;
+                                var passStuff2 = document.getElementById("SUpassword2Input").value;
+                                var emailStuff = document.getElementById("SUemailInput").value;
                                 if (passStuff2 === passStuff) {
 
                                   var user = new Parse.User();
@@ -217,7 +220,7 @@
                                   user.signUp(null, {
                                     success: function(user) {
                                       alert("Congrats "+nameStuff+", please verify your email");
-                                      //location.reload();
+                                      location.reload();
                                     },
                                     error: function(user, error) {
                                       alert("Error: " + error.code + " " + error.message);
