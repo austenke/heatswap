@@ -206,25 +206,24 @@
                                 var passStuff = document.getElementById("password123").value;
                                 var passStuff2 = document.getElementById("password2123").value;
                                 var emailStuff = document.getElementById("email123").value;
-
                                 if (passStuff2 === passStuff) {
 
-                                var user = new Parse.User();
+                                  var user = new Parse.User();
                                   user.set("username", nameStuff);
                                   user.set("password", passStuff);
                                   user.set("email", emailStuff);
-  
-   
-                                user.signUp(null, {
-                                  success: function(user) {
+
+
+                                  user.signUp(null, {
+                                    success: function(user) {
                                       alert("Congrats "+nameStuff+", please verify your email");
-                                      location.reload();
-                                  },
-                                  error: function(user, error) {
-                                    alert("Error: " + error.code + " " + error.message);
-                                   }
-                                });
-                              }
+                                      //location.reload();
+                                    },
+                                    error: function(user, error) {
+                                      alert("Error: " + error.code + " " + error.message);
+                                    }
+                                  });
+                                }
                             else {
                               var woahThere = document.getElementById("nonsense10"); //Austen, you might not need this...it may be built in, though I'm not 100 percent sure. I know it will throw an error msg if you try to submit the form with an empty field.
                               woahThere.innerHTML = "Woah! Your passwords don't match man"
