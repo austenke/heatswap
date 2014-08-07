@@ -324,7 +324,7 @@
         <div class="row buy-page-main-body">
           <div class="col-md-8">
             <div class="chosen-shoe" id="bigShoe">
-              <img src="http://placehold.it/700x500" class="img-responsive" alt="shoe">
+              <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="imgStuff">
             </div>
 <script>
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
@@ -373,18 +373,18 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
           
           <div class="col-md-4">
             <div class="well buy-page-side-well">
-              <h3 class="red text-center">Air Jordan 11s</h3>
-              <p class="text-center" style="color:#777"><strong>seller</strong> Daniel Knickerbocker</p>
+              <h3 class="red text-center" id="itemName">Air Jordan 11s</h3>
+              <p class="text-center" style="color:#777" id="sellerName"><strong>seller</strong> Daniel Knickerbocker</p>
               <hr class="alt-hr" />
               <dl class="dl-horizontal">
                 <dt>price</dt>
-                <dd>$300</dd>
+                <dd id="itemPrice">$300</dd>
                 <dt>size</dt>
-                <dd>10.5</dd>
+                <dd id="itemSize">10.5</dd>
                 <dt>release date</dt>
-                <dd>Jan 31, 2025</dd>
+                <dd id="releaseDate">Jan 31, 2025</dd>
                 <dt>condition</dt>
-                <dd>pre-owned</dd>
+                <dd id="itemCondition">pre-owned</dd>
                 <dt>sale type</dt>
                 <dd>seller-owned</dd>
               </dl>
@@ -409,50 +409,40 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             </div><!-- /row -->
             
 <script>       
-        
-        var docURL= document.URL;
-		var pulledUser=(docURL.split("html/").pop());
-		//alert(pulledUser);
-		//alert('here');
+      
+var urlParams;
+(window.onpopstate = function () {
+  var match,
+    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+    search = /([^&=]+)=?([^&]*)/g,
+    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+    query  = window.location.search.substring(1);
+
+  urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var queryItem = urlParams["item"];
+
         
         var courrier = Parse.Object.extend("courrier");
         var mailbox = new Parse.Query(courrier);
-        //if(pulledUser!=""){  
-          mailbox.exists("item");
-         // mailbox.limit(4);
-          mailbox.find({
-            success: function(returnObj) {
-
-              var finalObj = ""
-				var found=0;
-				
-
-              for (var i = 0; i < returnObj.length && found<4; i++) { 
-                var item = returnObj[i];
-                //  vvv this should be equals but set to != to test cropping vvv
-				if(pulledUser=!item.shoeCreator){
-                finalObj += "<div class='col-sm-6'>\n"
-                finalObj += "<a class='thumbnail' href='#' style='height:250px;vertical-align:middle;'>"
-                finalObj += "<img src='"+ item.get("image") + "' Xheight='250' xwidth='300' xclass='img-responsive' ></a> \n"
-                finalObj += "</div> \n"
-                found++;
-                }else{
-                }
-                
-            }
-
-            var insertNonsense = document.getElementById("otherShoes");
-            insertNonsense.innerHTML = finalObj
-
-
-
-
-            },
-              error: function(error) {
-                  alert("Error: " + error.code + " " + error.message);
-           //  }
-             }
-        });
+        mailbox.get(queryItem, {
+          success: function(woot) {
+            document.getElementById("imgStuff").src = woot.get("image");
+            document.getElementById("itemName").innerHTML = woot.get("item");
+            document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
+            document.getElementById("itemPrice").innerHTML = woot.get("price");
+            document.getElementById("itemSize").innerHTML = woot.get("size");
+            document.getElementById("releaseDate").innerHTML = woot.createdAt;
+            document.getElementById("itemCondition").innerHTML = woot.get("condition");
+          },
+          error: function(object, error) {
+            // The object was not retrieved successfully.
+            // error is a Parse.Error with an error code and description.
+          }
+        }); 
 </script>
             
           </div>
