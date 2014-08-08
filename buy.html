@@ -411,7 +411,7 @@ var queryItem = urlParams["item"];
             document.getElementById("itemCondition").innerHTML = woot.get("condition");
             document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
 
-            populateSecond(woot.get("user"))
+            populateSecond(woot.get("user"),queryItem)
 
           },
           error: function(object, error) {
@@ -420,7 +420,7 @@ var queryItem = urlParams["item"];
           }
         }); 
 
-        var populateSecond = function(user) {
+        var populateSecond = function(user,stuffId) {
         var delivery = new Parse.Query("courrier");
         delivery.exists("item");
         delivery.limit(4);
@@ -430,10 +430,12 @@ var queryItem = urlParams["item"];
             var finalObj = "";
             for (var i = 0; i < food.length; i++) { 
               var item = food[i];
+                if (item.id != stuffId) {
                 finalObj += "<div class='col-sm-6'>\n"
                 finalObj += "<a class='thumbnail' href='buy.html?item="+item.id+"'>"
                 finalObj += "<img src='"+ item.get("image") + "' height='100' width='300' class='img-responsive' ></a> \n"
                 finalObj += "</div> \n"
+              }
             }
                 
             var insertNonsense = document.getElementById("otherShoes");
