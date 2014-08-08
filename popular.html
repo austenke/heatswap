@@ -47,7 +47,6 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#accountModal" role="button" data-toggle="modal"><span class="glyphicon glyphicon-lock"></span> login</a></li>
             <li><a href="#accountModal" role="button" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> sign up</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> items in cart: <span style="color:#2A5469">00</span></a></li>
           </ul>    
         </div><!-- /login-menu -->
 
@@ -241,7 +240,7 @@
 				 <li><a href="store.html">store</a></li>
                   <li class="dropdown-submenu"><a href="#">brand</a>
                     <ul class="dropdown-menu">
-                      <li><a href="dev.heatswap.com/popular.html?brand=adidas">Adidas</a></li>
+                      <li><a href="?brand=adidas">Adidas</a></li>
                       <li><a href="#">Air Jordan</a></li>
                       <li><a href="#">Asics</a></li>
                       <li><a href="#">Converse</a></li>
@@ -378,7 +377,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 finalObj += "<div class='col-sm-4 col-md-3'>\n"
                 //<a href='#'' class='thumbnail'>\n";
                 finalObj += "<div class='thumbnail'>\n"
-                finalObj += "<a href='dev.heatswap.com/buy.html?item=" + item.id + "'><img src='" + item.get("image") + "' height='200' width='300' >"
+                finalObj += "<a href='/buy.html?item=" + item.id + "'><img src='" + item.get("image") + "' height='200' width='300' >"
                 finalObj += "</a>\n"
                 finalObj += "<div class='caption'>"
                 finalObj += "<h4 class='pull-right'> $" + item.get("price") + "</h4>\n"
