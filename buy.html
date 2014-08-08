@@ -324,32 +324,6 @@
             <div class="chosen-shoe" id="bigShoe">
               <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="imgStuff">
             </div>
-<script>
-Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-
-	var docURL= document.URL;
-	var shoeID=(docURL.split("/").pop());
-	var courrier = Parse.Object.extend("courrier");
-	var mailbox = new Parse.Query(courrier);
-	
-	mailbox.get(shoeID, {
-  	success: function(returnObj) {
-			var finalObj="";
-			finalObj += "<div class='chosen-shoe'>\n"
-			finalObj += "<img src='" + mailbox.get("image") + "'height='500' width='700' class='img-responsive' alt='shoe'>\n"
-			finalObj += "</div>"
-			
-			var insertNonsense = document.getElementById("bigShoe");
-            insertNonsense.innerHTML = finalObj
-		},
-		error: function(object, error) {
-			//alert("Failure " + shoeID);
-		}
-	});
-	
-	
-	
-</script>
             <ul class="nav nav-tabs">
               <li class="active"><a href="#shoe-detials" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> shoe details</a></li>
               <li><a href="#reviews" data-toggle="tab"><i class="fa fa-pencil"></i> reviews</a></li>
@@ -357,14 +331,8 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             </ul>
             <!-- Tab panes -->
             <div class="tab-content">
-              <div class="tab-pane active" id="shoe-detials">
+              <div class="tab-pane active" id="shoe-details">
                 <p>Portland leggings meggings, selvage Pinterest Williamsburg semiotics Godard before they sold out. Mumblecore roof party pour-over narwhal, Portland kogi viral polaroid fap banjo single-origin coffee keytar. Authentic chia craft beer ugh Kickstarter artisan.</p>
-              </div>
-              <div class="tab-pane" id="reviews">
-                <p>Bacon ipsum dolor sit amet pork chop t-bone shoulder short loin, porchetta beef boudin chuck sirloin pork. Turducken tenderloin shank, meatloaf ham leberkas ribeye pastrami cow. Chicken fatback meatball, short ribs prosciutto salami pastrami pork belly beef.</p>
-              </div>
-              <div class="tab-pane" id="shipping">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur at commodo nunc, quis fringilla elit. Nullam vel nibh vel velit porta ultricies. Integer venenatis est eu leo auctor, et tincidunt mi vulputate. In mollis eros ac nibh dictum mollis. Donec auctor posuere sem a interdum. Ut varius fringilla quam eget suscipit. Aenean eu mauris non nulla viverra semper. Praesent vestibulum ultrices mi sed laoreet.</p>
               </div>
             </div>
           </div><!-- col-md-7 -->          
@@ -386,7 +354,13 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 <dt>sale type</dt>
                 <dd>seller-owned</dd>
               </dl>
-              <a href="#" class="btn btn-primary btn-block btn-lg">add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+              <center>
+              <script async src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=YZFGU6Z5F75DN"
+              data-name=docum;
+              data-amount=document.getElementById("itemPrice").innerHTML;
+              data-name=document.getElementById("itemName").innerHTML;
+              ></script>
+              </center>
             </div><!-- /well -->
                         
             <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
@@ -407,7 +381,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             </div><!-- /row -->
             
 <script>       
-      
+
 var urlParams;
 (window.onpopstate = function () {
   var match,
@@ -435,6 +409,7 @@ var queryItem = urlParams["item"];
             document.getElementById("itemSize").innerHTML = woot.get("size");
             document.getElementById("releaseDate").innerHTML = woot.createdAt;
             document.getElementById("itemCondition").innerHTML = woot.get("condition");
+            document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
 
             populateSecond(woot.get("user"))
 
