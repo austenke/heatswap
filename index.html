@@ -1168,7 +1168,7 @@
             </div>
           </div>
         </div><!-- /row popular -->  
-        
+
  <script>       
 
                   if(currentName!=null&&currentName!=""){
@@ -1201,9 +1201,11 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
 
                 var item = returnObj[i];
 
-                finalObj += "<div class='col-sm-4 col-md-2'>\n<a href='/buy.html?item=" + item.id + "' class='thumbnail'>\n";
+                finalObj += "<div class='col-sm-4 col-md-2 popularHome'>\n<a href='/buy.html?item=" + item.id + "' class='thumbnail'>\n";
                 finalObj += "<p class='popular-price'> $" + item.get("price") + "</p>\n";
-                finalObj += "<img src='" + item.get("image") + "' height='182' width='156' >\n"
+                finalObj += "<div style='width:156px; height:182px; overflow:hidden; text-align: center;'>\n"
+                finalObj += "<img src='" + item.get("image") + "' style='position:relative; left:100%;margin-left:-200%;' height='182'>\n"
+                finalObj += "</div>\n"
                 finalObj += "</a>\n"
                 finalObj += "<div class='panel panel-primary'>\n"
                 finalObj += "<div class='panel-heading'>\n"
@@ -1219,8 +1221,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             var insertNonsense = document.getElementById("popular");
             insertNonsense.innerHTML = finalObj
 
-
-
+               
 
             },
               error: function(error) {
