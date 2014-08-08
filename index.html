@@ -71,7 +71,8 @@
 
               if (currentUser) {
                 var pStuff = document.getElementById("loginItems");
-                    pStuff.innerHTML = "<li style='padding-top:15px;padding-bottom:15px;'><span class=''></span> What's up "+ currentUser.get("username") +"? <li style='cursor:pointer;'><a onclick='logOut()''><span class='glyphicon glyphicon-lock'></span> logout</a>  <li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>";
+                    //just commented this to fix an error, you can do whatevs with this
+                    //pStuff.innerHTML = "<li style='padding-top:15px;padding-bottom:15px;'><span class=''></span> What's up "+ currentUser.get("username") +"? <li style='cursor:pointer;'><a onclick='logOut()''><span class='glyphicon glyphicon-lock'></span> logout</a>  <li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>";
                 }
                 var logOut = function() {
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
@@ -357,17 +358,16 @@
                   <li><a href="store.html">store</a></li>
                   <li class="dropdown-submenu"><a href="#">brand</a>
                     <ul class="dropdown-menu">
-                      <li><a href="#">Adidas</a></li>
-                      <li><a href="#">Air Jordan</a></li>
-                      <li><a href="#">Asics</a></li>
-                      <li><a href="#">Converse</a></li>
-                      <li><a href="#">New Balance</a></li>
-                      <li><a href="#">Nike</a></li>
-                      <li><a href="#">Puma</a></li>
-                      <li><a href="#">Reebok</a></li>
-                      <li><a href="#">Saucony</a></li>
-                      <li><a href="#">Vans</a></li>
-                      <li><a href="#">Others</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=adidas">Adidas</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=airjordan">Air Jordan</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=asics">Asics</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=converse">Converse</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=newbalance">New Balance</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=nike">Nike</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=puma">Puma</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=reebok">Reebok</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=saucony">Saucony</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular?brand=vans">Vans</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -397,17 +397,16 @@
         
         <div id="subnav" class="hidden-xs">
           <ul class="nav nav-justified">
-            <li class="active"><a href="#">Adidas</a></li>
-            <li><a href="#">Air Jordan</a></li>
-            <li><a href="#">Asics</a></li>
-            <li><a href="#">Converse</a></li>
-            <li><a href="#">New Balance</a></li>
-            <li><a href="#">Nike</a></li>
-            <li><a href="#">Puma</a></li>
-            <li><a href="#">Reebok</a></li>
-            <li><a href="#">Saucony</a></li>
-            <li><a href="#">Vans</a></li>
-            <li><a href="#">Others</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=adidas">Adidas</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=airjordan">Air Jordan</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=asics">Asics</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=converse">Converse</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=newbalance">New Balance</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=nike">Nike</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=puma">Puma</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=reebok">Reebok</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=saucony">Saucony</a></li>
+            <li><a href="http://www.dev.heatswap.com/popular?brand=vans">Vans</a></li>
           </ul>
         </div>
         
