@@ -48,17 +48,28 @@
           </div>
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-            var currentUser = Parse.User.current();
-            alert("Username is " + currentUser.get("username"))
-            var currentName=currentUser.get("username")
+            
+            var currentUser=""
+            var currentName=""
 
-              if(currentName!=null||currentName!=""){
+            if(Parse.User.current()!=null){
+              currentUser = Parse.User.current();
+              currentName=currentUser.get("username")
+            }else{
+
+            }
+            
+            
+
+              if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-user'></span>User</a></li>\n"
+                finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a></li>\n"
                 finalObj += "</ul>"
                 var insertNonsense=document.getElementById("logTest")
                 insertNonsense.innerHTML=finalObj
+                document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
               }else{
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
@@ -77,6 +88,7 @@
                 var logOut = function() {
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                   Parse.User.logOut();
+                  alert("You have been logged out")
                 var currentUser = Parse.User.current();
               location.reload();
             }
@@ -92,28 +104,34 @@
                 <h1 class="text-center blue">welcome!</h1>
               </div>
               <div class="modal-body">
-                <div>
+                <div id="modalTabs">
                   <ul id="myTab" class="nav nav-tabs">
-                    <li class="active"><a href="#signIn" data-toggle="tab"><span class="glyphicon glyphicon-lock"></span> sign in</a></li>
-                    <li class=""><a href="#signUp" data-toggle="tab"><span class="glyphicon glyphicon-user"></span> sign up</a></li>
-                    <li class=""><a href="#account" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> account</a></li>
                   </ul>
                 </div>
+                <script>
+                  if(currentName!=null&&currentName!=""){
+                    var finalObj=""
+                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+                    finalObj += "<li class='active'><a href='#account' data-toggle='tab'><span class='glyphicon glyphicon-cog'></span> account</a></li>\n"
+                    //finalObj += "<li class=''><a href='#account' data-toggle='tab'><span class='glyphicon glyphicon-cog'></span> idhf</a></li>\n"
+                    finalObj += "</ul>"
+                    var insertNonsense=document.getElementById("modalTabs")
+                    insertNonsense.innerHTML=finalObj
+                  }else{
+                    var finalObj=""
+                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+                    finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
+                    finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+                    finalObj += "</ul>"
+                    var insertNonsense=document.getElementById("modalTabs")
+                    insertNonsense.innerHTML=finalObj
+                  }
+                </script>
                 
                 <div id="myTabContent" class="tab-content">
                   
                   <!-- SIGN IN -->
                   <div class="tab-pane fade active in" id="signIn">
-                                            
-                      
-                      <!-- Email input
-                      <div class="form-group">
-                        <div class="input-group">
-                          <div class="input-group-addon">@</div>
-                          <input required="" id="emailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
-                        </div>
-                      </div>
-                      -->
 
                       <!--Username input-->
                       <div class="form-group">
