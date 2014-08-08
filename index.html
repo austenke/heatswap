@@ -33,7 +33,7 @@
       <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
-        <div class="col-xs-12 col-md-4">
+        <div class="col-xs-12 col-md-4" >
           <a href="index.html"><img alt="logo" class="img-responsive center-block" src="images/logo.png"></a>
         </div>
   
@@ -44,14 +44,33 @@
           </ul>
         </div>
         <div id="login-menu" class="col-xs-7 col-md-5 col-md-offset-3 col-lg-4 col-lg-offset-4 text-right">    
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#accountModal" role="button" data-toggle="modal"><span class="glyphicon glyphicon-lock"></span> login</a></li>
-            <li><a href="#accountModal" role="button" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> sign up</a></li>
-            <li><a href="#"><i class="glyphicon glyphicon-shopping-cart"></i> items in cart: <span style="color:#2A5469">00</span></a></li>
-          </ul>
+          <div id="logTest">
+          </div>
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             var currentUser = Parse.User.current();
+            alert("Username is " + currentUser.get("username"))
+            var currentName=currentUser.get("username")
+
+              if(currentName!=null||currentName!=""){
+                var finalObj=""
+                finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-user'></span>User</a></li>\n"
+                finalObj += "<li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>\n"
+                finalObj += "</ul>"
+                var insertNonsense=document.getElementById("logTest")
+                insertNonsense.innerHTML=finalObj
+              }else{
+                var finalObj=""
+                finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> login</a></li>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+                finalObj += "<li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>\n"
+                finalObj += "</ul>"
+                var insertNonsense=document.getElementById("logTest")
+                insertNonsense.innerHTML=finalObj
+              }
+
               if (currentUser) {
                 var pStuff = document.getElementById("loginItems");
                     pStuff.innerHTML = "<li style='padding-top:15px;padding-bottom:15px;'><span class=''></span> What's up "+ currentUser.get("username") +"? <li style='cursor:pointer;'><a onclick='logOut()''><span class='glyphicon glyphicon-lock'></span> logout</a>  <li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>";
@@ -86,7 +105,6 @@
                   
                   <!-- SIGN IN -->
                   <div class="tab-pane fade active in" id="signIn">
-                    <form role="form" action="">
                                             
                       
                       <!-- Email input
@@ -137,7 +155,8 @@
                             alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
-                                alert("login is go");
+                                alert("login is go. Welcome ");
+                                alert(user.get("username"))
                                 location.reload();
                               },
                               error: function(user, error) {
@@ -148,12 +167,10 @@
                         </script>                      
                       <p><a href="#">forgot password?</a></p>
                         
-                    </form>
                   </div><!-- /signIn -->
                   
                   <!-- SIGN UP -->
                   <div class="tab-pane fade in" id="signUp">
-                    <form role="form" action="">
                                             
                       <!-- first input-->
                       <div class="form-group">
@@ -233,14 +250,12 @@
                             }
                           }
                         </script>                        
-                    </form>
                   </div><!-- /signUp -->
                   
 
                   
                   <!-- ACCOUNT SETTINGS -->
                   <div class="tab-pane fade in" id="account">
-                    <form role="form" action="">
                     
                       <!-- email change-->
                       <div class="form-group">
@@ -281,10 +296,10 @@
                       <script> 
                         var saveClose = function(){
                           Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                          alert(Parse.User.current())
                           //checks if current user is logged in
                           var currentUser = Parse.User.current();
-                          if(currentUser==null||currentUser==""){
+                          var currentName = currentUser.get("username")
+                          if(currentName==null||currentName==""){
                             alert("Please log in to continue")
                           }else{
                             if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
@@ -305,7 +320,6 @@
                           }
                         }
                       </script>
-                     </form> 
                      <a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a>
                   </div><!-- /account -->
                   
