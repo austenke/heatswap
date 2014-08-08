@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <title>Store</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+        
+ <body>
+    
+    <div class="container">
+      
+      <!-- logo row -->
+      <div id="logo-navbar" class="row navbar">
+        
+        <div class="col-xs-12 col-md-4" >
+          <a href="index.html"><img alt="logo" class="img-responsive center-block" src="images/logo.png"></a>
+        </div>
+  
+        <div class="col-xs-5 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4">
+          <ul id="main-nav-social-icons" class="nav navbar-nav">
+            <li><a target="_blank" href="https://www.youtube.com/user/HeatSwapTV"><img alt="YouTube" class="img-responsive" src="images/YouTube-social-squircle_red_24px.png"></a></li>
+            <li><a target="_blank" href="http://instagram.com/heatswap"><img alt="Instagram" class="img-responsive" src="images/Instagram_Icon_24px.png"></a></li>
+          </ul>
+        </div>
+        <div id="login-menu" class="col-xs-7 col-md-5 col-md-offset-3 col-lg-4 col-lg-offset-4 text-right">    
+          <div id="logTest">
+          </div>
+          <script>
+            Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+            
+            var currentUser=""
+            var currentName=""
+
+            if(Parse.User.current()!=null){
+              currentUser = Parse.User.current();
+              currentName=currentUser.get("username")
+            }else{
+
+            }
+            
+            
+
+              if(currentName!=null&&currentName!=""){
+                var finalObj=""
+                finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
+                finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a></li>\n"
+                finalObj += "</ul>"
+                var insertNonsense=document.getElementById("logTest")
+                insertNonsense.innerHTML=finalObj
+                document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
+              }else{
+                var finalObj=""
+                finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> login</a></li>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+                finalObj += "</ul>"
+                var insertNonsense=document.getElementById("logTest")
+                insertNonsense.innerHTML=finalObj
+              }
+
+              if (currentUser) {
+                var pStuff = document.getElementById("loginItems");
+                    //just commented this to fix an error, you can do whatevs with this
+                    //pStuff.innerHTML = "<li style='padding-top:15px;padding-bottom:15px;'><span class=''></span> What's up "+ currentUser.get("username") +"? <li style='cursor:pointer;'><a onclick='logOut()''><span class='glyphicon glyphicon-lock'></span> logout</a>  <li><a href='#''><i class='glyphicon glyphicon-shopping-cart'></i> items in cart: <span style='color:#2A5469'>00</span></a></li>";
+                }
+                var logOut = function() {
+                  Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                  Parse.User.logOut();
+                  alert("You have been logged out")
+                var currentUser = Parse.User.current();
+              location.reload();
+            }
+          </script>    
+        </div><!-- /login-menu -->
+
+        <!-- Modal -->
+        <div id="accountModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h1 class="text-center blue">welcome!</h1>
+              </div>
+              <div class="modal-body">
+                <div id="modalTabs">
+                  <ul id="myTab" class="nav nav-tabs">
+                  </ul>
+                </div>
+                
+                <div id="myTabContent" class="tab-content">
+                  
+                  <!-- SIGN IN -->
+                  <div class="tab-pane fade active in" id="signIn">
+
+                      <!--Username input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"></div>
+                          <input required="" id="usernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="username">
+                        </div>
+                      </div>
+
+                      <!-- Password input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                          <input required="" id="passwordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
+                        </div>
+                      </div>
+                                      
+                      <!-- Checkbox -->
+                      <div class="form-group">                        
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="rememberMe" id="rememberMe" value="rememberMe">remember me
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Button -->
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" onclick="logIn()"><span class="glyphicon glyphicon-ok"></span> log in</button>
+                      </div>
+                        <script>
+                          var logIn = function(){
+                            
+                            Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                            var nameStuff = document.getElementById("usernameInput").value;
+                            var passStuff = document.getElementById("passwordInput").value;
+
+                            alert ("success1" + nameStuff + passStuff);
+                            Parse.User.logIn(nameStuff, passStuff, {
+                              success: function(user) {
+                                alert("login is go. Welcome ");
+                                alert(user.get("username"))
+                                location.reload();
+                              },
+                              error: function(user, error) {
+                                alert("login is no go" + error.code)
+                              }
+                            });
+                          }
+                        </script>                      
+                      <p><a href="#">forgot password?</a></p>
+                        
+                  </div><!-- /signIn -->
+                  
+                  <!-- SIGN UP -->
+                  <div class="tab-pane fade in" id="signUp">
+                                            
+                      <!-- first input-->
+                      <div class="form-group">
+                        <input required="" id="fNameInput" name="fNameInput" type="text" class="form-control input-lg" placeholder="first name">
+                      </div>
+                      
+                      <!-- last name input-->
+                      <div class="form-group">
+                        <input required="" id="lNameInput" name="lNameInput" type="text" class="form-control input-lg" placeholder="last name">
+                      </div>
+                      
+                      <!-- username input-->
+                      <div class="form-group">
+                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
+                        <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
+                      </div>
+
+                      <!-- Email input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon">@</div>
+                          <input required="" id="SUemailInput" name="emailInput" type="text" class="form-control input-lg" placeholder="email">
+                        </div>
+                      </div>
+
+                      <!-- Password input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                          <input required="" id="SUpasswordInput" name="passwordInput" class="form-control input-lg" type="password" placeholder="password">
+                        </div>
+                      </div>
+                      
+                      <!-- check password input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                          <input required="" id="SUpassword2Input" name="password2Input" class="form-control input-lg" type="password" placeholder="re-type password">
+                        </div>
+                      </div>
+                      
+                      <!-- Button -->
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" onclick="signUp();return false;"><span class="glyphicon glyphicon-ok"></span> sign up</button>
+                      </div>
+                        <script>
+                          var signUp = function() {
+                                alert('here');
+                                Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                                alert('here2')
+                            
+                                var nameStuff = document.getElementById("SUusernameInput").value;
+                                var passStuff = document.getElementById("SUpasswordInput").value;
+                                var passStuff2 = document.getElementById("SUpassword2Input").value;
+                                var emailStuff = document.getElementById("SUemailInput").value;
+                                if (passStuff2 === passStuff) {
+
+                                  var user = new Parse.User();
+                                  user.set("username", nameStuff);
+                                  user.set("password", passStuff);
+                                  user.set("email", emailStuff);
+
+
+                                  user.signUp(null, {
+                                    success: function(user) {
+                                      alert("Congrats "+nameStuff+", please verify your email");
+                                      location.reload();
+                                    },
+                                    error: function(user, error) {
+                                      alert("Error: " + error.code + " " + error.message);
+                                    }
+                                  });
+                                }
+                            else {
+                              var woahThere = document.getElementById("nonsense10"); //Austen, you might not need this...it may be built in, though I'm not 100 percent sure. I know it will throw an error msg if you try to submit the form with an empty field.
+                              woahThere.innerHTML = "Woah! Your passwords don't match man"
+                            }
+                          }
+                        </script>                        
+                  </div><!-- /signUp -->
+                  
+
+                  
+                  <!-- ACCOUNT SETTINGS -->
+                  <div class="tab-pane fade in" id="account">
+                    
+                      <!-- email change-->
+                      <div class="form-group">
+                        <label class="form-label" for="emailChange">change your email:</label>
+                        <div class="input-group">
+                          <div class="input-group-addon">@</div>
+                          <input  id="emailChange" name="emailChange" type="text" class="form-control input-lg" placeholder="enter new email">
+                        </div>  
+                      </div><!-- /form-group -->
+                    
+                      <!-- password change-->
+                      <div class="form-group">
+                        <label class="form-label" for="passwordChange">change your password:</label>
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                          <input  id="passwordChange" name="passwordChange" class="form-control input-lg" type="password" placeholder="enter new password">
+                        </div>
+                      </div>
+                                          
+                      <!-- check password input-->
+                      <div class="form-group">
+                        <div class="input-group">
+                          <div class="input-group-addon"><span class="fa fa-key"></span></div>
+                          <input  id="changePasswordCheck" name="changePasswordCheck" class="form-control input-lg" type="password" placeholder="re-type new password">
+                        </div>
+                      </div>
+                      
+                      <!-- username change-->
+                      <div class="form-group">
+                        <label class="form-label" for="usernameChange">change your user name:</label>
+                        <input  id="usernameChange" name="usernameChange" class="form-control input-lg" type="password" placeholder="enter new user name">
+                      </div>
+                      
+                      <!-- BUTTON -->
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-lg btn-block" onClick="saveClose()"><span class="glyphicon glyphicon-ok"></span> save and close</button>
+                      </div>
+                      <script> 
+
+                                          if(currentName!=null&&currentName!=""){
+                    var finalObj=document.getElementById("account");
+                    document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
+                  }else{
+                    var finalObj=""
+                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+                    finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
+                    finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+                    finalObj += "</ul>"
+                    var insertNonsense=document.getElementById("modalTabs")
+                    insertNonsense.innerHTML=finalObj
+                  }
+
+                      
+                        var saveClose = function(){
+                          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                          //checks if current user is logged in
+                          var currentUser = Parse.User.current();
+                          var currentName = currentUser.get("username")
+                          if(currentName==null||currentName==""){
+                            alert("Please log in to continue")
+                          }else{
+                            if(document.getElementById("emailChange")!=null||document.getElementById("emailChange")!=""){
+                                user.set("email", document.getElementById("emailChange"));
+                                alert("email changed to " + emailChange);
+                            }
+                            if(document.getElementById("passwordChange")!=null||document.getElementById("passwordChange")!=""){
+                              if(document.getElementById("passwordChange")==document.getElementById("changePasswordCheck")){
+                                user.set("password", document.getElementById("passwordChange"))
+                              }else{
+                                alert("Your passwords do not match")
+                              }
+                            }
+                            if(document.getElementById("usernameChange")!=null||document.getElementById("usernameChange")!=""){
+                              user.set("username", document.getElementById("usernameChange"));
+                              alert("username changed to " + usernameChange)
+                            }
+                          }
+                        }
+                      </script>
+                     <!--<a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a> -->
+                  </div><!-- /account -->
+                  
+                </div><!-- /myTabContent -->
+              </div><!-- /modal-body -->
+              
+              <div class="modal-footer">
+                  <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">cancel</button>
+              </div>
+              
+            </div><!-- /modal-content -->
+          </div><!-- /modal-dialog -->
+        </div><!-- /accountModal -->
+        
+      </div><!-- /logo row -->
+      
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">home</a>
+          </div><!-- /header -->
+          
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">buy <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="popular.html">popular</a></li>
+                  <!--<li><a href="buy.html">buy</a></li>
+                  <li><a href="store.html">store</a></li>-->
+                  <li class="dropdown-submenu"><a href="#">brand</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=adidas">Adidas</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=airjordan">Air Jordan</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=asics">Asics</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=converse">Converse</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=newbalance">New Balance</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=nike">Nike</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=puma">Puma</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=reebok">Reebok</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=saucony">Saucony</a></li>
+                      <li><a href="http://www.dev.heatswap.com/popular.html?brand=vans">Vans</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="sell.html">sell</a></li>
+              <!--<li><a href="media.html">media</a></li>-->
+			 <li><a href="team.html">our team</a></li>
+              <li><a href="story.html">a good story</a></li>
+            </ul>
+            
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+              <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+            </form>
+<!-- 
+            <ul class="nav navbar-nav navbar-right" id="main-nav-social-icons">
+              <li><a href="https://www.youtube.com/user/HeatSwapTV" target="_blank"><i class="fa fa-youtube-play fa-lg"></i></a>
+              <li><a href="http://instagram.com/heatswap" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>
+            </ul>
+-->
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+
+      <div id="main-wrap"><!-- Main content wrapper -->
+        
+        <div id="subnav" class="hidden-xs">
+          <ul class="nav nav-justified">
+            <li class="active"><a href="#">Adidas</a></li>
+            <li><a href="#">Air Jordan</a></li>
+            <li><a href="#">Asics</a></li>
+            <li><a href="#">Converse</a></li>
+            <li><a href="#">New Balance</a></li>
+            <li><a href="#">Nike</a></li>
+            <li><a href="#">Puma</a></li>
+            <li><a href="#">Reebok</a></li>
+            <li><a href="#">Saucony</a></li>
+            <li><a href="#">Vans</a></li>
+            <li><a href="#">Others</a></li>
+          </ul>
+        </div>
+
+        <div class="pull-left">
+          <h1 style="margin-right:10px" class="red">sweet stuff</h1>
+        </div>
+  
+        <div class="clearfix">      
+          <ol class="breadcrumb pull-right breadcrumb-right">
+            <li><a href="index.html">home</a></li>
+            <li><a href="popular.html">popular</a></li>
+            <li class="active">sweet stuff</li>
+          </ol>
+          <hr class="breadcrumb-hr">
+        </div>
+      
+                
+        <div class="row store-page-main-body">
+          <div class="col-md-8">
+            <div class="store-banner-image">
+              <img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
+            </div>
+            
+            <div class="panel panel-default">
+              <div class="panel-body">
+                Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.
+              </div>
+            </div><!-- /panel -->
+            
+            <div class="row store-page-seemore">
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->
+              <div class="col-sm-4">
+                <div class="thumbnail">
+                  <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
+                  <div class="caption">
+                    <h4 class="pull-right">$100</h4>
+                    <h4><a href="#">Name of Brand</a></h4>
+                    <p class="text-muted">Released on 12/20/14</p>
+                  </div><!-- /caption -->
+                </div><!-- /thumbnail -->
+              </div><!-- /col-sm-4 -->                
+            </div><!-- /row store-page-seemore --> 
+            
+            <button type="button" class="btn btn-default pull-right" style="margin-top:20px">see all <span class="glyphicon glyphicon-chevron-down"></span></button>
+            
+            <div class="pagination-store-page">
+              <ul class="pagination">
+                <li class="disabled"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">&raquo;</a></li>
+              </ul>
+            </div>                         
+          
+          </div><!-- /col-md-8 -->          
+          
+          <div class="col-md-4">
+          
+            <div class="well">
+              <img class="thumbnail img-responsive center-block" src="http://placehold.it/200x200" alt="store owner">
+              <h3 class="red text-center">store owner</h3>
+              <p class="text-center" style="color:#777">Danielle San Francisco</p>
+              <p class="text-center">
+                <button type="button" class="btn btn-default btn-lg red">
+                <span class="glyphicon glyphicon-envelope"></span> contact owner
+                </button>
+            </p>
+            
+            </div><!-- /well -->
+                        
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title red"><span class="glyphicon glyphicon-info-sign"></span> store info</h3>
+              </div>
+              <ul class="list-group">
+                  <li class="list-group-item">opened: <span class="text-muted"> January 1, 2001</span></li>
+                  <li class="list-group-item">sales: <span class="text-muted"> 140</span></li>
+                  <li class="list-group-item">rating: <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star-o"></span></li>
+                  <li class="list-group-item">return clients: <span class="text-muted">20</span></li>
+                </ul>
+            </div><!-- /panel -->
+            
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title red"><span class="fa fa-truck"></span> shipping policy</h3>
+              </div>
+              <div class="panel-body">
+                <p class="text-muted"><small>Shipping policy Stumptown gluten-free sriracha, PBR&B Williamsburg you probably haven't heard of them cray. Crucifix PBR mlkshk, sartorial messenger bag Pinterest skateboard. Dreamcatcher Austin wolf irony. Cred wayfarers fap blog Odd Future vegan, PBR&B readymade ethnic art party chia Austin keytar PBR Bushwick. Photo booth cred keffiyeh keytar drinking vinegar jean shorts, ethical Etsy wolf asymmetrical freegan ennui.</small></p>
+              </div>
+            </div><!-- /panel -->
+            
+          </div><!-- /col-md-4 -->
+        </div><!-- /row store-page-main-body -->
+        
+      </div><!-- /main-wrap -->
+      
+      <footer>
+        <div class="row">
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="#" class="footer-text">terms</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">privacy</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">help</a> &nbsp;/</li>
+              <li><a href="#" class="footer-text">contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <p class="footer-text">&copy; 2014 HeatSwap, all rights reserved</p>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline">
+              <li><a href="https://www.youtube.com/user/HeatSwapTV" target="_blank" class="footer-text"><i class="fa fa-youtube-play fa-lg"></i></a>
+              <li><a href="http://instagram.com/heatswap" target="_blank" class="footer-text"><i class="fa fa-instagram fa-lg"></i></a>
+            </ul>
+          </div>
+        </div><!-- /row -->
+      </footer>
+      
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.carousel.slide').carousel();
+      });
+    </script>
+  </body>
+</html>
