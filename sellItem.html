@@ -487,6 +487,10 @@
       console.log("Hi")
 
       var iName = document.getElementById("shoeName").value;
+      if (iName.length > 20) {
+        alert("The name must be less than 20 characters");
+        return;
+      }
       var iDesc = document.getElementById("shoeDescription").value;
       var iPrice = document.getElementById("shoePrice").value;
       var iBrand = document.getElementById("shoeBrandSelect").value;

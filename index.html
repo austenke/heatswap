@@ -108,25 +108,6 @@
                   <ul id="myTab" class="nav nav-tabs">
                   </ul>
                 </div>
-                <script>
-                  if(currentName!=null&&currentName!=""){
-                    var finalObj=""
-                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
-                    finalObj += "<li class='active'><a href='#account' data-toggle='tab'><span class='glyphicon glyphicon-cog'></span> account</a></li>\n"
-                    //finalObj += "<li class=''><a href='#account' data-toggle='tab'><span class='glyphicon glyphicon-cog'></span> idhf</a></li>\n"
-                    finalObj += "</ul>"
-                    var insertNonsense=document.getElementById("modalTabs")
-                    insertNonsense.innerHTML=finalObj
-                  }else{
-                    var finalObj=""
-                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
-                    finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
-                    finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
-                    finalObj += "</ul>"
-                    var insertNonsense=document.getElementById("modalTabs")
-                    insertNonsense.innerHTML=finalObj
-                  }
-                </script>
                 
                 <div id="myTabContent" class="tab-content">
                   
@@ -337,7 +318,7 @@
                           }
                         }
                       </script>
-                     <a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a>
+                     <!--<a href="storePreview.html" class="btn btn-lg btn-warning" role="button">edit your store »</a> -->
                   </div><!-- /account -->
                   
                 </div><!-- /myTabContent -->
@@ -1189,6 +1170,22 @@
         </div><!-- /row popular -->  
         
  <script>       
+
+                  if(currentName!=null&&currentName!=""){
+                    var finalObj=document.getElementById("account");
+                    document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
+                  }else{
+                    var finalObj=""
+                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+                    finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
+                    finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+                    finalObj += "</ul>"
+                    var insertNonsense=document.getElementById("modalTabs")
+                    insertNonsense.innerHTML=finalObj
+                  }
+
+
+
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
         var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
