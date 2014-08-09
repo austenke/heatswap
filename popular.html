@@ -520,8 +520,9 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
           if (queryItem !== undefined) mailbox.equalTo("brand", queryItem);
-          limitStuff = 16;
-          mailbox.limit(limitStuff);
+          mailbox.limit(16);
+          limitStuff = (first-1) * 16
+          mailbox.skip(limitStuff);
           mailbox.descending("createdAt");
           mailbox.find({
             success: function(returnObj) {
