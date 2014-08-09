@@ -473,6 +473,16 @@
         </div>
 
         
+        <div id="pagination-popular" class="clearfix">
+          <ul class="pagination pull-right">
+            <li class="disabled"><a href="#" onclick="nextPage();return false;">&laquo;</a></li>
+            <li class="active"><a href="#" id="firstLink">1<span class="sr-only">(current)</span></a></li>
+            <li><a href="#" id="secondLink">2</a></li>
+            <li><a href="#" id="thirdLink">3</a></li>
+            <li><a href="#" onclick="nextPage()";return false;>&raquo;</a></li>
+          </ul>
+        </div>
+        
 <script>       
 
 var urlParams;
@@ -489,13 +499,29 @@ var urlParams;
 })();
 
 var queryItem = urlParams["brand"];
+var queryPage = urlParams["page"];
+
+if (queryPage === undefined) queryPage = 1;
+
+var first = parseInt(queryPage)
+var second = parseInt(queryPage) + 1
+var third = parseInt(queryPage) + 2
+
+document.getElementById("firstLink").innerHTML = first;
+document.getElementById("secondLink").innerHTML = second;
+document.getElementById("thirdLink").innerHTML = third;
+
+document.getElementById("firstLink").href = "popular.html?page=" + first;
+document.getElementById("secondLink").href = "popular.html?page=" + second;
+document.getElementById("thirdLink").href = "popular.html?page=" + third;
 
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
           var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
           if (queryItem !== undefined) mailbox.equalTo("brand", queryItem);
-          mailbox.limit(16);
+          limitStuff = 16;
+          mailbox.limit(limitStuff);
           mailbox.descending("createdAt");
           mailbox.find({
             success: function(returnObj) {
@@ -534,17 +560,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
         });
 
 </script>
-        
-        <div id="pagination-popular" class="clearfix">
-          <ul class="pagination pull-right">
-            <li class="disabled"><a href="#">&laquo;</a></li>
-            <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">&raquo;</a></li>
-          </ul>
-        </div>
-        
+
         <!--
         <div class="well well-lg bottom-well">
           <div class="row">
