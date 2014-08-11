@@ -484,34 +484,8 @@
                 <dt>sale type</dt>
                 <dd>seller-owned</dd>
               </dl>
-              <center>
-              <script async src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=YZFGU6Z5F75DN"
-              data-name=docum;
-              data-amount=document.getElementById("itemPrice").innerHTML;
-              data-name=document.getElementById("itemName").innerHTML;
-              ></script>
-              </center>
-            </div><!-- /well -->
-                        
-            <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
-            
-            <div class="row" id="otherShoes">
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>                
-              </div><!-- /col-sm-6 -->
-            </div><!-- /row -->
-            
-<script>       
 
+              <script>
 var urlParams;
 (window.onpopstate = function () {
   var match,
@@ -535,20 +509,48 @@ var queryItem = urlParams["item"];
             document.getElementById("imgStuff").src = woot.get("image");
             document.getElementById("itemName").innerHTML = woot.get("item");
             document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
-            document.getElementById("itemPrice").innerHTML = woot.get("price");
+            document.getElementById("itemPrice").innerHTML = "$"+woot.get("price");
             document.getElementById("itemSize").innerHTML = woot.get("size");
             document.getElementById("releaseDate").innerHTML = woot.createdAt;
             document.getElementById("itemCondition").innerHTML = woot.get("condition");
             document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
 
-            populateSecond(woot.get("user"),queryItem)
+            paypalCreate(woot.get("item"),woot.get("price"));
+            populateSecond(woot.get("user"),queryItem);
 
           },
           error: function(object, error) {
             // The object was not retrieved successfully.
             // error is a Parse.Error with an error code and description.
           }
-        }); 
+        });
+
+</script>
+
+              <script>
+                      document.write("<script async='async' src='https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=austenkeene@gmail.com' data-button='buynow' data-amount='"+ itemPrice);
+              </script>
+              <center>
+              </center>
+            </div><!-- /well -->
+                        
+            <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
+            
+            <div class="row" id="otherShoes">
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>                
+              </div><!-- /col-sm-6 -->
+            </div><!-- /row -->          
+<script>       
 
         var populateSecond = function(user,stuffId) {
         var delivery = new Parse.Query("courrier");
@@ -573,6 +575,7 @@ var queryItem = urlParams["item"];
         }
       })
       }
+
 </script>
             
           </div>
@@ -604,13 +607,12 @@ var queryItem = urlParams["item"];
       
     </div> <!-- /container -->
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
-      $(document).ready(function() {
+          $(document).ready(function() {
         $('.carousel.slide').carousel();
       });
     </script>
