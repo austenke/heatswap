@@ -151,9 +151,7 @@
 
                             alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
-                              success: function(user) {
-                                alert("login is go. Welcome ");
-                                alert(user.get("username"))
+                              success: function(user) {       
                                 location.reload();
                               },
                               error: function(user, error) {
