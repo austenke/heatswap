@@ -55,11 +55,7 @@
             if(Parse.User.current()!=null){
               currentUser = Parse.User.current();
               currentName=currentUser.get("username")
-            }else{
-
             }
-            
-            
 
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
@@ -484,8 +480,58 @@
                 <dt>sale type</dt>
                 <dd>seller-owned</dd>
               </dl>
+              <center>
+                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"><button type="submit" class="paypal-button large">Buy Now</button></form>
+              </center>
 
-              <script>
+            </div><!-- /well -->
+                        
+            <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
+            
+            <div class="row" id="otherShoes">
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
+              </div><!-- /col-sm-6 -->
+              <div class="col-sm-6">
+                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>                
+              </div><!-- /col-sm-6 -->
+            </div><!-- /row -->
+          </div>
+        </div><!-- /row -->
+        
+      </div><!-- /main-wrap -->
+
+<script>       
+      var populateSecond = function(user,stuffId) {
+        var delivery = new Parse.Query("courrier");
+        delivery.exists("item");
+        delivery.limit(4);
+        delivery.equalTo("user", user);
+        delivery.find({
+          success: function(food) {
+            var finalObj = "";
+            for (var i = 0; i < food.length; i++) { 
+              var item = food[i];
+                if (item.id != stuffId) {
+                finalObj += "<div class='col-sm-6'>\n"
+                finalObj += "<a class='thumbnail' href='buy.html?item="+item.id+"'>"
+                finalObj += "<img src='"+ item.get("image") + "' height='100' width='300' class='img-responsive' ></a> \n"
+                finalObj += "</div> \n"
+              }
+            }
+                
+            var insertNonsense = document.getElementById("otherShoes");
+            insertNonsense.innerHTML = finalObj
+        }
+      })
+      }
+
 var urlParams;
 (window.onpopstate = function () {
   var match,
@@ -514,8 +560,9 @@ var queryItem = urlParams["item"];
             document.getElementById("releaseDate").innerHTML = woot.createdAt;
             document.getElementById("itemCondition").innerHTML = woot.get("condition");
             document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
+            document.getElementById("paypalName").value = "Shoe ID: "+queryItem;
+            document.getElementById("paypalPrice").value = woot.get("price");
 
-            paypalCreate(woot.get("item"),woot.get("price"));
             populateSecond(woot.get("user"),queryItem);
 
           },
@@ -526,61 +573,6 @@ var queryItem = urlParams["item"];
         });
 
 </script>
-
-  <script>
-    document.write("<script async='async' src='https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=austenkeene@gmail.com' data-button='buynow' data-amount='"+ itemPrice);
-  </script>
-
-            </div><!-- /well -->
-                        
-            <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
-            
-            <div class="row" id="otherShoes">
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>
-              </div><!-- /col-sm-6 -->
-              <div class="col-sm-6">
-                  <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>                
-              </div><!-- /col-sm-6 -->
-            </div><!-- /row -->          
-<script>       
-
-        var populateSecond = function(user,stuffId) {
-        var delivery = new Parse.Query("courrier");
-        delivery.exists("item");
-        delivery.limit(4);
-        delivery.equalTo("user", user);
-        delivery.find({
-          success: function(food) {
-            var finalObj = "";
-            for (var i = 0; i < food.length; i++) { 
-              var item = food[i];
-                if (item.id != stuffId) {
-                finalObj += "<div class='col-sm-6'>\n"
-                finalObj += "<a class='thumbnail' href='buy.html?item="+item.id+"'>"
-                finalObj += "<img src='"+ item.get("image") + "' height='100' width='300' class='img-responsive' ></a> \n"
-                finalObj += "</div> \n"
-              }
-            }
-                
-            var insertNonsense = document.getElementById("otherShoes");
-            insertNonsense.innerHTML = finalObj
-        }
-      })
-      }
-
-</script>
-            
-          </div>
-        </div><!-- /row -->
-        
-      </div><!-- /main-wrap -->
       
       <footer>
         <div class="row">
