@@ -55,11 +55,7 @@
             if(Parse.User.current()!=null){
               currentUser = Parse.User.current();
               currentName=currentUser.get("username")
-            }else{
-
             }
-            
-            
 
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
@@ -485,12 +481,21 @@
                 <dd>seller-owned</dd>
               </dl>
               <center>
-              <script async src="https://www.paypalobjects.com/js/external/paypal-button.min.js?merchant=YZFGU6Z5F75DN"
-              data-name=docum;
-              data-amount=document.getElementById("itemPrice").innerHTML;
-              data-name=document.getElementById("itemName").innerHTML;
-              ></script>
+                    <script>
+                      var paypalDetect = function() {
+                        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
+                        document.getElementById('paypalBtn').innerHTML='Processing...';
+                        var delivery = Parse.Object.extend("payLogs");
+                        var pizzaBoi = new delivery();
+                        pizzaBoi.set("seller", document.getElementById("sellerName").innerHTML);
+                        pizzaBoi.set("buyer", Parse.User.current());
+                        pizzaBoi.set("amount", document.getElementById("itemPrice").innerHTML);
+                        pizzaBoi.save(null);
+                      }
+                    </script>
+                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"><button id="paypalBtn" type="submit" class="btn btn-primary" style="width:100%;" onclick="paypalDetect();">Buy Now</button></form>
               </center>
+
             </div><!-- /well -->
                         
             <p class="blue"><span style="padding-right:5px" class="glyphicon glyphicon-tags"></span> <em>more from this seller</em></p>
@@ -509,48 +514,13 @@
                   <a class="thumbnail" href="#"><img src="http://placehold.it/300x250" class="img-responsive" alt="..."></a>                
               </div><!-- /col-sm-6 -->
             </div><!-- /row -->
-            
+          </div>
+        </div><!-- /row -->
+        
+      </div><!-- /main-wrap -->
+
 <script>       
-
-var urlParams;
-(window.onpopstate = function () {
-  var match,
-    pl     = /\+/g,  // Regex for replacing addition symbol with a space
-    search = /([^&=]+)=?([^&]*)/g,
-    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-    query  = window.location.search.substring(1);
-
-  urlParams = {};
-  while (match = search.exec(query))
-    urlParams[decode(match[1])] = decode(match[2]);
-})();
-
-var queryItem = urlParams["item"];
-
-     Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
-        var courrier = Parse.Object.extend("courrier");
-        var mailbox = new Parse.Query(courrier);
-        mailbox.get(queryItem, {
-          success: function(woot) {
-            document.getElementById("imgStuff").src = woot.get("image");
-            document.getElementById("itemName").innerHTML = woot.get("item");
-            document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
-            document.getElementById("itemPrice").innerHTML = woot.get("price");
-            document.getElementById("itemSize").innerHTML = woot.get("size");
-            document.getElementById("releaseDate").innerHTML = woot.createdAt;
-            document.getElementById("itemCondition").innerHTML = woot.get("condition");
-            document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
-
-            populateSecond(woot.get("user"),queryItem)
-
-          },
-          error: function(object, error) {
-            // The object was not retrieved successfully.
-            // error is a Parse.Error with an error code and description.
-          }
-        }); 
-
-        var populateSecond = function(user,stuffId) {
+      var populateSecond = function(user,stuffId) {
         var delivery = new Parse.Query("courrier");
         delivery.exists("item");
         delivery.limit(4);
@@ -573,12 +543,79 @@ var queryItem = urlParams["item"];
         }
       })
       }
+
+var urlParams;
+(window.onpopstate = function () {
+  var match,
+    pl     = /\+/g,  // Regex for replacing addition symbol with a space
+    search = /([^&=]+)=?([^&]*)/g,
+    decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+    query  = window.location.search.substring(1);
+
+  urlParams = {};
+  while (match = search.exec(query))
+    urlParams[decode(match[1])] = decode(match[2]);
+})();
+
+var queryItem = urlParams["item"];
+
+     Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");  
+        var courrier = Parse.Object.extend("courrier");
+        var mailbox = new Parse.Query(courrier);
+        mailbox.get(queryItem, {
+          success: function(woot) {
+            document.getElementById("imgStuff").src = woot.get("image");
+            document.getElementById("itemName").innerHTML = woot.get("item");
+            document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
+            document.getElementById("itemPrice").innerHTML = "$"+woot.get("price");
+            document.getElementById("itemSize").innerHTML = woot.get("size");
+            document.getElementById("releaseDate").innerHTML = woot.get("listedDate");
+            document.getElementById("itemCondition").innerHTML = woot.get("condition");
+            document.getElementById("shoe-details").innerHTML = woot.get("itemDesc");
+            document.getElementById("paypalName").value = "Shoe ID: "+queryItem;
+            document.getElementById("paypalPrice").value = woot.get("price");
+
+            populateSecond(woot.get("user"),queryItem);
+
+          },
+          error: function(object, error) {
+            // The object was not retrieved successfully.
+            // error is a Parse.Error with an error code and description.
+          }
+        });
+
+<<<<<<< HEAD
+        var populateSecond = function(user,stuffId) {
+        var delivery = new Parse.Query("courrier");
+        delivery.exists("item");
+        delivery.limit(4);
+        delivery.equalTo("user", user);
+        delivery.find({
+          success: function(food) {
+            var finalObj = "";
+            for (var i = 0; i < food.length; i++) { 
+              var item = food[i];
+                if (item.id != stuffId) {
+                finalObj += "<div class='col-sm-6'>\n"
+                finalObj += "<a class='thumbnail' href='buy.html?item="+item.id+"'>"
+                finalObj += "<img src='"+ item.get("image") + "' height='100' width='300' class='img-responsive' ></a> \n"
+                finalObj += "</div> \n"
+              }
+            }
+                
+            var insertNonsense = document.getElementById("otherShoes");
+            insertNonsense.innerHTML = finalObj 
+        }
+      })
+      }
 </script>
-            
           </div>
         </div><!-- /row -->
         
       </div><!-- /main-wrap -->
+=======
+</script>
+>>>>>>> FETCH_HEAD
       
       <footer>
         <div class="row">
@@ -604,13 +641,12 @@ var queryItem = urlParams["item"];
       
     </div> <!-- /container -->
 
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
-      $(document).ready(function() {
+          $(document).ready(function() {
         $('.carousel.slide').carousel();
       });
     </script>

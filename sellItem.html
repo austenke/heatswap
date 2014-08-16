@@ -153,8 +153,6 @@
                             alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
-                                alert("login is go. Welcome ");
-                                alert(user.get("username"))
                                 location.reload();
                               },
                               error: function(user, error) {
@@ -631,6 +629,7 @@
       var iCondition = document.getElementById("shoeConditionSelect").value;
       var iSize = document.getElementById("shoeSizeSelect").value;
       var iMainImage = document.getElementById("mainImageURL").value;
+      var iListedDate = (getMonth()+ " " + getDate() + " " + getYear());
       //var iSecondImage = document.getElementById("username123").value;
       //var iThirdImage = document.getElementById("username123").value;
       //var iLocation = document.getElementById("shippingLocationSelect").value;
@@ -656,6 +655,7 @@
       postOffice.set("condition", iCondition);
       postOffice.set("size", iSize);
       postOffice.set("image", iMainImage);
+      postOffice.set("listedDate", iListedDate);
       //postOffice.set("secondImage", iSecondImage);
       //postOffice.set("thirdImage", iThirdImage);
       //postOffice.set("Location", iLocation);
