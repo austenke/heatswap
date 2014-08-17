@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>  
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
-
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
     <title>Heat Swap</title>
 
@@ -25,8 +25,8 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
- <body>
+        
+  <body>
     
     <div class="container">
       
@@ -150,7 +150,6 @@
                             var nameStuff = document.getElementById("usernameInput").value;
                             var passStuff = document.getElementById("passwordInput").value;
 
-                            alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
                                 location.reload();
@@ -290,21 +289,6 @@
                         <button class="btn btn-primary btn-lg btn-block" onClick="saveClose()"><span class="glyphicon glyphicon-ok"></span> save and close</button>
                       </div>
                       <script> 
-
-                                          if(currentName!=null&&currentName!=""){
-                    var finalObj=document.getElementById("account");
-                    document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
-                  }else{
-                    var finalObj=""
-                    finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
-                    finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
-                    finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
-                    finalObj += "</ul>"
-                    var insertNonsense=document.getElementById("modalTabs")
-                    insertNonsense.innerHTML=finalObj
-                  }
-
-                      
                         var saveClose = function(){
                           Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                           //checks if current user is logged in
@@ -435,7 +419,6 @@
           </form>
           <div class="row">
             <div class="col-sm-offset-3 col-sm-8">
-              <button type="submit" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-floppy-disk"></span> save</button>
             </div>
           </div>
         </div><!-- /storeName -->
@@ -453,10 +436,16 @@
               <div class="col-sm-4">
                 <select id="shoeBrandSelect" class="form-control">
                   <option>select brand</option>
-                  <option>kaepa</option>
-                  <option>roos</option>
-                  <option>sketchers</option>
-                  <option>crocs</option>
+                  <option>Adidas</option>
+                  <option>Air Jordan</option>
+                  <option>Asics</option>
+                  <option>Converse</option>
+                  <option>New Balance</option>
+                  <option>Nike</option>
+                  <option>Puma</option>
+                  <option>Reebok</option>
+                  <option>Saucony</option>
+                  <option>Vans</option>
                 </select>
               </div>
             </div>
@@ -465,10 +454,17 @@
               <div class="col-sm-4">
                 <select id="shoeSizeSelect" class="form-control">
                   <option>select size</option>
-                  <option>6</option>
-                  <option>6.5</option>
-                  <option>7</option>
-                  <option>7.5</option>
+                  <option>8</option>
+                  <option>8.5</option>
+                  <option>9</option>
+                  <option>9.5</option>
+                  <option>10</option>
+                  <option>10.5</option>
+                  <option>11</option>
+                  <option>11.5</option>
+                  <option>12</option>
+                  <option>12.5</option>
+                  <option>13</option>
                 </select>
               </div>
             </div>
@@ -497,7 +493,8 @@
               <label for="uploadImages" class="col-sm-2 col-sm-offset-1 control-label">upload images</label>
               <div class="col-sm-8">
                 <input type="text" class="form-control" id="mainImageURL" placeholder="image url">
-                <span class="help-block">max of 1 image</span>
+                <input type="text" class="form-control" id="image2" placeholder="image url" style="margin-top:1%;">
+                <span class="help-block">we reccomend <a target=_blank href="http://www.imgur.com/">imgur.com</a> for image uploading</span>
               </div>
             </div>
             <div class="form-group">
@@ -616,8 +613,6 @@
 
     var sellItem = function () {
 
-      console.log("Hi")
-
       var iName = document.getElementById("shoeName").value;
       if (iName.length > 20) {
         alert("The name must be less than 20 characters");
@@ -629,8 +624,9 @@
       var iCondition = document.getElementById("shoeConditionSelect").value;
       var iSize = document.getElementById("shoeSizeSelect").value;
       var iMainImage = document.getElementById("mainImageURL").value;
-      var iListedDate = (getMonth()+ " " + getDate() + " " + getYear());
-      //var iSecondImage = document.getElementById("username123").value;
+      var d = new Date();
+      var iListedDate = (d.getMonth()+ " " + d.getDay() + " " + d.getYear());
+      var iSecondImage = document.getElementById("image2").value;
       //var iThirdImage = document.getElementById("username123").value;
       //var iLocation = document.getElementById("shippingLocationSelect").value;
       //var iShipMethod = document.getElementById("shippingMethodSelect").value;
@@ -656,7 +652,7 @@
       postOffice.set("size", iSize);
       postOffice.set("image", iMainImage);
       postOffice.set("listedDate", iListedDate);
-      //postOffice.set("secondImage", iSecondImage);
+      postOffice.set("secondImage", iSecondImage);
       //postOffice.set("thirdImage", iThirdImage);
       //postOffice.set("Location", iLocation);
       //postOffice.set("shipMethod", iShipMethod);
@@ -692,6 +688,15 @@
 
 
 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.carousel.slide').carousel();
+      });
+    </script>
 
   </body>
 </html>
