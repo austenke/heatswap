@@ -472,7 +472,7 @@
         
         <div id="pagination-popular" class="clearfix">
           <ul class="pagination pull-right">
-            <li class="disabled"><a href="#" onclick="nextPage();return false;">&laquo;</a></li>
+            <li id ="nextClass" class="disabled"><a href="#" onclick="nextPage();return false;">&laquo;</a></li>
             <li class="active"><a href="#" id="firstLink">1<span class="sr-only">(current)</span></a></li>
             <li><a href="#" id="secondLink">2</a></li>
             <li><a href="#" id="thirdLink">3</a></li>
@@ -511,6 +511,10 @@ document.getElementById("thirdLink").innerHTML = third;
 document.getElementById("firstLink").href = "popular.html?page=" + first;
 document.getElementById("secondLink").href = "popular.html?page=" + second;
 document.getElementById("thirdLink").href = "popular.html?page=" + third;
+
+if (first > 2) {
+  document.getElementById("nextClass").class = "";
+}
 
 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
           var courrier = Parse.Object.extend("courrier");
