@@ -149,7 +149,6 @@
                             var nameStuff = document.getElementById("usernameInput").value;
                             var passStuff = document.getElementById("passwordInput").value;
 
-                            alert ("success1" + nameStuff + passStuff);
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
                                 

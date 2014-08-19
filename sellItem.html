@@ -653,30 +653,19 @@
 
 
     var sellItem = function () {
-      alert("Hello")
       var iName = document.getElementById("shoeName").value;
       if (iName.length > 20) {
         alert("The name must be less than 20 characters");
         return;
       }
 
-      alert("Hi2");
-
       var iDesc = document.getElementById("shoeDescription").value;
-      alert("Hi2.1");
       var iPrice = document.getElementById("shoePrice").value;
-      alert("Hi2.2");
       var iBrand = document.getElementById("shoeBrandSelect").value.replace(/ +/g, "").toLowerCase();
-      alert("Hi2.3");
       var iCondition = document.getElementById("shoeConditionSelect").value;
-      alert("Hi2.4");
       var iSize = document.getElementById("shoeSizeSelect").value;
-      alert(image1URL.value);
       var iMainImage = document.getElementById("image1URL").value;
-      alert("Hi2.6" + iMainImage);
       var d = new Date();
-      alert("Hi2.7");
-      alert("Hello");
       var iListedDate = (d.getMonth()+ " " + d.getDay() + " " + d.getYear());
       //var iSecondImage = document.getElementById("image2").value;
       //var iThirdImage = document.getElementById("username123").value;
@@ -685,20 +674,13 @@
       //var iShipPrice = document.getElementById("shippingprice").value;
       //var iShipPolicy = document.getElementById("shippingprice").value;
 
-      alert("Hi2.5")
-
       Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-
-      alert("Hi3")
 
       var courrier = Parse.Object.extend("courrier");
       var postOffice = new courrier();
 
-      alert(iName);
-
       if (!(iName === "")) {
         postOffice.set("item", iName);
-        alert("yay I worked")
       }
       else {
         alert("Please fill out everything");
@@ -721,8 +703,6 @@
       //postOffice.set("shipPolicy", iShipPolicy);
       //postOffice.set("user", Parse.User.current());
 
-      alert("hi3")
-
       postOffice.save(null, {
         success: function(postOffice) {
 
@@ -744,8 +724,6 @@
         document.getElementById("shippingprice").setAttribute("background-color","ffffff");
       }
     }
-
-    alert("final")
         </script>
 
 
