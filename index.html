@@ -1186,7 +1186,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
         var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
-          mailbox.limit(6);
+          mailbox.limit(4);
           mailbox.descending("createdAt");
           mailbox.find({
             success: function(returnObj) {
@@ -1197,9 +1197,9 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
 
                 var item = returnObj[i];
 
-                finalObj += "<div class='col-sm-4 col-md-2 popularHome'>\n<a href='/buy.html?item=" + item.id + "' class='thumbnail'>\n";
+                finalObj += "<div class='col-sm-4 col-md-3 popularHome'>\n<a href='/buy.html?item=" + item.id + "' class='thumbnail'>\n";
                 finalObj += "<p class='popular-price'> $" + item.get("price") + "</p>\n";
-                finalObj += "<div style='width:156px; height:182px; overflow:hidden; text-align: center;'>\n"
+                finalObj += "<div style='width:100%; height:182px; overflow:hidden; text-align: center;'>\n"
                 finalObj += "<img src='" + item.get("image") + "' style='position:relative; left:100%;margin-left:-200%;' height='182'>\n"
                 finalObj += "</div>\n"
                 finalObj += "</a>\n"
