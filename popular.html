@@ -55,12 +55,7 @@
             if(Parse.User.current()!=null){
               currentUser = Parse.User.current();
               currentName=currentUser.get("username")
-            }else{
-
             }
-            
-            
-
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
@@ -289,7 +284,7 @@
                       </div>
                       <script> 
 
-                                          if(currentName!=null&&currentName!=""){
+                  if(currentName!=null&&currentName!=""){
                     var finalObj=document.getElementById("account");
                     document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
                   }else{
@@ -431,8 +426,17 @@
       <!-- Dropdowns -->
         <form id="popular-pg-dropdowns" class="form-inline">
           <div class="form-group">
+          <label class="control-label" for="select01">sort by gender:</label>
+            <select id="gender" class="form-control" id="select01">
+              <option>gender</option>
+              <option>male</option>
+              <option>female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
            <label class="control-label" for="select01">sort by size:</label>
-            <select class="form-control" id="select01">
+            <select id="size" class="form-control" id="select01">
               <option>size</option>
               <option>8</option>
               <option>8.5</option>
@@ -443,7 +447,7 @@
 
           <div class="form-group">
             <label class="control-label" for="select02">sort by price:</label>
-            <select class="form-control" id="select02">
+            <select id="price" class="form-control" id="select02">
               <option>price</option>
               <option>lowest to highest</option>
               <option>highest to lowest</option>
@@ -452,7 +456,7 @@
 
           <div class="form-group">
             <label class="control-label" for="select03">sort by condition:</label>
-            <select class="form-control">
+            <select id="condition" class="form-control">
               <option>condition</option>
               <option>new</option>
               <option>slightly used</option>
@@ -460,6 +464,38 @@
               <option>very used</option>
             </select>
           </div><!-- /form-group -->
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary" style="width:100%;" onclick="searchStuff();"><span class="glyphicon glyphicon-search"></span></button>
+          </div>
+
+          <script>
+            var searchStuff = function () {
+              var condition = document.getElementById("condition").value;
+              var price = document.getElementById("price").value;
+              var size = document.getElementById("size").value;
+              var gender = document.getElementById("gender").value;
+
+              var searchitem = ""
+
+              if (!condition === "condition") {
+                searchitem += "&&condition="+condition; 
+              } 
+              if (!price === "price") {
+                searchitem += "&&price="+price; 
+              }
+              if (!size === "size") {
+                searchitem += "&&size="+size; 
+              }
+              if (!gender === "gender") {
+                searchitem += "&&gender="+gender; 
+              }
+
+              alert(price)
+              alert(searchitem)
+              window.location.href = "popular.html?" + searchitem;
+            }
+          </script>
         </form>
         
         <!-- Pushes first shoe down where it belongs -->
@@ -494,7 +530,7 @@ var urlParams;
     urlParams[decode(match[1])] = decode(match[2]);
 })();
 
-var queryItem = urlParams["brand"];
+var queryBrand = urlParams["brand"];
 var queryPage = urlParams["page"];
 
 if (queryPage === undefined) queryPage = 1;
@@ -519,7 +555,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
           var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
-          if (queryItem !== undefined) mailbox.equalTo("brand", queryItem);
+          if (queryBrand !== undefined) mailbox.equalTo("brand", queryBrand);
           mailbox.limit(16);
           limitStuff = (first-1) * 16
           mailbox.skip(limitStuff);
@@ -559,7 +595,6 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                   alert("Error: " + error.code + " " + error.message);
              }
         });
-
 
 var nextPage = function(ident) {
   if (ident === 1) {
