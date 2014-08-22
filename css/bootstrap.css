@@ -5778,3 +5778,7 @@ button.close {
     display: none !important;
   }
 }
+
+.errorAlert {
+  color:red;
+}
