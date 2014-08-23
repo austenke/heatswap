@@ -5782,3 +5782,7 @@ button.close {
 .errorAlert {
   color:red;
 }
+
+.dashboardDiv{
+  width:33%;
+}
