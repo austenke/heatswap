@@ -30,7 +30,7 @@
     
     <div class="container">
       
-      <!-- logo row -->
+     <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
         <div class="col-xs-12 col-md-4" >
@@ -65,8 +65,14 @@
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
                 finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a></li>\n"
-                finalObj += "</ul>"
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
+                finalObj += "<ul class='dropdown-menu'>\n"
+                //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
+                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>\n"
+                finalObj += "</ul>\n"
+                finalObj += "</li>\n"
+                finalObj += "</ul>\n"
                 var insertNonsense=document.getElementById("logTest")
                 insertNonsense.innerHTML=finalObj
                 document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
@@ -111,7 +117,7 @@
                 
                 <div id="myTabContent" class="tab-content">
                   
-                   <!-- SIGN IN -->
+                  <!-- SIGN IN -->
                   <div class="tab-pane fade active in" id="signIn">
 
                       <!--Username input-->
