@@ -418,9 +418,36 @@
           <div>
             <h3 class="blue">Currently Listed</h3>
           </div>
-          <div>
-            <p>Many shoes will go here</p>
+          <div id="forSale">
+            
           </div>
+          <script>
+            Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+            var Courrier = Parse.Object.extend("courrier");
+            var query = new Parse.Query(Courrier);
+            query.equalTo("userNameStuff", Parse.User.current().get("username"));
+            query.find({
+              success: function(results) {
+                //alert("Successfully retrieved " + results.length + " scores.");
+                // Do something with the returned Parse.Object values
+                for (var i = 0; i < results.length; i++) { 
+                  var object = results[i];
+                  //alert(object.get("item"))
+                  var finalObj="";
+                  finalObj += "<div>"
+                  finalObj += "<p>" + object.get("item") + "</p>"
+                  finalObj += "<img src='"+object.get("image")+"'style='width:50%'>"
+                  finalObj += "</div>"
+
+                  var insertNonsense = document.getElementById("forSale");
+                  insertNonsense.innerHTML = finalObj
+                }
+              },
+              error: function(error) {
+                alert("Error: " + error.code + " " + error.message);
+              }
+            });
+          </script>
         </div>
         <div id="previousListed" class="dashboardDiv" style="float: left"> 
           <div>

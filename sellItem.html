@@ -616,7 +616,7 @@
           </div>
         </div><!-- /row -->
       </footer>
-      
+
   </div><!-- /container -->
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -676,8 +676,15 @@
       var iCondition = document.getElementById("shoeConditionSelect").value;
       var iSize = document.getElementById("shoeSizeSelect").value;
       var iMainImage = document.getElementById("image1URL").value;
+      
       var d = new Date();
-      var iListedDate = (d.getMonth()+ " " + d.getDay() + " " + d.getYear());
+      var month = 0;
+      month=d.getMonth()+1;
+      var day = d.getDate()
+      var year = d.getFullYear();
+      
+      var iListedDate = (month + "/" + day + "/" + year);
+      
       //var iSecondImage = document.getElementById("image2").value;
       //var iThirdImage = document.getElementById("username123").value;
       //var iLocation = document.getElementById("shippingLocationSelect").value;
@@ -712,7 +719,9 @@
       //postOffice.set("shipMethod", iShipMethod);
       //postOffice.set("shipPrice", iShipPrice);
       //postOffice.set("shipPolicy", iShipPolicy);
-      //postOffice.set("user", Parse.User.current());
+      postOffice.set("userNameStuff", Parse.User.current().get("username"));
+
+      alert(Parse.User.current().get("username"));
 
       postOffice.save(null, {
         success: function(postOffice) {
