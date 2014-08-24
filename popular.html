@@ -466,7 +466,7 @@
           </div><!-- /form-group -->
 
           <div class="form-group">
-            <button type="submit" class="btn btn-primary" style="width:100%;" onclick="searchStuff();"><span class="glyphicon glyphicon-search"></span></button>
+            <button class="btn btn-primary" style="width:100%;" onclick="searchStuff(); return false;"><span class="glyphicon glyphicon-search"></span></button>
           </div>
 
           <script>
@@ -476,24 +476,31 @@
               var size = document.getElementById("size").value;
               var gender = document.getElementById("gender").value;
 
-              var searchitem = ""
+              var searchitem = "";
 
-              if (!condition === "condition") {
-                searchitem += "&&condition="+condition; 
+              if (condition !== "condition") {
+              	condition = "&&condition="+condition;
+                searchitem = searchitem + condition; 
               } 
-              if (!price === "price") {
-                searchitem += "&&price="+price; 
+              if (price !== "price") {
+              	if(price === "lowest to highest") {
+                	price = "&&price=low"; 
+                } else {
+                	price = "&&price=high"; 
+                }
+                searchitem = searchitem + price; 
               }
-              if (!size === "size") {
-                searchitem += "&&size="+size; 
+              if (size !== "size") {
+                size = "&&size="+size; 
+                searchitem = searchitem + size;
               }
-              if (!gender === "gender") {
-                searchitem += "&&gender="+gender; 
+              if (gender !== "gender") {
+                gender = "&&gender="+gender; 
+                searchitem = searchitem + gender;
               }
 
-              alert(price)
-              alert(searchitem)
-              window.location.href = "popular.html?" + searchitem;
+              searchitem = "popular.html?" + searchitem;
+              window.location.href = searchitem;
             }
           </script>
         </form>
@@ -530,6 +537,10 @@ var urlParams;
     urlParams[decode(match[1])] = decode(match[2]);
 })();
 
+var queryPrice = urlParams["price"];
+var querySize = urlParams["size"];
+var queryGender = urlParams["gender"];
+var queryCondition = urlParams["condition"];
 var queryBrand = urlParams["brand"];
 var queryPage = urlParams["page"];
 
@@ -555,11 +566,22 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
           var courrier = Parse.Object.extend("courrier");
           var mailbox = new Parse.Query(courrier);
           mailbox.exists("item");
+          if (querySize !== undefined) mailbox.equalTo("size", querySize);
+          if (queryGender !== undefined) mailbox.equalTo("gender", queryGender);
+          if (queryCondition !== undefined) mailbox.equalTo("condition", queryCondition);
           if (queryBrand !== undefined) mailbox.equalTo("brand", queryBrand);
           mailbox.limit(16);
           limitStuff = (first-1) * 16
           mailbox.skip(limitStuff);
-          mailbox.descending("createdAt");
+          if (queryPrice !== undefined) {
+          	if (queryPrice === "low") {
+          		mailbox.ascending("price");
+          	} else {
+          		mailbox.descending("price");
+          	}
+          } else {
+          	mailbox.descending("createdAt");
+          };
           mailbox.find({
             success: function(returnObj) {
               var finalObj = ""
