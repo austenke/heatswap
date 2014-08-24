@@ -499,13 +499,12 @@
               <center>
                     <script>
                       var paypalDetect = function() {
+                      	var idStuff = decodeStuffz();
                         Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
                         document.getElementById('paypalBtn').innerHTML='Processing...';
                         var delivery = Parse.Object.extend("payLogs");
                         var pizzaBoi = new delivery();
-                        pizzaBoi.set("seller", document.getElementById("sellerName").innerHTML);
-                        pizzaBoi.set("buyer", Parse.User.current());
-                        pizzaBoi.set("amount", document.getElementById("itemPrice").innerHTML);
+                        pizzaBoi.set("parent", idStuff);
                         pizzaBoi.save(null);
                       }
                     </script>
@@ -560,6 +559,7 @@
       })
       }
 
+var decodeStuffz = function () {
 var urlParams;
 (window.onpopstate = function () {
   var match,
@@ -574,7 +574,9 @@ var urlParams;
 })();
 
 var queryItem = urlParams["item"];
-
+return queryItem
+}
+	var queryItem = decodeStuffz();
      Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");  
         var courrier = Parse.Object.extend("courrier");
         var mailbox = new Parse.Query(courrier);
