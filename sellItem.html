@@ -686,7 +686,10 @@
 
         });
 
-
+    if(Parse.user.current()==""||Parse.user.current()==null){
+        alert("Please log in to continue");
+        
+    }else{
     var sellItem = function () {
       var iName = document.getElementById("shoeName").value;
       if (iName.length > 20) {
@@ -759,6 +762,7 @@
       }
       });
     }
+  }
 
     var coolChange = function() {
       if (document.getElementById("checkBoxStuff").checked == true) {
