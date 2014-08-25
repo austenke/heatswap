@@ -5784,5 +5784,9 @@ button.close {
 }
 
 .dashboardDiv{
-  width:33%;
+  width:31%;
+  padding-left: 1%;
+  padding-right: 1%;
+  margin: 1%;
+  border-width: 1px;
 }

@@ -68,7 +68,7 @@
                 finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
                 //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
+                //finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
                 finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>\n"
                 finalObj += "</ul>\n"
                 finalObj += "</li>\n"
@@ -414,12 +414,12 @@
         </div>
 
       <div id="main-wrap" style="float: left; width: 100%;"><!-- Main content wrapper -->
-        <div id="currentListed" class="dashboardDiv" style="float: left;">
+        <div id="currentListed" class="dashboardDiv" style="float: left; border: solid red;">
           <div>
-            <h3 class="blue">Currently Listed</h3>
-          </div>
-          <div id="forSale">
+            <h3 id="listedNumber" class="blue">Currently Listed</h3>
+            <div id="forSale">
             
+            </div>
           </div>
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
@@ -429,19 +429,31 @@
             query.find({
               success: function(results) {
                 //alert("Successfully retrieved " + results.length + " scores.");
+                listedNumber.innerHTML="Currently Listed ("+results.length+")";
                 // Do something with the returned Parse.Object values
+                var finalObj="";
+                if(results.length!=0){
                 for (var i = 0; i < results.length; i++) { 
                   var object = results[i];
                   //alert(object.get("item"))
-                  var finalObj="";
-                  finalObj += "<div>"
-                  finalObj += "<p>" + object.get("item") + "</p>"
-                  finalObj += "<img src='"+object.get("image")+"'style='width:50%'>"
-                  finalObj += "</div>"
+                  finalObj += "<div>\n"
+                  finalObj += "<p>" + object.get("item") + "</p>\n"
+                  finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
+                  finalObj += "<p>Price: $"+object.get("price")+"</p>\n"
+                  finalObj += "<p>Brand: "+object.get("brand")+"</p>\n"
+                  finalObj += "<p>Size: "+object.get("size")+"</p>\n"
+                  finalObj += "<p>Listed Date: "+object.get("listedDate")+"</p>\n"
+                  finalObj += "</div>\n"
+                  if(i+1!=results.length){
+                    finalObj += "<hr>\n"
+                  }
 
-                  var insertNonsense = document.getElementById("forSale");
-                  insertNonsense.innerHTML = finalObj
                 }
+              }else{
+                finalObj += "No shoes currently listed"
+              }
+                var insertNonsense = document.getElementById("forSale");
+                  insertNonsense.innerHTML = finalObj
               },
               error: function(error) {
                 alert("Error: " + error.code + " " + error.message);
@@ -449,18 +461,57 @@
             });
           </script>
         </div>
-        <div id="previousListed" class="dashboardDiv" style="float: left"> 
+        <div id="previousListed" class="dashboardDiv" style="float: left; border: solid blue;"> 
           <div>
             <h3 class="blue">Sold Shoes</h3>
           </div>
         </div>
-        <div id="ownerInfo" class="dashboardDiv" style="float: left">
+
+
+
+        <div id="ownerInfo" class="dashboardDiv" style="float: left; border: solid red;">
           <div>
             <h3 class="blue">Owner Info</h3>
           </div>
       </div>
         <script>
+        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+          var Courrier = Parse.Object.extend("courrier");
+          var query = new Parse.Query(Courrier);
+          query.equalTo("userNameStuff", Parse.User.current().get("username"));
+          query.find({
+            success: function(results) {
+              //alert("Successfully retrieved " + results.length + " scores.");
+              listedNumber.innerHTML="Currently Listed ("+results.length+")";
+              // Do something with the returned Parse.Object values
+              var finalObj="";
+              if(results.length!=0){
+              for (var i = 0; i < results.length; i++) { 
+                var object = results[i];
+                //alert(object.get("item"))
+                finalObj += "<div>\n"
+                finalObj += "<p>" + object.get("item") + "</p>\n"
+                finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
+                finalObj += "<p>Price: $"+object.get("price")+"</p>\n"
+                finalObj += "<p>Brand: "+object.get("brand")+"</p>\n"
+                finalObj += "<p>Size: "+object.get("size")+"</p>\n"
+                finalObj += "<p>Listed Date: "+object.get("listedDate")+"</p>\n"
+                finalObj += "</div>\n"
+                if(i+1!=results.length){
+                  finalObj += "<hr>\n"
+                }
 
+              }
+            }else{
+              finalObj += "No shoes currently listed"
+            }
+              var insertNonsense = document.getElementById("forSale");
+                insertNonsense.innerHTML = finalObj
+            },
+            error: function(error) {
+              alert("Error: " + error.code + " " + error.message);
+            }
+          });
         </script>
         <div id="sold">
         </div>
