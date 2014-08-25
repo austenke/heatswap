@@ -5790,3 +5790,9 @@ button.close {
   margin: 1%;
   border-width: 1px;
 }
+
+#headerAlert{
+  color: #FFFFFF;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}

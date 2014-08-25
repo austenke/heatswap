@@ -471,12 +471,9 @@
             	  </div>
             	
             	<!-- Controls -->
-            	  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            	    <span class="glyphicon glyphicon-chevron-left"></span>
-            	  </a>
-            	  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            	    <span class="glyphicon glyphicon-chevron-right"></span>
-            	  </a>
+            	  <div id="controls">
+                
+              </div>
             	</div>
             </div>
             <ul class="nav nav-tabs">
@@ -608,39 +605,53 @@ return queryItem
             document.getElementById("paypalPrice").value = woot.get("price");
 
             var finalObj="";
-            finalObj += "<div class='item active'>\n"
-            finalObj += "<img src='"+woot.get("image")+"' height='500' width='700' class='img-responsive' alt='shoe' id='imgMain'>\n"
+            var finalArrows="";
+            finalObj += "<div class='item active popularHome' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+            finalObj += "<img src='"+woot.get("image")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
             finalObj += "<div class='carousel-caption'>"
             finalObj += "</div>"
             finalObj += "</div>"
 
             if(woot.get("secondImage")!=""&&woot.get("secondImage")!=null){
-              finalObj += "<div class='item'>\n"
-              finalObj += "<img src='"+woot.get("secondImage")+"' height='500' width='700' class='img-responsive' alt='shoe' id='imgMain'>\n"
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img src='"+woot.get("secondImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
+
+              finalArrows += "<a class='left carousel-control' href='#carousel-example-generic' role='button' data-slide='prev'>"
+              finalArrows += "<span class='glyphicon glyphicon-chevron-left'></span>"
+              finalArrows += "</a>"
+              finalArrows += "<a class='right carousel-control' href='#carousel-example-generic' role='button' data-slide='next'>"
+              finalArrows += "<span class='glyphicon glyphicon-chevron-right'></span>"
+              finalArrows += "</a>"
+
+                    
+                  
+                  
+                    
+                 
             }
 
              if(woot.get("thirdImage")!=""&&woot.get("thirdImage")!=null){
-              finalObj += "<div class='item'>\n"
-              finalObj += "<img src='"+woot.get("thirdImage")+"' height='500' width='700' class='img-responsive' alt='shoe' id='imgMain'>\n"
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
              if(woot.get("fourthImage")!=""&&woot.get("fourthImage")!=null){
-              finalObj += "<div class='item'>\n"
-              finalObj += "<img src='"+woot.get("fourthImage")+"' height='500' width='700' class='img-responsive' alt='shoe' id='imgMain'>\n"
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img src='"+woot.get("fourthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
              if(woot.get("fifthImage")!=""&&woot.get("fifthImage")!=null){
-              finalObj += "<div class='item'>\n"
-              finalObj += "<img src='"+woot.get("fifthImage")+"' height='500' width='700' class='img-responsive' alt='shoe' id='imgMain'>\n"
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img src='"+woot.get("fifthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -648,6 +659,9 @@ return queryItem
 
             var insertNonsense = document.getElementById("carousel");
             insertNonsense.innerHTML = finalObj
+
+            var insertArrows = document.getElementById("controls");
+            insertArrows.innerHTML=finalArrows;
 
 
             populateSecond(woot.get("user"),queryItem);

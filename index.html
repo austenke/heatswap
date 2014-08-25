@@ -8,8 +8,8 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
     <title>Heat Swap</title>
 
@@ -27,6 +27,33 @@
   </head>
         
   <body>
+
+    <div id="topAlert">
+
+    </div>
+    <script>
+    Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+      var currentUser=""
+      var currentName=""
+      var alertSend=""
+        if(Parse.User.current()!=null){
+          //alert("hi")
+          currentUser = Parse.User.current();
+          currentName=currentUser.get("username")
+          if(currentUser.get("emailVerified")==false){
+            alertSend += "<div style='background: #A00000; text-align: center; height: 40px;'>\n";
+            alertSend += "<h3 id='headerAlert'><strong>Please verify your email</strong></h3>\n"
+            alertSend += "</div>\n"
+
+            var insertAlert=document.getElementById("topAlert");
+            insertAlert.innerHTML=alertSend;
+            //alert("hello")
+          }
+        }else{
+
+        }
+    </script>
     
     <div class="container">
       
