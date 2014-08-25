@@ -51,6 +51,7 @@
             
             var currentUser=""
             var currentName=""
+            var images = new Array(); 
 
             if(Parse.User.current()!=null){
               currentUser = Parse.User.current();
@@ -504,8 +505,13 @@
                 <input type="hidden" name="image1URL" id="image1URL"/>
                 <form id="fileupload" name="fileupload" enctype="multipart/form-data" method="post">
                   <fieldset>
-                    <input type="file" name="fileselect" id="fileselect"></input>
-                    <input id="uploadbutton" type="button" value="Upload Image"/>
+                    <div id="uploads">
+                    <input type="file" name="fileselect" id="fileselect1"></input>
+                    <input type="file" name="fileselect" id="fileselect2"></input>
+                    <input type="file" name="fileselect" id="fileselect3"></input>
+                    <input type="file" name="fileselect" id="fileselect4"></input>
+                    <input type="file" name="fileselect" id="fileselect5"></input>
+                    </div>
                   </fieldset>
                 </form>
               </div>
@@ -628,14 +634,32 @@
           var file;
 
           // Set an event listener on the Choose File field.
-          $('#fileselect').bind("change", function(e) {
+          $('#fileselect1').bind("change", function(e) {
+            upload(e, 0);
+          });
+          $('#fileselect2').bind("change", function(e) {
+            upload(e, 1);
+          });
+          $('#fileselect3').bind("change", function(e) {
+            upload(e, 2);
+          });
+          $('#fileselect4').bind("change", function(e) {
+            upload(e, 3);
+          });
+          $('#fileselect5').bind("change", function(e) {
+            upload(e, 4);
+          });
+
+          function upload(e, i) {
             var files = e.target.files || e.dataTransfer.files;
             // Our file var now holds the selected file
             file = files[0];
-          });
+            //alert("hello1")
+          //});
 
           // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
-          $('#uploadbutton').click(function() {
+          //$('#uploadbutton').click(function() {
+            //alert("HI")
             var serverUrl = 'https://api.parse.com/1/files/' + file.name;
 
             $.ajax({
@@ -651,14 +675,14 @@
               contentType: false,
               success: function(data) {
                 alert("File available at: " + data.url);
-                image1URL.value=data.url;
+                images[i]=data.url;
               },
               error: function(data) {
                 var obj = jQuery.parseJSON(data);
                 alert(obj.error);
               }
             });
-          });
+          }
 
         });
 
@@ -705,23 +729,25 @@
         return
       }
 
-
       postOffice.set("itemDesc", iDesc);
       postOffice.set("price", iPrice);
       postOffice.set("brand", iBrand);
       postOffice.set("condition", iCondition);
       postOffice.set("size", iSize);
-      postOffice.set("image", iMainImage);
+      postOffice.set("image", images[0]);
       postOffice.set("listedDate", iListedDate);
-      //postOffice.set("secondImage", iSecondImage);
-      //postOffice.set("thirdImage", iThirdImage);
+      postOffice.set("secondImage", images[1]);
+      postOffice.set("thirdImage", images[2]);
+      postOffice.set("fourthImage", images[3]);
+      postOffice.set("fifthImage", images[4]);
+
       //postOffice.set("Location", iLocation);
       //postOffice.set("shipMethod", iShipMethod);
       //postOffice.set("shipPrice", iShipPrice);
       //postOffice.set("shipPolicy", iShipPolicy);
       postOffice.set("userNameStuff", Parse.User.current().get("username"));
 
-      alert(Parse.User.current().get("username"));
+      //alert(Parse.User.current().get("username"));
 
       postOffice.save(null, {
         success: function(postOffice) {
