@@ -499,9 +499,6 @@
               </dl>
               <center>
                     <script>
-                    if(Parse.user.current==""||Parse.user.current==null){
-                      alert("Please log in to continue")
-                    }else{
                       var paypalDetect = function() {
                       	var idStuff = decodeStuffz();
                         Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
@@ -510,10 +507,11 @@
                         var pizzaBoi = new delivery();
                         pizzaBoi.set("parent", idStuff);
                         pizzaBoi.save(null);
+                        document.forms["paypalForm"].submit();
                       }
-                    }
                     </script>
-                    <form method="post" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"><button id="paypalBtn" type="submit" class="btn btn-primary" style="width:100%;" onclick="paypalDetect();">Buy Now</button></form>
+                    <form method="post" id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"></form>
+                    <button id="paypalBtn" class="btn btn-primary" style="width:100%;" onclick="paypalDetect();">Buy Now</button>
               </center>
 
             </div><!-- /well -->
