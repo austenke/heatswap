@@ -106,13 +106,24 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                  <h1 class="text-center blue">shipping</h1>
-                  <input type="text" id="buyemail" placeholder="EMAIL">
-                 <input type="text" id="buyfirstname" placeholder="FIRST NAME">
-                 <input type="text" id="buylastname" placeholder="LAST NAME">
+                 <div style="width: 50%;">
+                 <div class="buyInput">
+                     <input type="text" id="buyfirstname" placeholder="FIRST NAME">
+                </div>
+                <div class="buyInput">
+                     <input type="text" id="buylastname" placeholder="LAST NAME">
+                </div>
+                <div class="buyInput">
                  <input type="text" id="buyaddress1" placeholder="ADDRESS LINE 1">
-                 <input type="text" id="buyaddress2" placeholder="ADDRESS LINE 2">
+                 </div>
+                 <div class="buyInput">
+                    <input type="text" id="buyaddress2" placeholder="ADDRESS LINE 2">
+                </div>
+                <div class="buyInput">
                  <input type="text" id="buycity" placeholder="CITY">
-                 <select>
+             </div>
+             <div class="buyInput">
+                 <select id="buystate">
                  	<option value="AL">Alabama</option>
                  	<option value="AK">Alaska</option>
                  	<option value="AZ">Arizona</option>
@@ -164,9 +175,13 @@
                  	<option value="WV">West Virginia</option>
                  	<option value="WI">Wisconsin</option>
                  	<option value="WY">Wyoming</option>
-                 </select>				          
+                 </select>	
+                 </div>
+                 <div class="buyInput">			          
                  <input type="text" id="buyzipcode" placeholder="ZIP CODE">
-                 <select id="countries" name="countries">
+                </div>
+                <div class="buyInput">
+                 <select id="buycountries" name="countries">
                  <option value="Afghanistan">Afghanistan</option>
                  <option value="Åland Islands">Åland Islands</option>
                  <option value="Albania">Albania</option>
@@ -412,6 +427,19 @@
                  <option value="Zambia">Zambia</option>
                  <option value="Zimbabwe">Zimbabwe</option>
                  </select>
+             </div>
+             <div class="buyInput">
+                <input type="text" id="buyemail" placeholder="EMAIL">
+            </div>
+            <div style="width: 50%;">
+            </div>
+            <button>save + pay</button>
+        </div>
+
+        <script>
+
+        </script>
+
               </div>
             </div>
           </div>

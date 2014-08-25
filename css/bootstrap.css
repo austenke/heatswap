@@ -5796,3 +5796,8 @@ button.close {
   padding-top: 6px;
   padding-bottom: 6px;
 }
+
+.buyInput{
+  margin-top: 25px;
+  margin-bottom: 25px;
+}

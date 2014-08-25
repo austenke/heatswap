@@ -41,6 +41,7 @@
           //alert("hi")
           currentUser = Parse.User.current();
           currentName=currentUser.get("username")
+          //alert(currentUser.get("emailVerified"))
           if(currentUser.get("emailVerified")==false){
             alertSend += "<div style='background: #A00000; text-align: center; height: 40px;'>\n";
             alertSend += "<h3 id='headerAlert'><strong>Please verify your email</strong></h3>\n"
