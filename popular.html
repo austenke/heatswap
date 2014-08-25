@@ -230,12 +230,16 @@
                             var passStuff = document.getElementById("SUpasswordInput").value;
                             var passStuff2 = document.getElementById("SUpassword2Input").value;
                             var emailStuff = document.getElementById("SUemailInput").value;
+                            var firstStuff = document.getElementById("fNameInput").value;
+                            var lastStuff = document.getElementById("lNameInput").value;
                             if (passStuff2 === passStuff) {
 
                               var user = new Parse.User();
                               user.set("username", nameStuff);
                               user.set("password", passStuff);
                               user.set("email", emailStuff);
+                              user.set("firstName", firstStuff);
+                              user.set("lastName", lastStuff);
 
 
                               user.signUp(null, {
