@@ -65,7 +65,7 @@
                 finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
                 //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
+                //finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
                 finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>\n"
                 finalObj += "</ul>\n"
                 finalObj += "</li>\n"
@@ -444,17 +444,33 @@
             	  <!-- Indicators -->
             	
             	  <!-- Wrapper for slides -->
-            	  <div class="carousel-inner">
+            	  <div class="carousel-inner" id="carousel">
             	    <div class="item active">
-            	      <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="imgStuff">
+            	      <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="imgMain">
             	      <div class="carousel-caption">
             	      </div>
             	    </div>
-            	    <div class="item">
-            	      <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="imgStuff">
-            	      <div class="carousel-caption">
-            	      </div>
-            	    </div>
+                  <div class="item">
+                    <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="img2">
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="img3">
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="img4">
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <img src="http://placehold.it/700x500" height="500" width="700" class="img-responsive" alt="shoe" id="img5">
+                    <div class="carousel-caption">
+                    </div>
+                  </div>
+
             	  </div>
             	
             	<!-- Controls -->
@@ -582,7 +598,6 @@ return queryItem
         var mailbox = new Parse.Query(courrier);
         mailbox.get(queryItem, {
           success: function(woot) {
-            document.getElementById("imgStuff").src = woot.get("image");
             document.getElementById("itemName").innerHTML = woot.get("item");
             document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
             document.getElementById("itemPrice").innerHTML = "$"+woot.get("price");
@@ -593,6 +608,11 @@ return queryItem
             document.getElementById("paypalName").value = "Shoe ID: "+queryItem;
             document.getElementById("paypalPrice").value = woot.get("price");
 
+            document.getElementById("imgMain").src = woot.get("image")
+            document.getElementById("img2").src = woot.get("secondImage")
+            document.getElementById("img3").src = woot.get("thirdImage")
+            document.getElementById("img4").src = woot.get("fourthImage")
+            document.getElementById("img5").src = woot.get("fifthImage")
             populateSecond(woot.get("user"),queryItem);
 
           },
