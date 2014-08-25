@@ -98,6 +98,18 @@
           </script>    
         </div><!-- /login-menu -->
 
+
+
+         <div id="buyModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                 <h1 class="text-center blue">welcome!</h1>
+              </div>
+            </div>
+          </div>
+         </div>
         <!-- Modal -->
         <div id="accountModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
           <div class="modal-dialog">
@@ -511,7 +523,7 @@
                       }
                     </script>
                     <form method="post" id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"></form>
-                    <button id="paypalBtn" class="btn btn-primary" style="width:100%;" onclick="paypalDetect();">Buy Now</button>
+                    <button id="paypalBtn" class="btn btn-primary" style="width:100%;" data-toggle="modal" data-target="#buyModal">Buy Now</button>
               </center>
 
             </div><!-- /well -->

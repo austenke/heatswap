@@ -13,6 +13,7 @@
 	<body>
 		<center>
 		<table id="adminTable" style="width:1000px">
+		<button id="foo">Foo</button>
 		</table>
 		</center>
 		
@@ -40,6 +41,35 @@
 						alert("Error: " + error.code + " " + error.message);
 					}
 				});
+		</script>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script>
+			$('#foo').click(function() {
+				$.ajax({
+				  type: "POST",
+				  url: "https://mandrillapp.com/api/1.0/messages/send.json",
+				  data: {
+				    'key': '9JYVWj0aNO_pYLJWSl9_dQ',
+				    'message': {
+				      'from_email': 'info@heatswap.com',
+				      'to': [
+				          {
+				            'email': 'austenkeene@gmail.com',
+				            'name': 'foo',
+				            'type': 'to'
+				          },
+				        ],
+				      'autotext': 'true',
+				      'subject': 'You have sold an item on HeatSwap!',
+				      'html': '<center><img alt="logo" class="img-responsive center-block" src="heatswap.com/logo.png"></center>'
+				    }
+				  }
+				}).done(function(response) {
+				   console.log(response); // if you're into that sorta thing
+				});
+			});
 		</script>
 	</body>
 </html>
