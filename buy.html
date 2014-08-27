@@ -27,6 +27,7 @@
   </head>
         
  <body>
+
     
     <div class="container">
       
@@ -47,13 +48,18 @@
           <div id="logTest">
           </div>
           <script>
+          
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             
-            var currentUser=""
+            var currentUser = Parse.User.current();
             var currentName=""
 
+            if(currentUser==null){
+                alert("Please log in to continue");
+                window.location.replace("index.html");
+              }
+
             if(Parse.User.current()!=null){
-              currentUser = Parse.User.current();
               currentName=currentUser.get("username")
             }else{
 
@@ -1064,6 +1070,21 @@ return queryItem
       </footer>
       
     </div> <!-- /container -->
+
+     <script>
+      if(currentName!=null&&currentName!=""){
+        var finalObj=document.getElementById("account");
+        document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
+      }else{
+        var finalObj=""
+        finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+        finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
+        finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+        finalObj += "</ul>"
+        var insertNonsense=document.getElementById("modalTabs")
+        insertNonsense.innerHTML=finalObj
+      }
+    </script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

@@ -303,13 +303,14 @@
                         <button class="btn btn-primary btn-lg btn-block" onClick="saveClose()"><span class="glyphicon glyphicon-ok"></span> save and close</button>
                       </div>
                       <script> 
+
                         var saveClose = function(){
                           Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                           //checks if current user is logged in
                           var currentUser = Parse.User.current();
-                          var currentName = currentUser.get("username")
-                          if(currentName==null||currentName==""){
+                          if(currentUser==null){
                             alert("Please log in to continue")
+
                           }else{
                             if(document.getElementById("emailChange").value!=null&&document.getElementById("emailChange").value!=""){
                                 user.set("email", document.getElementById("emailChange"));
@@ -521,11 +522,7 @@
                 <form id="fileupload" name="fileupload" enctype="multipart/form-data" method="post">
                   <fieldset>
                     <div id="uploads">
-                    <input type="file" name="fileselect" id="fileselect1"></input>
-                    <input type="file" name="fileselect" id="fileselect2"></input>
-                    <input type="file" name="fileselect" id="fileselect3"></input>
-                    <input type="file" name="fileselect" id="fileselect4"></input>
-                    <input type="file" name="fileselect" id="fileselect5"></input>
+                    <input type="file" name="fileselect" id="fileselect1" multiple></input>
                     </div>
                   </fieldset>
                 </form>
@@ -647,22 +644,18 @@
 
       $(function() {
           var file;
-
           // Set an event listener on the Choose File field.
+          //figure out what e is, how to change. filePull[i] is the name of the file
           $('#fileselect1').bind("change", function(e) {
-            upload(e, 0);
-          });
-          $('#fileselect2').bind("change", function(e) {
-            upload(e, 1);
-          });
-          $('#fileselect3').bind("change", function(e) {
-            upload(e, 2);
-          });
-          $('#fileselect4').bind("change", function(e) {
-            upload(e, 3);
-          });
-          $('#fileselect5').bind("change", function(e) {
-            upload(e, 4);
+            var currentE;
+            if(fileselect1.multiple=true){
+              var filePull = document.getElementById("fileselect1").files;
+              for (var i = 0; i < filePull.length; i++){
+                alert(filePull[i].name);
+                upload(e, i);
+              }
+            }
+            
           });
 
           function upload(e, i) {
@@ -688,8 +681,10 @@
               data: file,
               processData: false,
               contentType: false,
+              //alert("hello")
               success: function(data) {
                 alert("File available at: " + data.url);
+                //alert(fileselect1)
                 images[i]=data.url;
               },
               error: function(data) {
@@ -700,10 +695,11 @@
           }
 
         });
-
-    if(Parse.user.current()==""||Parse.user.current()==null){
+    
+    var currentUser = Parse.User.current();
+    if(currentUser==null){
         alert("Please log in to continue");
-        
+        window.location.replace("index.html");
     }else{
     var sellItem = function () {
       var iName = document.getElementById("shoeName").value;
@@ -792,6 +788,20 @@
     }
         </script>
 
+     <script>
+      if(currentName!=null&&currentName!=""){
+        var finalObj=document.getElementById("account");
+        document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
+      }else{
+        var finalObj=""
+        finalObj += "<ul id='myTab' class='nav nav-tabs'>\n"
+        finalObj += "<li class='active'><a href='#signIn' data-toggle='tab'><span class='glyphicon glyphicon-lock'></span> sign in</a></li>\n"
+        finalObj += "<li class=''><a href='#signUp' data-toggle='tab'><span class='glyphicon glyphicon-user'></span> sign up</a></li>\n"
+        finalObj += "</ul>"
+        var insertNonsense=document.getElementById("modalTabs")
+        insertNonsense.innerHTML=finalObj
+      }
+    </script>
 
 
     <!-- Bootstrap core JavaScript
