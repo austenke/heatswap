@@ -642,6 +642,7 @@
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <script>
 
@@ -689,7 +690,6 @@
               processData: false,
               contentType: false,
               success: function(data) {
-                alert("File available at: " + data.url);
                 images[i]=data.url;
               },
               error: function(data) {
@@ -700,83 +700,85 @@
           }
 
         });
-
-    if(Parse.user.current()==""||Parse.user.current()==null){
-        alert("Please log in to continue");
-        
-    }else{
     var sellItem = function () {
-      var iName = document.getElementById("shoeName").value;
-      if (iName.length > 20) {
-        alert("The name must be less than 20 characters");
-        return;
-      }
+      var currentUser = Parse.User.current();
+      if(currentUser===""||currentUser===null){
+          $('#myModal').modal({ show: false})
+          $('#accountModal').modal('show'); 
+          
+      }else{
+        var iName = document.getElementById("shoeName").value;
+        if (iName.length > 20) {
+          alert("The name must be less than 20 characters");
+          return;
+        }
 
-      var iDesc = document.getElementById("shoeDescription").value;
-      var iPrice = document.getElementById("shoePrice").value;
-      var iBrand = document.getElementById("shoeBrandSelect").value.replace(/ +/g, "").toLowerCase();
-      var iCondition = document.getElementById("shoeConditionSelect").value;
-      var iSize = document.getElementById("shoeSizeSelect").value;
-      var iMainImage = document.getElementById("image1URL").value;
-      var iGender = document.getElementById("shoeGender").value
-      
-      var d = new Date();
-      var month = 0;
-      month=d.getMonth()+1;
-      var day = d.getDate()
-      var year = d.getFullYear();
-      
-      var iListedDate = (month + "/" + day + "/" + year);
-      
-      //var iSecondImage = document.getElementById("image2").value;
-      //var iThirdImage = document.getElementById("username123").value;
-      //var iLocation = document.getElementById("shippingLocationSelect").value;
-      //var iShipMethod = document.getElementById("shippingMethodSelect").value;
-      //var iShipPrice = document.getElementById("shippingprice").value;
-      //var iShipPolicy = document.getElementById("shippingprice").value;
+        var iDesc = document.getElementById("shoeDescription").value;
+        var iPrice = document.getElementById("shoePrice").value;
+        var iBrand = document.getElementById("shoeBrandSelect").value.replace(/ +/g, "").toLowerCase();
+        var iCondition = document.getElementById("shoeConditionSelect").value;
+        var iSize = document.getElementById("shoeSizeSelect").value;
+        var iMainImage = document.getElementById("image1URL").value;
+        var iGender = document.getElementById("shoeGender").value
+        
+        var d = new Date();
+        var month = 0;
+        month=d.getMonth()+1;
+        var day = d.getDate()
+        var year = d.getFullYear();
+        
+        var iListedDate = (month + "/" + day + "/" + year);
+        
+        //var iSecondImage = document.getElementById("image2").value;
+        //var iThirdImage = document.getElementById("username123").value;
+        //var iLocation = document.getElementById("shippingLocationSelect").value;
+        //var iShipMethod = document.getElementById("shippingMethodSelect").value;
+        //var iShipPrice = document.getElementById("shippingprice").value;
+        //var iShipPolicy = document.getElementById("shippingprice").value;
 
-      Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
-      var courrier = Parse.Object.extend("courrier");
-      var postOffice = new courrier();
+        var courrier = Parse.Object.extend("courrier");
+        var postOffice = new courrier();
 
-      if (!(iName === "")) {
-        postOffice.set("item", iName);
-      }
-      else {
-        alert("Please fill out everything");
-        return
-      }
+        if (!(iName === "")) {
+          postOffice.set("item", iName);
+        }
+        else {
+          alert("Please fill out everything");
+          return
+        }
 
-      postOffice.set("itemDesc", iDesc);
-      postOffice.set("price", iPrice);
-      postOffice.set("brand", iBrand);
-      postOffice.set("condition", iCondition);
-      postOffice.set("gender", iGender);
-      postOffice.set("size", iSize);
-      postOffice.set("image", images[0]);
-      postOffice.set("listedDate", iListedDate);
-      postOffice.set("secondImage", images[1]);
-      postOffice.set("thirdImage", images[2]);
-      postOffice.set("fourthImage", images[3]);
-      postOffice.set("fifthImage", images[4]);
-      //postOffice.set("Location", iLocation);
-      //postOffice.set("shipMethod", iShipMethod);
-      //postOffice.set("shipPrice", iShipPrice);
-      //postOffice.set("shipPolicy", iShipPolicy);
-      postOffice.set("userNameStuff", Parse.User.current().get("username"));
+        postOffice.set("itemDesc", iDesc);
+        postOffice.set("price", iPrice);
+        postOffice.set("brand", iBrand);
+        postOffice.set("condition", iCondition);
+        postOffice.set("gender", iGender);
+        postOffice.set("size", iSize);
+        postOffice.set("image", images[0]);
+        postOffice.set("listedDate", iListedDate);
+        postOffice.set("secondImage", images[1]);
+        postOffice.set("thirdImage", images[2]);
+        postOffice.set("fourthImage", images[3]);
+        postOffice.set("fifthImage", images[4]);
+        //postOffice.set("Location", iLocation);
+        //postOffice.set("shipMethod", iShipMethod);
+        //postOffice.set("shipPrice", iShipPrice);
+        //postOffice.set("shipPolicy", iShipPolicy);
+        postOffice.set("userNameStuff", Parse.User.current().get("username"));
 
-      //alert(Parse.User.current().get("username"));
+        //alert(Parse.User.current().get("username"));
 
-      postOffice.save(null, {
-        success: function(postOffice) {
+        postOffice.save(null, {
+          success: function(postOffice) {
 
-          alert("Successful upload with ID: "+postOffice.id);
-      },
-      error: function(postOffice, error) {
-          alert('Failed to create new object, with error code: ' + error.message);
-      }
-      });
+            alert("Successful upload with ID: "+postOffice.id);
+            window.location.href = "popular.html";
+        },
+        error: function(postOffice, error) {
+            alert('Failed to create new object, with error code: ' + error.message);
+        }
+        });
     }
   }
 
