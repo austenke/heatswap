@@ -106,7 +106,8 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                  <h1 class="text-center blue">shipping</h1>
-                 <div style="width: 50%;">
+                 <hr class="alt-hr">
+                 <div>
                  <div class="buyInput">
                      <input type="text" id="buyfirstname" placeholder="FIRST NAME">
                 </div>
@@ -232,7 +233,7 @@
                  <option value="Colombia">Colombia</option>
                  <option value="Comoros">Comoros</option>
                  <option value="Congo">Congo</option>
-                 <option value="Congo, The Democratic Republic of The">Congo, The Democratic Republic of The</option>
+                 <option value="Congo, The Democratic Republic of The">The Democratic Republic of Congo</option>
                  <option value="Cook Islands">Cook Islands</option>
                  <option value="Costa Rica">Costa Rica</option>
                  <option value="Cote D'ivoire">Cote D'ivoire</option>
@@ -297,11 +298,11 @@
                  <option value="Kazakhstan">Kazakhstan</option>
                  <option value="Kenya">Kenya</option>
                  <option value="Kiribati">Kiribati</option>
-                 <option value="Korea, Democratic People's Republic of">Korea, Democratic People's Republic of</option>
-                 <option value="Korea, Republic of">Korea, Republic of</option>
+                 <option value="Korea, Democratic People's Republic of">Democratic People's Republic of Korea</option>
+                 <option value="Korea, Republic of">Republic of Korea</option>
                  <option value="Kuwait">Kuwait</option>
                  <option value="Kyrgyzstan">Kyrgyzstan</option>
-                 <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                 <option value="Lao People's Democratic Republic">People's Democratic Republic of Lao</option>
                  <option value="Latvia">Latvia</option>
                  <option value="Lebanon">Lebanon</option>
                  <option value="Lesotho">Lesotho</option>
@@ -311,7 +312,7 @@
                  <option value="Lithuania">Lithuania</option>
                  <option value="Luxembourg">Luxembourg</option>
                  <option value="Macao">Macao</option>
-                 <option value="Macedonia, The Former Yugoslav Republic of">Macedonia, The Former Yugoslav Republic of</option>
+                 <option value="Macedonia, The Former Yugoslav Republic of">Macedonia</option>
                  <option value="Madagascar">Madagascar</option>
                  <option value="Malawi">Malawi</option>
                  <option value="Malaysia">Malaysia</option>
@@ -324,8 +325,8 @@
                  <option value="Mauritius">Mauritius</option>
                  <option value="Mayotte">Mayotte</option>
                  <option value="Mexico">Mexico</option>
-                 <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
-                 <option value="Moldova, Republic of">Moldova, Republic of</option>
+                 <option value="Micronesia, Federated States of">Federated States of Micronesia</option>
+                 <option value="Moldova, Republic of">Republic of Moldova</option>
                  <option value="Monaco">Monaco</option>
                  <option value="Mongolia">Mongolia</option>
                  <option value="Montenegro">Montenegro</option>
@@ -431,9 +432,7 @@
              <div class="buyInput">
                 <input type="text" id="buyemail" placeholder="EMAIL">
             </div>
-            <div style="width: 50%;">
-            </div>
-            <button>save + pay</button>
+            <button onclick="paypalDetect(); event.preventDefault()" class="btn btn-primary" style="width:100%">Pay Now</button>
         </div>
 
         <script>
@@ -837,6 +836,8 @@
                 <dd id="itemPrice">$300</dd>
                 <dt>size</dt>
                 <dd id="itemSize">10.5</dd>
+                <dt>gender</dt>
+                <dd id="itemSize">male</dd>
                 <dt>release date</dt>
                 <dd id="releaseDate">Jan 31, 2025</dd>
                 <dt>condition</dt>
@@ -847,13 +848,51 @@
               <center>
                     <script>
                       var paypalDetect = function() {
+                        var firstname = document.getElementById("buyfirstname").value;
+                        var lastname = document.getElementById("buylastname").value;
+                        var address1 = document.getElementById("buyaddress1").value;
+                        var address2 = document.getElementById("buyaddress2").value;
+                        var city = document.getElementById("buycity").value;
+                        var state = document.getElementById("buystate").value;
+                        var zip = document.getElementById("buyzipcode").value;
+                        var countries = document.getElementById("buycountries").value;
+                        var email = document.getElementById("buyemail").value;
+                        var shoeName = document.getElementById("itemName").value;
+                        var seller = document.getElementById("sellerName").value;
+                        var stuffPrice = document.getElementById("itemPrice").value;
                       	var idStuff = decodeStuffz();
+                        currentUser = Parse.User.current();
+                        alert(currentUser)
                         Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
                         document.getElementById('paypalBtn').innerHTML='Processing...';
                         var delivery = Parse.Object.extend("payLogs");
                         var pizzaBoi = new delivery();
+                        pizzaBoi.set("firstname", firstname);
+                        pizzaBoi.set("lastname", lastname);
+                        pizzaBoi.set("address1", address1);
+                        pizzaBoi.set("address2", address2);
+                        pizzaBoi.set("city", city);
+                        pizzaBoi.set("state", state);
+                        pizzaBoi.set("zip", zip);
+                        pizzaBoi.set("countries", countries);
+                        pizzaBoi.set("email", email);
+                        pizzaBoi.set("shoename", shoeName);
+                        pizzaBoi.set("amount", stuffPrice);
+                        pizzaBoi.set("seller", seller);
+                        pizzaBoi.set("buyer", currentUser);
                         pizzaBoi.set("parent", idStuff);
-                        pizzaBoi.save(null);
+                        pizzaBoi.save(null, {
+                          success: function(gameScore) {
+                            // Execute any logic that should take place after the object is saved.
+                            alert('New object created with objectId: ' + gameScore.id);
+                          },
+                          error: function(gameScore, error) {
+                            // Execute any logic that should take place if the save fails.
+                            // error is a Parse.Error with an error code and description.
+                            alert('Failed to create new object, with error code: ' + error.message);
+                            return false;
+                          }
+                        });
                         document.forms["paypalForm"].submit();
                       }
                     </script>
@@ -962,13 +1001,7 @@ return queryItem
               finalArrows += "</a>"
               finalArrows += "<a class='right carousel-control' href='#carousel-example-generic' role='button' data-slide='next'>"
               finalArrows += "<span class='glyphicon glyphicon-chevron-right'></span>"
-              finalArrows += "</a>"
-
-                    
-                  
-                  
-                    
-                 
+              finalArrows += "</a>"    
             }
 
              if(woot.get("thirdImage")!=""&&woot.get("thirdImage")!=null){
