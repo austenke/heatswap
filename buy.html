@@ -989,6 +989,17 @@ return queryItem
 
             var finalObj="";
             var finalArrows="";
+
+            var imgURL = woot.get("image");
+            var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image1").css("height", "500px");
+                        $("#image1").css("width", "auto");
+                        $("#image1").css("left", "100%");
+                        //$("#image1").css("margin-left", "100%");
+                }
+            });
+
             finalObj += "<div class='item active popularHome' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
             finalObj += "<img id='image1' src='"+woot.get("image")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
             finalObj += "<div class='carousel-caption'>"
@@ -996,6 +1007,14 @@ return queryItem
             finalObj += "</div>"
 
             if(woot.get("secondImage")!=""&&woot.get("secondImage")!=null){
+              var imgURL = woot.get("secondImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image2").css("height", "500px");
+                        $("#image2").css("width", "auto");
+                    }
+                });  
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
               finalObj += "<img id='image2' src='"+woot.get("secondImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
@@ -1011,48 +1030,96 @@ return queryItem
             }
 
              if(woot.get("thirdImage")!=""&&woot.get("thirdImage")!=null){
+                var imgURL = woot.get("thirdImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image3").css("height", "500px");
+                        $("#image3").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image3' src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
              if(woot.get("fourthImage")!=""&&woot.get("fourthImage")!=null){
+                var imgURL = woot.get("fourthImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image4").css("height", "500px");
+                        $("#image4").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("fourthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image4' src='"+woot.get("fourthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
              if(woot.get("fifthImage")!=""&&woot.get("fifthImage")!=null){
+                var imgURL = woot.get("fifthImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image5").css("height", "500px");
+                        $("#image5").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("fifthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image5' src='"+woot.get("fifthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
             if(woot.get("sixthImage")!=""&&woot.get("sixthImage")!=null){
+                var imgURL = woot.get("sixthImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image6").css("height", "500px");
+                        $("#image6").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("sixthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image6' src='"+woot.get("sixthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
             if(woot.get("seventhImage")!=""&&woot.get("seventhImage")!=null){
+                var imgURL = woot.get("seventhImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image7").css("height", "500px");
+                        $("#image7").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("seventhImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image7' src='"+woot.get("seventhImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
 
             if(woot.get("eighthImage")!=""&&woot.get("eighthImage")!=null){
+                var imgURL = woot.get("eighthImage");
+                var img = $('<img src="'+imgURL+'"/>').load(function(){
+                if(this.height>this.width){
+                        $("#image8").css("height", "500px");
+                        $("#image8").css("width", "auto");
+                    }
+                }); 
+
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  class='cimg' src='"+woot.get("eighthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img  id='image8' src='"+woot.get("eighthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -1064,6 +1131,7 @@ return queryItem
 
             var insertArrows = document.getElementById("controls");
             insertArrows.innerHTML=finalArrows;
+
             /*
             $(document).ready(function() {
                 $("#image1").load(function() {
