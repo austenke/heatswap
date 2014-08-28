@@ -160,7 +160,7 @@
 
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
-                                alert("login is go. Welcome "+user.get("username"));
+                                alert("Welcome "+user.get("username"));
                                 location.reload();
                               },
                               error: function(user, error) {
@@ -649,20 +649,22 @@
           //figure out what e is, how to change. filePull[i] is the name of the file
           $('#fileselect1').bind("change", function(e) {
             var currentE;
-            if(fileselect1.multiple=true){
-              var filePull = document.getElementById("fileselect1").files;
-              for (var i = 0; i < filePull.length; i++){
-                alert(filePull[i].name);
-                upload(e, i);
+            if(fileselect1.multiple == true){
+              if(filePull.length>8){
+                alert("Only 8 images can be uploaded at a time")
+              }else{
+                var filePull = e.target.files || e.dataTransfer.files;
+                for (var i = 0; i < filePull.length; i++){
+                  upload(filePull[i], i);
+                }
               }
             }
             
           });
 
-          function upload(e, i) {
-            var files = e.target.files || e.dataTransfer.files;
-            // Our file var now holds the selected file
-            file = files[0];
+          function upload(file, i) {
+            
+          // Our file var now holds the selected file
             //alert("hello1")
           //});
 
@@ -684,11 +686,8 @@
               contentType: false,
               //alert("hello")
               success: function(data) {
-<<<<<<< HEAD
-                alert("File available at: " + data.url);
+                //alert("File available at: " + data.url);
                 //alert(fileselect1)
-=======
->>>>>>> FETCH_HEAD
                 images[i]=data.url;
               },
               error: function(data) {
@@ -699,15 +698,12 @@
           }
 
         });
-<<<<<<< HEAD
-    
+
     var currentUser = Parse.User.current();
     if(currentUser==null){
         alert("Please log in to continue");
         window.location.replace("index.html");
     }else{
-=======
->>>>>>> FETCH_HEAD
     var sellItem = function () {
       var currentUser = Parse.User.current();
       if(currentUser===""||currentUser===null){
@@ -769,6 +765,9 @@
         postOffice.set("thirdImage", images[2]);
         postOffice.set("fourthImage", images[3]);
         postOffice.set("fifthImage", images[4]);
+        postOffice.set("sixthImage", images[5]);
+        postOffice.set("seventhImage", images[6]);
+        postOffice.set("eighthImage", images[7]);
         //postOffice.set("Location", iLocation);
         //postOffice.set("shipMethod", iShipMethod);
         //postOffice.set("shipPrice", iShipPrice);
@@ -780,7 +779,7 @@
         postOffice.save(null, {
           success: function(postOffice) {
 
-            alert("Successful upload with ID: "+postOffice.id);
+            alert("Your shoe has been uploaded");
             window.location.href = "popular.html";
         },
         error: function(postOffice, error) {
@@ -800,6 +799,7 @@
         document.getElementById("shippingprice").setAttribute("background-color","ffffff");
       }
     }
+  }
         </script>
 
      <script>
