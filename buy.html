@@ -990,14 +990,14 @@ return queryItem
             var finalObj="";
             var finalArrows="";
             finalObj += "<div class='item active popularHome' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-            finalObj += "<img src='"+woot.get("image")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
+            finalObj += "<img id='image1' src='"+woot.get("image")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
             finalObj += "<div class='carousel-caption'>"
             finalObj += "</div>"
             finalObj += "</div>"
 
             if(woot.get("secondImage")!=""&&woot.get("secondImage")!=null){
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img src='"+woot.get("secondImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
+              finalObj += "<img id='image2' src='"+woot.get("secondImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -1012,7 +1012,7 @@ return queryItem
 
              if(woot.get("thirdImage")!=""&&woot.get("thirdImage")!=null){
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -1020,7 +1020,7 @@ return queryItem
 
              if(woot.get("fourthImage")!=""&&woot.get("fourthImage")!=null){
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img src='"+woot.get("fourthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("fourthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -1028,18 +1028,65 @@ return queryItem
 
              if(woot.get("fifthImage")!=""&&woot.get("fifthImage")!=null){
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img src='"+woot.get("fifthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("fifthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
             }
+
+            if(woot.get("sixthImage")!=""&&woot.get("sixthImage")!=null){
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("sixthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<div class='carousel-caption'>"
+              finalObj += "</div>"
+              finalObj += "</div>"
+            }
+
+            if(woot.get("seventhImage")!=""&&woot.get("seventhImage")!=null){
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("seventhImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<div class='carousel-caption'>"
+              finalObj += "</div>"
+              finalObj += "</div>"
+            }
+
+            if(woot.get("eighthImage")!=""&&woot.get("eighthImage")!=null){
+              finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
+              finalObj += "<img  class='cimg' src='"+woot.get("eighthImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<div class='carousel-caption'>"
+              finalObj += "</div>"
+              finalObj += "</div>"
+            }
+
 
             var insertNonsense = document.getElementById("carousel");
             insertNonsense.innerHTML = finalObj
 
             var insertArrows = document.getElementById("controls");
             insertArrows.innerHTML=finalArrows;
+            /*
+            $(document).ready(function() {
+                $("#image1").load(function() {
+                    if($(this).height()>$(this).width()){
+                        alert('yes');
+                        $(this).css("height", "500px");
+                        $(this).css("width", "auto");
 
+                    }
+                });
+            });
+            $(document).ready(function() {
+                $("#image2").load(function() {
+                    if($(this).height()>$(this).width()){
+                        alert('yes');
+                        $(this).css("height", "500px");
+                        $(this).css("width", "auto");
+
+                    }
+                });
+            });
+
+*/
 
             populateSecond(woot.get("user"),queryItem);
 
@@ -1124,6 +1171,12 @@ return queryItem
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript">
+
+           
+
+
+     
+
           $(document).ready(function() {
         $('.carousel.slide').carousel();
       });

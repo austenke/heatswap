@@ -156,11 +156,18 @@ div#hotkicks-header {
 /* ALSO MIGHT NEED TO CHANGE JUMBOTRON TO WELL */
 #hotkicks .carousel a {color: #fff;}
 
-.carousel.slide img {
+#home-carousel img {
   width:100%;
   height:auto;
   margin: 0 auto;
 }
+
+#carousel-example-generic img{
+  width:100%;
+  height:auto;
+  margin: 0 auto;
+}
+
 .carousel-indicators {
   position: relative;
   bottom: 0;
