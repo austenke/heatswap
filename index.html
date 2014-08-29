@@ -27,37 +27,8 @@
   </head>
         
   <body>
-
-    <div id="topAlert">
-
-    </div>
-    <script>
-    Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-
-      var currentUser=""
-      var currentName=""
-      var alertSend=""
-        if(Parse.User.current()!=null){
-          //alert("hi")
-          currentUser = Parse.User.current();
-          currentName=currentUser.get("username")
-          //alert(currentUser.get("emailVerified"))
-          if(currentUser.get("emailVerified")==false){
-            alertSend += "<div style='background: #A00000; text-align: center; height: 40px;'>\n";
-            alertSend += "<h3 id='headerAlert'><strong>Please verify your email</strong></h3>\n"
-            alertSend += "</div>\n"
-
-            var insertAlert=document.getElementById("topAlert");
-            insertAlert.innerHTML=alertSend;
-            //alert("hello")
-          }
-        }else{
-
-        }
-    </script>
     
     <div class="container">
-      
       <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
@@ -440,7 +411,7 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-
+      <div id="topAlert"></div>
       <div id="main-wrap"><!-- Main content wrapper -->
         
         <div id="tagline" class="page-header hidden-xs">
@@ -1335,7 +1306,30 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
       
     </div> <!-- /container -->
 
+    <script>
+    Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
+      var currentUser=""
+      var currentName=""
+      var alertSend=""
+        if(Parse.User.current()!=null){
+          //alert("hi")
+          currentUser = Parse.User.current();
+          currentName=currentUser.get("username")
+          //alert(currentUser.get("emailVerified"))
+          if(currentUser.get("emailVerified")==false){
+            alertSend += "<div style='background: #A00000; text-align: center; height: 40px;'>\n";
+            alertSend += "<h3 id='headerAlert'><strong>Please verify your email</strong></h3>\n"
+            alertSend += "</div>\n"
+
+            var insertAlert=document.getElementById("topAlert");
+            insertAlert.innerHTML=alertSend;
+            //alert("hello")
+          }
+        }else{
+
+        }
+    </script>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
