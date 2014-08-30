@@ -159,7 +159,6 @@
 
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
-                                alert("login is go. Welcome "+user.get("username"));
                                 location.reload();
                               },
                               error: function(user, error) {
