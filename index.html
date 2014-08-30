@@ -48,24 +48,16 @@
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             
-            var currentUser=""
+            var currentUser = Parse.User.current()
             var currentName=""
 
-            if(Parse.User.current()!=null){
-              currentUser = Parse.User.current();
-              currentName=currentUser.get("username")
-            }else{
-
-            }
-            
-            
-
+            if(currentUser!=null) currentName=currentUser.get("username");
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
                 finalObj += "<li onClick=''><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-exclamation-sign'></span>  alert box</a></li>\n"                
                 finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
-                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>Welcome <b>"+currentName+"</b></a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
                 //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
                 //finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
@@ -75,7 +67,6 @@
                 finalObj += "</ul>\n"
                 var insertNonsense=document.getElementById("logTest")
                 insertNonsense.innerHTML=finalObj
-                document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
               }else{
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
