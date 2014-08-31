@@ -413,7 +413,7 @@
           </div>
           <div class="col-sm-3">
             <p>
-            <button type="submit" class="btn btn-lg btn-block btn-warning"><span class="glyphicon glyphicon-pencil"></span> edit</button>
+            <button onclick="switchEdit();return false;" type="submit" class="btn btn-lg btn-block btn-warning"><span class="glyphicon glyphicon-pencil"></span> edit</button>
             </p>
           </div>
           <div class="col-sm-2">
@@ -444,7 +444,7 @@
             </div>
             
             <div class="panel panel-default">
-              <div class="panel-body">
+              <div class="panel-body" id="storeDesc">
                 Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.
               </div>
             </div><!-- /panel -->
@@ -494,19 +494,20 @@
                 </ul>
             </div><!-- /panel -->
             
+            <!--
             <div class="panel panel-default">
               <div class="panel-heading">
+                
                 <h3 class="panel-title red"><span class="fa fa-truck"></span> shipping policy</h3>
               </div>
               <div class="panel-body">
                 <p class="text-muted"><small>Shipping policy Stumptown gluten-free sriracha, PBR&B Williamsburg you probably haven't heard of them cray. Crucifix PBR mlkshk, sartorial messenger bag Pinterest skateboard. Dreamcatcher Austin wolf irony. Cred wayfarers fap blog Odd Future vegan, PBR&B readymade ethnic art party chia Austin keytar PBR Bushwick. Photo booth cred keffiyeh keytar drinking vinegar jean shorts, ethical Etsy wolf asymmetrical freegan ennui.</small></p>
               </div>
             </div><!-- /panel -->
-            
           </div><!-- /col-md-4 -->
         </div><!-- /row store-page-main-body -->
         
-        <div class="row">
+        <div class="row" style="margin-top:2%">
           <div class="col-sm-offset-1 col-sm-5">
             <p>
             <button type="submit" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-ok"></span> publish</button>
@@ -526,6 +527,14 @@
         
       </div><!-- /main-wrap -->
       
+      <script>
+        var switchEdit = function () {
+          var storeDesc = document.getElementById('storeDesc');
+          var placehold = "Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days."
+          storeDesc.innerHTML = "<textarea rows='3' cols='99.5'>"+placehold+"</textarea>";
+        }
+      </script>
+
       <footer>
         <div class="row">
           <div class="col-md-4">
