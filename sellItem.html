@@ -417,6 +417,7 @@
           </div>
         </div><!-- /margin-bottom -->
 
+        <!--
         <div class="well" id="storeName">
           <form class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
@@ -436,7 +437,7 @@
             <div class="col-sm-offset-3 col-sm-8">
             </div>
           </div>
-        </div><!-- /storeName -->
+        </div> -->
         
         <div class="well" id="shoeUpload">
           <div class="form-horizontal" role="form">            
@@ -599,12 +600,12 @@
           <div class="row">
             <div class="col-sm-offset-1 col-sm-5">
               <p>
-              <button onclick="sellItem()" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-floppy-saved"></span> save and show listing</button>
+              <button onclick="sellItem()" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-ok"></span> save and show listing</button>
               </p>
             </div>
             <div class="col-sm-5">
               <p>
-              <button onclick="location.reload()" type="submit" class="btn btn-lg btn-block btn-default"><span class="fa fa-upload"></span> upload another pair of shoes</button>
+              <button onclick="location.reload()" type="submit" class="btn btn-lg btn-block btn-default"><span class="glyphicon glyphicon-repeat"></span> upload a different pair of shoes</button>
               </p>
             </div>
           </div><!-- /row -->
@@ -698,11 +699,6 @@
 
         });
 
-    var currentUser = Parse.User.current();
-    if(currentUser==null){
-        alert("Please log in to continue");
-        window.location.replace("index.html");
-    }else{
     var sellItem = function () {
       var currentUser = Parse.User.current();
       if(currentUser===""||currentUser===null){
@@ -798,7 +794,6 @@
         document.getElementById("shippingprice").setAttribute("background-color","ffffff");
       }
     }
-  }
         </script>
 
      <script>
