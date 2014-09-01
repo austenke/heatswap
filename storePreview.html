@@ -408,17 +408,12 @@
         <div class="row">
           <div class="col-sm-offset-1 col-sm-5">
             <p>
-            <button type="submit" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-ok"></span> publish</button>
-            </p>
-          </div>
-          <div class="col-sm-3">
-            <p>
             <button onclick="switchEdit();return false;" type="submit" class="btn btn-lg btn-block btn-warning"><span class="glyphicon glyphicon-pencil"></span> edit</button>
             </p>
           </div>
-          <div class="col-sm-2">
+          <div class="col-sm-5">
             <p>
-            <button type="submit" class="btn btn-lg btn-block btn-default"><span class="glyphicon glyphicon-remove"></span> delete store</button>
+            <button type="submit" class="btn btn-lg btn-block btn-primary" id="continueButton"><span class="glyphicon glyphicon-ok"></span> skip</button>
             </p>
           </div>
         </div>
@@ -509,24 +504,6 @@
           </div><!-- /col-md-4 -->
         </div><!-- /row store-page-main-body -->
         
-        <div class="row" style="margin-top:2%">
-          <div class="col-sm-offset-1 col-sm-5">
-            <p>
-            <button type="submit" class="btn btn-lg btn-block btn-primary"><span class="glyphicon glyphicon-ok"></span> publish</button>
-            </p>
-          </div>
-          <div class="col-sm-3">
-            <p>
-            <button type="submit" class="btn btn-lg btn-block btn-warning"><span class="glyphicon glyphicon-pencil"></span> edit</button>
-            </p>
-          </div>
-          <div class="col-sm-2">
-            <p>
-            <button type="submit" class="btn btn-lg btn-block btn-default"><span class="glyphicon glyphicon-remove"></span> delete store</button>
-            </p>
-          </div>
-        </div>
-        
       </div><!-- /main-wrap -->
       
       <script>
@@ -535,14 +512,16 @@
           var storeName = document.getElementById('storeName');
           var userImg = document.getElementById("userImg");
           var mainImg = document.getElementById("mainImg");
+          var continueButton = document.getElementById("continueButton");
+          continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue"
           storeDesc.innerHTML = "<textarea rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
-          storeName.innerHTML = "<input placeholder='Sweet Stuff'></input>";
+          storeName.innerHTML = "<input style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
           userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           mainImg.innerHTML = '<a href="#" onclick="alert(\'foo\'); return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a>'
         }
       </script>
 
-      <footer>
+      <footer style="margin-top:2%;">
         <div class="row">
           <div class="col-md-4">
             <ul class="list-inline">
