@@ -423,7 +423,7 @@
           </div>
         </div>
           
-        <div class="pull-left">
+        <div class="pull-left" id="storeName">
           <h1 style="margin-right:10px" class="red">sweet stuff</h1>
         </div>
   
@@ -439,7 +439,7 @@
                 
         <div class="row store-page-main-body">
           <div class="col-md-8">
-            <div class="store-banner-image">
+            <div class="store-banner-image" id="mainImg">
               <img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
             </div>
             
@@ -471,7 +471,9 @@
           <div class="col-md-4">
           
             <div class="well">
-              <img class="thumbnail img-responsive center-block" src="http://placehold.it/200x200" alt="store owner">
+              <div id="userImg">
+                <img class="thumbnail img-responsive center-block" src="http://placehold.it/200x200" alt="store owner">
+              </div>
               <h3 class="red text-center">store owner</h3>
               <p class="text-center" style="color:#777">Danielle San Francisco</p>
               <p class="text-center">
@@ -530,8 +532,13 @@
       <script>
         var switchEdit = function () {
           var storeDesc = document.getElementById('storeDesc');
-          var placehold = "Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days."
-          storeDesc.innerHTML = "<textarea rows='3' cols='99.5'>"+placehold+"</textarea>";
+          var storeName = document.getElementById('storeName');
+          var userImg = document.getElementById("userImg");
+          var mainImg = document.getElementById("mainImg");
+          storeDesc.innerHTML = "<textarea rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
+          storeName.innerHTML = "<input placeholder='Sweet Stuff'></input>";
+          userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
+          mainImg.innerHTML = '<a href="#" onclick="alert(\'foo\'); return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a>'
         }
       </script>
 
