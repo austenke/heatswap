@@ -429,7 +429,7 @@
              <div class="buyInput">
                 <input type="text" id="buyemail" placeholder="EMAIL">
             </div>
-            <button onclick="paypalDetect(); event.preventDefault()" class="btn btn-primary" style="width:100%">Pay Now</button>
+            <button onclick="paypalDetect(); return false;" class="btn btn-primary" style="width:100%">Pay Now</button>
         </div>
 
         <script>
@@ -858,7 +858,6 @@
                         var stuffPrice = document.getElementById("itemPrice").value;
                       	var idStuff = decodeStuffz();
                         currentUser = Parse.User.current();
-                        alert(currentUser)
                         Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");   
                         document.getElementById('paypalBtn').innerHTML='Processing...';
                         var delivery = Parse.Object.extend("payLogs");
@@ -880,16 +879,14 @@
                         pizzaBoi.save(null, {
                           success: function(gameScore) {
                             // Execute any logic that should take place after the object is saved.
-                            alert('New object created with objectId: ' + gameScore.id);
+                            document.forms["paypalForm"].submit();
                           },
                           error: function(gameScore, error) {
                             // Execute any logic that should take place if the save fails.
                             // error is a Parse.Error with an error code and description.
                             alert('Failed to create new object, with error code: ' + error.message);
-                            return false;
                           }
                         });
-                        document.forms["paypalForm"].submit();
                       }
                     </script>
                     <form method="post" id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" class="paypal-button" target="_top"><div class="hide" id="errorBox"></div><input type="hidden" name="button" value="buynow"><input id="paypalName" type="hidden" name="item_name" value="Product via QR code"><input id="paypalPrice" type="hidden" name="amount" value="10"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="austenkeene@gmail.com"><input type="hidden" name="bn" value="JavaScriptButton_buynow"><input type="hidden" name="env" value="www"></form>
