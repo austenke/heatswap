@@ -650,7 +650,7 @@
           $('#fileselect1').bind("change", function(e) {
             var currentE;
             if(fileselect1.multiple == true){
-              if(filePull.length>8){
+              if(fileselect1.length>8){
                 alert("Only 8 images can be uploaded at a time")
               }else{
                 var filePull = e.target.files || e.dataTransfer.files;
@@ -689,6 +689,7 @@
                 //alert("File available at: " + data.url);
                 //alert(fileselect1)
                 images[i]=data.url;
+                //alert(images[i]);
               },
               error: function(data) {
                 var obj = jQuery.parseJSON(data);
