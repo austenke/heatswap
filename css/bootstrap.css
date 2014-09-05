@@ -5813,3 +5813,21 @@ button.close {
 #alertsBadge{
   background-color: #D9562A;
 }
+
+::-webkit-input-placeholder {
+   margin-top:10px; 
+   margin-bottom:10px; 
+   font-size: 20px;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-size: 20px;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-size: 20px;
+}
+
+:-ms-input-placeholder {  
+   font-size: 20px;
+}
