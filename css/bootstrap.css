@@ -5809,3 +5809,7 @@ button.close {
   border-width: 1px;
   border-color: rgb(217,86,42);
 }
+
+#alertsBadge{
+  background-color: #D9562A;
+}

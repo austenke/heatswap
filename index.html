@@ -55,10 +55,24 @@
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
-                //finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='glyphicon glyphicon-exclamation-sign'></span>  alert box</a>\n"
-                //finalObj += "<ul class='dropdown-menu'>\n"
-                //finalObj += "<center style='cursor:default;'>No new alerts!</center>\n"
-                //finalObj += "</ul>\n"            
+
+                var alerts=0;
+                if(currentUser.get("emailVerified")==false){
+                  alerts=alerts+1;
+                }
+
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='badge' id='alertsBadge'>" + alerts + "</span>  alert box</a>\n"
+                finalObj += "<ul class='dropdown-menu'>\n"
+                if(alerts==0){
+                  finalObj += "<center style='cursor:default;'>No new alerts!</center>\n"
+                }
+
+                if(currentUser.get("emailVerified")==false){
+                  finalObj += "<center style='cursor:default;'>Please verify your email</center>\n"
+                }
+
+                finalObj += "</ul>\n"
+
                 finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
                 finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
