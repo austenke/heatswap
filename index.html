@@ -1226,7 +1226,18 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 finalObj += "<div class='panel-heading' style='height:38px;'>\n"
                 finalObj += "<div style='float:left;'>"
                 finalObj += "<a href='#'>\n"
-                finalObj += "<h3 class='panel-title'>" + item.get("item") + "</h3>"
+
+                var shortName=(item.get("item").value);
+
+                if(item.get("item").length>19){
+                  shortName="";
+                  for(var m=0; m<21; m++){
+                    shortName += item.get("item").charAt(m);
+                  }
+                  shortName += "..."
+                }
+
+                finalObj += "<h3 class='panel-title'>" + shortName + "</h3>"
                 finalObj += "</a>"
                 finalObj += "</div>"
                 finalObj += "<div style='float:right;'>"
