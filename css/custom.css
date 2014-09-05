@@ -156,8 +156,12 @@ div#hotkicks-header {
 
 #home-carousel img {
   width:100%;
-  height:auto;
+  height: auto;
   margin: 0 auto;
+}
+
+#home-carousel{
+  height:376px;
 }
 
 #carousel-example-generic img{
@@ -167,7 +171,7 @@ div#hotkicks-header {
 }
 
 .carousel-indicators {
-  position: relative;
+  position: absolute;
   bottom: 0;
   padding-top: 10px;
   }
