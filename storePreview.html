@@ -27,7 +27,6 @@
   </head>
         
   <body>
-    
     <div class="container">
       
       <!-- logo row -->
@@ -415,7 +414,7 @@
           </div>
           <div class="col-sm-5">
             <p>
-            <button type="submit" onclick="alert('Please fill this out');" class="btn btn-lg btn-block btn-primary" id="continueButton"><span class="glyphicon glyphicon-ok"></span> skip</button>
+            <button type="submit" class="btn btn-lg btn-block btn-primary" id="continueButton"><span class="glyphicon glyphicon-ok"></span> skip</button>
             </p>
           </div>
         </div>
@@ -437,7 +436,7 @@
         <div class="row store-page-main-body">
           <div class="col-md-8">
             <div class="store-banner-image">
-              <img id="mainImg" src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
+              <img id="mainImg" src="http://placehold.it/500x400" style="cursor:pointer;" class="img-responsive center-block" alt="store">
               <input id="mainFile" type="file" accept="image/*" />
             </div>
             
@@ -473,8 +472,9 @@
             <div class="well" style="position:relative">
               <div style="position: relative; height: 250px;">
                 <div id="userImg" style="position:absolute; top:20px; left:55px; ">
-                  <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
+                  <img class="thumbnail img-responsive center-block" style="cursor: pointer;" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
                 </div>
+                <input id="userFile" type="file" accept="image/*" />
                 <div id="innerBox" role="button" onClick="changePic()">
                   <p style="position: absolute; top: 45%;left: 10%;" id="prof"></p>
                 </div>
@@ -525,13 +525,11 @@
           var userImg = document.getElementById("userImg");
           var mainImg = document.getElementById("mainImg");
           var continueButton = document.getElementById("continueButton");
-          continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue"
-          storeDesc.innerHTML = "<textarea id='storeDesc' rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
-          storeName.innerHTML = "<input id='storeName' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
+          continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue";
+          storeDesc.innerHTML = "<textarea id='storeDescr' rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
+          storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
           //userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           //mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
-          $("#innerBox").addClass("editable");
-          prof.innerHTML="Change profile picture"
         }
         var changePic = function() {
           alert("hello");
@@ -582,10 +580,13 @@
       
       var iListedDate = (month + "/" + day + "/" + year);
 
-      var storeDesc = document.getElementById("storeDesc").value;
-      var storeName = document.getElementById("storeName").value;
+      var storeDesc = document.getElementById("storeDescr").innerHTML;
+      var storeName = document.getElementById("storeNames").value;
       var storeMain = main;
       var storeProf = prof;
+
+      alert(storeDesc)
+      alert(storeName)
 
       Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
@@ -598,12 +599,11 @@
       postOffice.set("storeProf", storeProf);
       postOffice.set("user", Parse.User.current());
       postOffice.set("userNameStuff", Parse.User.current().get("username"));
-
-      //alert(Parse.User.current().get("username"));
-
+      postOffice.set("iListedDate", iListedDate);
       postOffice.save(null, {
         success: function(postOffice) {
-          window.location.href = "sellItem.html";
+          alert("good save")
+          //window.location.href = "sellItem.html";
       },
       error: function(postOffice, error) {
           alert('Failed to create new object, with error code: ' + error.message);
@@ -637,9 +637,14 @@
 $(document).ready(function() {
 
   $('#mainFile').hide(); 
+  $('#userFile').hide(); 
 
   $('#mainImg').click(function() {
     $("#mainFile").click();
+  });
+
+  $('#userImg').click(function() {
+    $("#userFile").click();
   });
 
   $('#mainFile').bind("change", function(e) {
@@ -649,8 +654,20 @@ $(document).ready(function() {
     upload(filePull, 0);
   });
 
+  $('#userFile').bind("change", function(e) {
+    var currentE;
+    var filePull = e.target.files || e.dataTransfer.files;
+    readURL(e);
+    upload(filePull, 0);
+  });
+
   $('#continueButton').click(function() {
-    alert(filePull)
+    var continueButton = document.getElementById("continueButton");
+    if (continueButton.innerHTML === '<span class="glyphicon glyphicon-ok"></span> save and continue') {
+      sellItem();
+    } else {
+      alert("Please fill this out. Every customer you have will see this store")
+    }
   });
 
   function upload(file, i) {
