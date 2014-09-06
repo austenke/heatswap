@@ -1236,10 +1236,10 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 finalObj += "<img src='" + item.get("image") + "' style='position:relative; left:100%;margin-left:-200%;' height='182'>\n"
                 finalObj += "</div>\n"
                 finalObj += "</a>\n"
+                finalObj += "<a href='buy.html?item=" + item.id + "'>\n"
                 finalObj += "<div class='panel panel-primary'>\n"
                 finalObj += "<div class='panel-heading' style='height:38px;'>\n"
                 finalObj += "<div style='float:left;'>"
-                finalObj += "<a href='#'>\n"
 
                 var shortName=(item.get("item"));
 
@@ -1252,12 +1252,12 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 }
 
                 finalObj += "<h3 class='panel-title'>" + shortName + "</h3>"
-                finalObj += "</a>"
                 finalObj += "</div>"
                 finalObj += "<div style='float:right;'>"
                 finalObj += "<h3 class='panel-title'> $" + item.get("price") +"</h3>"
                 finalObj += "</div>"
                 finalObj += "</div>"
+                finalObj += "</a>"
                 finalObj += "</div>"
                 finalObj += "</div> \n"
 
