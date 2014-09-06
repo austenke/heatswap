@@ -424,10 +424,10 @@
         </div>
          
             <div id="main-wrap" style="float: left; width: 100%;"><!-- Main content wrapper -->
-              <div id="ownerInfo" class="dashboardDiv" style="float: left; width:20%; height: 100%">
+              <div id="ownerInfo" class="dashboardDiv" style="float: left; width:20%; height: 500px">
                 <div>
-                    <div style="position: relative; height: 300px;">
-                      <div id="userImg" style="position:absolute; top:20px; left:55px; ">
+                    <div style="position: relative; margin-top: 5%;">
+                      <div id="userImg" style="position:relative;">
                         <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
                       </div>
                       <div id="innerBox" role="button" onClick="changePic()" onmouseover="imageAppear()">
@@ -435,13 +435,13 @@
                       </div>
                     </div>
                     <div style="position: relative;">
-                      <h3 class="red text-center">Danielle Ya</h3>
-                      <p class="text-center" style="color:#777">storename</p>
+                      <h3 id="dashUsername"class="red text-center">Danielle Ya</h3>
+                      <p id="dastStoreName" class="text-center" style="color:#777">storename</p>
                   </div>
                   
                   <ul class="nav nav-pills.nav-stacked">
                     <li class="active"><a href="currentlylisted.html">Currently Listed</a></li>
-                    <li><a href="sales.html"><b>Sales</b></a></li>
+                    <li><a href="sales.html"><b id="listed">Sales</b></a></li>
                     <li><a href="purchases.html">Purchases</a></li>
                     <li><a href="settings.html">Settings</a></li>
                   </ul>
