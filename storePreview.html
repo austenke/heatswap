@@ -675,8 +675,12 @@ $(document).ready(function() {
   $('#mainFile').bind("change", function(e) {
     var currentE;
     var filePull = e.target.files || e.dataTransfer.files;
-    upload(filePull[0], 0);
     readURL(e);
+  });
+
+  $('#mainImg').click(function() {
+    $("#mainFile").click();
+    upload(filePull[0], 0);
   });
 
   function upload(file, i) {
