@@ -593,8 +593,8 @@
       var courrier = Parse.Object.extend("storeInfo");
       var postOffice = new courrier();
 
-      postOffice.set("storeDesc", storeDesc);
-      postOffice.set("storeName", storeName);
+      postOffice.set("coolDesc", storeDesc);
+      postOffice.set("coolName", storeName);
       postOffice.set("storeMain", storeMain);
       postOffice.set("storeProf", storeProf);
       postOffice.set("user", Parse.User.current());
@@ -602,12 +602,11 @@
       postOffice.set("iListedDate", iListedDate);
       postOffice.save(null, {
         success: function(postOffice) {
-          alert("good save")
-          //window.location.href = "sellItem.html";
-      },
-      error: function(postOffice, error) {
+          window.location.href = "sellItem.html";
+        },
+        error: function(postOffice, error) {
           alert('Failed to create new object, with error code: ' + error.message);
-      }
+        }
       });
     }
   }
