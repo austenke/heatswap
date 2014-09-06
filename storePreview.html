@@ -585,9 +585,6 @@
       var storeMain = main;
       var storeProf = prof;
 
-      alert(storeDesc)
-      alert(storeName)
-
       Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
       var courrier = Parse.Object.extend("storeInfo");
@@ -649,15 +646,15 @@ $(document).ready(function() {
   $('#mainFile').bind("change", function(e) {
     var currentE;
     var filePull = e.target.files || e.dataTransfer.files;
-    readURL(e);
+    readURL(e ,0);
     upload(filePull, 0);
   });
 
   $('#userFile').bind("change", function(e) {
     var currentE;
     var filePull = e.target.files || e.dataTransfer.files;
-    readURL(e);
-    upload(filePull, 0);
+    readURL(e ,1);
+    upload(filePull, 1);
   });
 
   $('#continueButton').click(function() {
@@ -697,13 +694,23 @@ $(document).ready(function() {
     });
   }
 
-  function readURL(e) {
-    if (e.target.files && e.target.files[0]) {
+  function readURL(e, i) {
+    if (i === 0) {
+      if (e.target.files && e.target.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $('#mainImg').attr('src', e.target.result);
         }
         reader.readAsDataURL(e.target.files[0]);
+      }
+    } else {
+      if (e.target.files && e.target.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#ownerPic').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+      }      
     }
   }
 });
