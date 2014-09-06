@@ -618,7 +618,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                 finalObj += "<div class='caption'>"
                 finalObj += "<h4 class='pull-right'> $" + item.get("price") + "</h4>\n"
 
-                var shortName=(item.get("item").value);
+                var shortName=(item.get("item"));
 
                 if(item.get("item").length>15){
                   shortName="";
@@ -627,6 +627,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
                   }
                   shortName += "..."
                 }
+
                 finalObj += "<h4><a href='#'>"+shortName+"</a></h4>\n"
                 finalObj += "<p class='text-muted'>" + item.get("brand") + "</p>\n"
                 finalObj += "</div>"
