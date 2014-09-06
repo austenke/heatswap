@@ -992,11 +992,13 @@ return queryItem
 
             var imgURL = woot.get("image");
             var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
+                if(this.width/this.height<1.45){
                         $("#image1").css("height", "500px");
                         $("#image1").css("width", "auto");
-                        $("#image1").css("left", "125%");
-                        //$("#image1").css("margin-left", "-150%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image1").css("left", floatDistance+"%");
                 }
             });
 
@@ -1010,11 +1012,16 @@ return queryItem
               var imgURL = woot.get("secondImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                     if(this.width/this.height<1.45){
                         $("#image2").css("height", "500px");
                         $("#image2").css("width", "auto");
-                        $("#image2").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image2").css("left", floatDistance+"%");
                     }
-                });  
+                }
+            });  
 
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
               finalObj += "<img id='image2' src='"+woot.get("secondImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
@@ -1034,9 +1041,14 @@ return queryItem
                 var imgURL = woot.get("thirdImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                      if(this.width/this.height<1.45){
                         $("#image3").css("height", "500px");
                         $("#image3").css("width", "auto");
-                        $("#image3").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image3").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
@@ -1051,9 +1063,14 @@ return queryItem
                 var imgURL = woot.get("fourthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                      if(this.width/this.height<1.45){
                         $("#image4").css("height", "500px");
                         $("#image4").css("width", "auto");
-                        $("#image4").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image4").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
@@ -1068,9 +1085,14 @@ return queryItem
                 var imgURL = woot.get("fifthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                      if(this.width/this.height<1.45){
                         $("#image5").css("height", "500px");
                         $("#image5").css("width", "auto");
-                        $("#image5").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image5").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
@@ -1085,9 +1107,14 @@ return queryItem
                 var imgURL = woot.get("sixthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                    if(this.width/this.height<1.45){
                         $("#image6").css("height", "500px");
                         $("#image6").css("width", "auto");
-                        $("#image6").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image6").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
@@ -1102,9 +1129,14 @@ return queryItem
                 var imgURL = woot.get("seventhImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                      if(this.width/this.height<1.45){
                         $("#image7").css("height", "500px");
                         $("#image7").css("width", "auto");
-                        $("#image7").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image7").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
@@ -1119,9 +1151,14 @@ return queryItem
                 var imgURL = woot.get("eighthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
                 if(this.height>this.width){
+                       if(this.width/this.height<1.45){
                         $("#image8").css("height", "500px");
                         $("#image8").css("width", "auto");
-                        $("#image8").css("left", "125%");
+                        var ratio=500/this.height;
+                        var ratioWidth=this.width*ratio;
+                        var floatDistance=(748-ratioWidth)/748*100/2+100;
+                        $("#image8").css("left", floatDistance+"%");
+                    }
                     }
                 }); 
 
