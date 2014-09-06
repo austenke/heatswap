@@ -434,8 +434,9 @@
                 
         <div class="row store-page-main-body">
           <div class="col-md-8">
-            <div class="store-banner-image" id="mainImg">
-              <img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
+            <div class="store-banner-image">
+              <img id="mainImg" src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
+              <input id="mainFile" type="file" />
             </div>
             
             <div class="panel panel-default">
@@ -517,7 +518,7 @@
           storeDesc.innerHTML = "<textarea rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
           storeName.innerHTML = "<input id='sweetStuffEdit' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
           userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
-          mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
+          mainImg.innerHTML = '<a href="#" onclick="alert(\'foo\'); return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
         }
       </script>
 
@@ -545,6 +546,91 @@
       
     </div> <!-- /container -->
 
+<script>
+  var sellItem = function () {
+    var currentUser = Parse.User.current();
+    if(currentUser===""||currentUser===null){
+        $('#myModal').modal({ show: false})
+        $('#accountModal').modal('show'); 
+        
+    }else{
+      var iName = document.getElementById("shoeName").value;
+      if (iName.length > 50) {
+        alert("The name must be less than 50 characters");
+        return;
+      }
+
+      var iDesc = document.getElementById("shoeDescription").value;
+      var iPrice = document.getElementById("shoePrice").value;
+      var iBrand = document.getElementById("shoeBrandSelect").value.replace(/ +/g, "").toLowerCase();
+      var iCondition = document.getElementById("shoeConditionSelect").value;
+      var iSize = document.getElementById("shoeSizeSelect").value;
+      var iMainImage = document.getElementById("image1URL").value;
+      var iGender = document.getElementById("shoeGender").value
+      
+      var d = new Date();
+      var month = 0;
+      month=d.getMonth()+1;
+      var day = d.getDate()
+      var year = d.getFullYear();
+      
+      var iListedDate = (month + "/" + day + "/" + year);
+      
+      //var iSecondImage = document.getElementById("image2").value;
+      //var iThirdImage = document.getElementById("username123").value;
+      //var iLocation = document.getElementById("shippingLocationSelect").value;
+      //var iShipMethod = document.getElementById("shippingMethodSelect").value;
+      //var iShipPrice = document.getElementById("shippingprice").value;
+      //var iShipPolicy = document.getElementById("shippingprice").value;
+
+      Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+      var courrier = Parse.Object.extend("courrier");
+      var postOffice = new courrier();
+
+      if (!(iName === "")) {
+        postOffice.set("item", iName);
+      }
+      else {
+        alert("Please fill out everything");
+        return
+      }
+
+      postOffice.set("itemDesc", iDesc);
+      postOffice.set("price", iPrice);
+      postOffice.set("brand", iBrand);
+      postOffice.set("condition", iCondition);
+      postOffice.set("gender", iGender);
+      postOffice.set("size", iSize);
+      postOffice.set("image", images[0]);
+      postOffice.set("listedDate", iListedDate);
+      postOffice.set("secondImage", images[1]);
+      postOffice.set("thirdImage", images[2]);
+      postOffice.set("fourthImage", images[3]);
+      postOffice.set("fifthImage", images[4]);
+      postOffice.set("sixthImage", images[5]);
+      postOffice.set("seventhImage", images[6]);
+      postOffice.set("eighthImage", images[7]);
+      //postOffice.set("Location", iLocation);
+      //postOffice.set("shipMethod", iShipMethod);
+      //postOffice.set("shipPrice", iShipPrice);
+      //postOffice.set("shipPolicy", iShipPolicy);
+      postOffice.set("userNameStuff", Parse.User.current().get("username"));
+
+      //alert(Parse.User.current().get("username"));
+
+      postOffice.save(null, {
+        success: function(postOffice) {
+          window.location.href = "popular.html";
+      },
+      error: function(postOffice, error) {
+          alert('Failed to create new object, with error code: ' + error.message);
+      }
+      });
+    }
+  }
+</script>
+
      <script>
       if(currentName!=null&&currentName!=""){
         var finalObj=document.getElementById("account");
@@ -564,5 +650,18 @@
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+
+<script>
+  $('#mainImg').click(function() {
+    $("#mainFile").click();
+  });
+
+  $('#mainFile').change(function() {
+      $(this).parent(".item")
+          .find('input[type=text]')
+          .val($(this).val());
+  });
+</script>
+
   </body>
 </html>
