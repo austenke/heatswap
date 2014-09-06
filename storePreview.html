@@ -47,6 +47,8 @@
           <div id="logTest">
           </div>
           <script>
+            var main;
+            var prof;
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             
             var currentUser=""
@@ -413,7 +415,7 @@
           </div>
           <div class="col-sm-5">
             <p>
-            <button type="submit" class="btn btn-lg btn-block btn-primary" id="continueButton"><span class="glyphicon glyphicon-ok"></span> skip</button>
+            <button type="submit" onclick="alert('Please fill this out');" class="btn btn-lg btn-block btn-primary" id="continueButton"><span class="glyphicon glyphicon-ok"></span> skip</button>
             </p>
           </div>
         </div>
@@ -446,18 +448,20 @@
             </div><!-- /panel -->
             
             <div class="row store-page-seemore">
+
               <div class="col-sm-4">
+                <!--
                 <div class="thumbnail">
                   <a href="#"><img src="http://placehold.it/300x200" class="img-responsive" alt="..."></a>
                   <div class="caption">
                     <h4 class="pull-right">$100</h4>
                     <h4><a href="#">Name of Brand</a></h4>
                     <p class="text-muted">Released on 12/20/14</p>
-                  </div><!-- /caption -->
+                  </div>
                   
-                </div><!-- /thumbnail -->
+                </div>
                 <button class="btn btn-sm btn-default center-block" type="submit"><span class="glyphicon glyphicon-trash"></span> remove shoe</button>
-              </div><!-- /col-sm-4 -->
+              --></div>
                              
             </div><!-- /row store-page-seemore -->                
           </div><!-- /col-md-8 -->          
@@ -566,10 +570,9 @@
         $('#accountModal').modal('show'); 
         
     }else{
-      var iName = document.getElementById("shoeName").value;
 
-      var storeDesc = document.getElementById("storeDesc").value;
-      var storeName = document.getElementById("storeName").value;
+      if(main === undefined) main = "http://placehold.it/500x400";
+      if(prof === undefined) prof = "http://placehold.it/200x200";
       
       var d = new Date();
       var month = 0;
@@ -579,28 +582,28 @@
       
       var iListedDate = (month + "/" + day + "/" + year);
 
+      var storeDesc = document.getElementById("storeDesc").value;
+      var storeName = document.getElementById("storeName").value;
+      var storeMain = main;
+      var storeProf = prof;
+
       Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
-      var courrier = Parse.Object.extend("courrier");
+      var courrier = Parse.Object.extend("storeInfo");
       var postOffice = new courrier();
 
-      if (!(iName === "")) {
-        postOffice.set("item", iName);
-      }
-      else {
-        alert("Please fill out everything");
-        return
-      }
-
       postOffice.set("storeDesc", storeDesc);
-      postOffice.set("price", iPrice);
+      postOffice.set("storeName", storeName);
+      postOffice.set("storeMain", storeMain);
+      postOffice.set("storeProf", storeProf);
+      postOffice.set("user", Parse.User.current());
       postOffice.set("userNameStuff", Parse.User.current().get("username"));
 
       //alert(Parse.User.current().get("username"));
 
       postOffice.save(null, {
         success: function(postOffice) {
-          window.location.href = "popular.html";
+          window.location.href = "sellItem.html";
       },
       error: function(postOffice, error) {
           alert('Failed to create new object, with error code: ' + error.message);
@@ -665,6 +668,11 @@ $(document).ready(function() {
       processData: false,
       contentType: false,
       success: function(data) {
+        if(i === 0) {
+          main=data.url;
+        } else {
+          prof=data.url
+        }
       },
       error: function(data) {
         var obj = jQuery.parseJSON(data);
