@@ -1340,7 +1340,7 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
             alertSend += "</div>\n"
 
             var insertAlert=document.getElementById("topAlert");
-            insertAlert.innerHTML=alertSend;
+            if (insertAlert) insertAlert.innerHTML=alertSend;
             //alert("hello")
           }
         }else{

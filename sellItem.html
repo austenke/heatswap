@@ -8,10 +8,11 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-    <title>Heat Swap</title>
+    <title>HeatSwap</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -29,7 +30,6 @@
   <body>
     
     <div class="container">
-      
       <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
@@ -49,34 +49,42 @@
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             
-            var currentUser=""
+            var currentUser = Parse.User.current()
             var currentName=""
-            var images = new Array(); 
 
-            if(Parse.User.current()!=null){
-              currentUser = Parse.User.current();
-              currentName=currentUser.get("username")
-            }else{
-
-            }
-            
-            
-
+            if(currentUser!=null) currentName=currentUser.get("username");
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
-                finalObj += "<li onClick='logOut()'><a href='#accountModal' ='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
-                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
+
+                var alerts=0;
+                if(currentUser.get("emailVerified")==false){
+                  alerts=alerts+1;
+                }
+
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='badge' id='alertsBadge'>" + alerts + "</span>  alert box</a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
-                //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                //finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>\n"
+                if(alerts==0){
+                  finalObj += "<center style='cursor:default;'>No new alerts!</center>\n"
+                }
+
+                if(currentUser.get("emailVerified")==false){
+                  finalObj += "<center style='cursor:default;'>Please verify your email</center>\n"
+                }
+
+                finalObj += "</ul>\n"
+
+                finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
+                finalObj += "<ul class='dropdown-menu'>\n"
+                finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
+                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>"
+                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>"
                 finalObj += "</ul>\n"
                 finalObj += "</li>\n"
                 finalObj += "</ul>\n"
                 var insertNonsense=document.getElementById("logTest")
                 insertNonsense.innerHTML=finalObj
-                document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
               }else{
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
@@ -95,7 +103,6 @@
                 var logOut = function() {
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                   Parse.User.logOut();
-                  alert("You have been logged out")
                 var currentUser = Parse.User.current();
               location.reload();
             }
@@ -155,12 +162,11 @@
                           var logIn = function(){
                             
                             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                            var nameStuff = document.getElementById("usernameInput").value;
+                            var nameStuff = document.getElementById("usernameInput").value.toLowerCase();
                             var passStuff = document.getElementById("passwordInput").value;
 
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
-                                alert("Welcome "+user.get("username"));
                                 location.reload();
                               },
                               error: function(user, error) {
@@ -219,6 +225,20 @@
                         <p id="woahThere" class="errorAlert"></p>
                       </div>
                       
+                      <div>
+                        <a href="http://files.parsetfss.com/1a1cf959-22e3-411e-89c4-04692e5e621d/tfss-1aedca6f-26d0-42a8-b622-884294791e6c-heatswap.termsofuse.doc">
+                          <p>Click here to download terms and conditions</p>
+                        </a>
+                      </div>
+
+                      <div class="form-group">                        
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="terms" id="terms" value="accept">I have read and accept the terms and conditions
+                          </label>
+                        </div>
+                      </div>
+
                       <!-- Button -->
                       <div class="form-group">
                         <button class="btn btn-primary btn-lg btn-block" onclick="signUp();return false;"><span class="glyphicon glyphicon-ok"></span> sign up</button>
@@ -226,7 +246,7 @@
                         <script>
                           var signUp = function() {
                             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                            var nameStuff = document.getElementById("SUusernameInput").value;
+                            var nameStuff = document.getElementById("SUusernameInput").value.toLowerCase();
                             var passStuff = document.getElementById("SUpasswordInput").value;
                             var passStuff2 = document.getElementById("SUpassword2Input").value;
                             var emailStuff = document.getElementById("SUemailInput").value;
@@ -302,14 +322,13 @@
                         <button class="btn btn-primary btn-lg btn-block" onClick="saveClose()"><span class="glyphicon glyphicon-ok"></span> save and close</button>
                       </div>
                       <script> 
-
                         var saveClose = function(){
                           Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                           //checks if current user is logged in
                           var currentUser = Parse.User.current();
-                          if(currentUser==null){
+                          var currentName = currentUser.get("username")
+                          if(currentName==null||currentName==""){
                             alert("Please log in to continue")
-
                           }else{
                             if(document.getElementById("emailChange").value!=null&&document.getElementById("emailChange").value!=""){
                                 user.set("email", document.getElementById("emailChange"));
@@ -399,7 +418,6 @@
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </div>
-
       <div id="main-wrap"><!-- Main content wrapper -->
 
         <div style="margin-bottom:1em">
