@@ -436,7 +436,7 @@
           <div class="col-md-8">
             <div class="store-banner-image">
               <img id="mainImg" src="http://placehold.it/500x400" class="img-responsive center-block" alt="store">
-              <input id="mainFile" type="file" />
+              <input id="mainFile" type="file" accept="image/*" />
             </div>
             
             <div class="panel panel-default">
@@ -664,15 +664,55 @@
     <script src="js/bootstrap.min.js"></script>
 
 <script>
+$(document).ready(function() {
+
+  $('#mainFile').hide(); 
+
   $('#mainImg').click(function() {
     $("#mainFile").click();
   });
 
-  $('#mainFile').change(function() {
-      $(this).parent(".item")
-          .find('input[type=text]')
-          .val($(this).val());
+  $('#mainFile').bind("change", function(e) {
+    var currentE;
+    var filePull = e.target.files || e.dataTransfer.files;
+    upload(filePull[0], 0);
+    readURL(e);
   });
+
+  function upload(file, i) {
+    var serverUrl = 'https://api.parse.com/1/files/' + file.name;
+
+    $.ajax({
+      type: "POST",
+      beforeSend: function(request) {
+        request.setRequestHeader("X-Parse-Application-Id", 'tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn');
+        request.setRequestHeader("X-Parse-REST-API-Key", '9zykrS1DlSkF7iNDMVx8rKVlOzEnDaiiyACdMcsb');
+        request.setRequestHeader("Content-Type", file.type);
+      },
+      url: serverUrl,
+      data: file,
+      processData: false,
+      contentType: false,
+      //alert("hello")
+      success: function(data) {
+      },
+      error: function(data) {
+        var obj = jQuery.parseJSON(data);
+        alert(obj.error);
+      }
+    });
+  }
+
+  function readURL(e) {
+    if (e.target.files && e.target.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#mainImg').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+  }
+});
 </script>
 
   </body>
