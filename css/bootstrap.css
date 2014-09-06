@@ -5786,11 +5786,14 @@ button.close {
 }
 
 .dashboardDiv{
-  width:31%;
   padding-left: 1%;
   padding-right: 1%;
   margin: 1%;
   border-width: 1px;
+  border: solid #D9562A 1px;
+  height: 500px;
+  float:left;
+  overflow-y: auto;
 }
 
 #headerAlert{

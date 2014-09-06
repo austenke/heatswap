@@ -424,7 +424,7 @@
         </div>
 
       <div id="main-wrap" style="float: left; width: 100%;"><!-- Main content wrapper -->
-        <div id="currentListed" class="dashboardDiv" style="float: left; border: solid red;">
+        <div id="currentListed" class="dashboardDiv" style="float: left; width:64%">
           <div>
             <h3 id="listedNumber" class="blue">Currently Listed</h3>
             <div id="forSale">
@@ -447,12 +447,12 @@
                   var object = results[i];
                   //alert(object.get("item"))
                   finalObj += "<div>\n"
-                  finalObj += "<p>" + object.get("item") + "</p>\n"
+                  finalObj += "<h3 class='red'>" + object.get("item") + "</h3>\n"
                   finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
-                  finalObj += "<p>Price: $"+object.get("price")+"</p>\n"
-                  finalObj += "<p>Brand: "+object.get("brand")+"</p>\n"
-                  finalObj += "<p>Size: "+object.get("size")+"</p>\n"
-                  finalObj += "<p>Listed Date: "+object.get("listedDate")+"</p>\n"
+                  finalObj += "<p><strong>Price:</strong> $"+object.get("price")+"</p>\n"
+                  finalObj += "<p><strong>Brand: </strong>"+object.get("brand")+"</p>\n"
+                  finalObj += "<p><strong>Size: </strong>"+object.get("size")+"</p>\n"
+                  finalObj += "<p><strong>Listed Date: </strong>"+object.get("listedDate")+"</p>\n"
                   finalObj += "</div>\n"
                   if(i+1!=results.length){
                     finalObj += "<hr>\n"
@@ -471,62 +471,37 @@
             });
           </script>
         </div>
-        <div id="previousListed" class="dashboardDiv" style="float: left; border: solid blue;"> 
+
+
+        <div id="ownerInfo" class="dashboardDiv" style="float: left; width:31%; height: 100%">
           <div>
-            <h3 class="blue">Sold Shoes</h3>
-          </div>
-        </div>
-
-
-
-        <div id="ownerInfo" class="dashboardDiv" style="float: left; border: solid red;">
-          <div>
-            <h3 class="blue">Owner Info</h3>
+              <div style="position: relative; height: 250px;">
+                <div id="userImg" style="position:absolute; top:20px; left:55px; ">
+                  <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
+                </div>
+                <div id="innerBox" role="button" onClick="changePic()" onmouseover="imageAppear()">
+                  <p style="position: absolute; top: 45%;left: 10%;" id="prof"></p>
+                </div>
+              </div>
+              <div style="position: relative;">
+                <h3 class="red text-center">store owner</h3>
+                <p class="text-center" style="color:#777">Danielle San Francisco</p>
+            </div>
           </div>
       </div>
-        <script>
-        Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-          var Courrier = Parse.Object.extend("courrier");
-          var query = new Parse.Query(Courrier);
-          query.equalTo("userNameStuff", Parse.User.current().get("username"));
-          query.find({
-            success: function(results) {
-              //alert("Successfully retrieved " + results.length + " scores.");
-              listedNumber.innerHTML="Currently Listed ("+results.length+")";
-              // Do something with the returned Parse.Object values
-              var finalObj="";
-              if(results.length!=0){
-              for (var i = 0; i < results.length; i++) { 
-                var object = results[i];
-                //alert(object.get("item"))
-                finalObj += "<div>\n"
-                finalObj += "<p>" + object.get("item") + "</p>\n"
-                finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
-                finalObj += "<p>Price: $"+object.get("price")+"</p>\n"
-                finalObj += "<p>Brand: "+object.get("brand")+"</p>\n"
-                finalObj += "<p>Size: "+object.get("size")+"</p>\n"
-                finalObj += "<p>Listed Date: "+object.get("listedDate")+"</p>\n"
-                finalObj += "</div>\n"
-                if(i+1!=results.length){
-                  finalObj += "<hr>\n"
-                }
-
-              }
-            }else{
-              finalObj += "No shoes currently listed"
-            }
-              var insertNonsense = document.getElementById("forSale");
-                insertNonsense.innerHTML = finalObj
-            },
-            error: function(error) {
-              alert("Error: " + error.code + " " + error.message);
-            }
-          });
-        </script>
-        <div id="sold">
-        </div>
-        <div id="ownerInfo">
-        </div>
+      <div class="dashboardDiv" style="width:31%;">
+        <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title red"><span class="glyphicon glyphicon-info-sign"></span> store info</h3>
+              </div>
+              <ul class="list-group">
+                  <li class="list-group-item">opened: <span class="text-muted"> today</span></li>
+                  <li class="list-group-item">sales: <span class="text-muted"> 0</span></li>
+                  <li class="list-group-item">rating: <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star"></span> <span class="text-muted fa fa-star-o"></span></li>
+                  <li class="list-group-item">return clients: <span class="text-muted">0</span></li>
+                </ul>
+            </div><!-- /panel -->
+      </div>
       </div><!-- /main -->
       
       <footer style="clear:both;">
