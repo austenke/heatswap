@@ -8,9 +8,10 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
     <link rel="stylesheet" href="/css/font-awesome.min.css">
-    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+      <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
-    <title>Sell</title>
+    <title>Dashboard</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -24,12 +25,17 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
- <body>
+        
+  <body>
     
+    <div id="headerAlert">
+
+    </div>
+
+
     <div class="container">
       
-     <!-- logo row -->
+      <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
         <div class="col-xs-12 col-md-4" >
@@ -158,6 +164,7 @@
 
                             Parse.User.logIn(nameStuff, passStuff, {
                               success: function(user) {
+                                alert("login is go. Welcome "+user.get("username"));
                                 location.reload();
                               },
                               error: function(user, error) {
@@ -344,7 +351,7 @@
       </div><!-- /logo row -->
       
       <!-- Static navbar -->
-      <div class="navbar navbar-default without-subnav" role="navigation">
+      <div class="navbar navbar-default" role="navigation">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -362,8 +369,8 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">buy <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li><a href="popular.html">popular</a></li>
-                  <!-- <li><a href="buy.html">buy page</a></li>
-				 <li><a href="store.html">store</a></li> -->
+                  <!--<li><a href="buy.html">buy page</a></li>
+                  <li><a href="store.html">store</a></li>-->
                   <li class="dropdown-submenu"><a href="#">brand</a>
                     <ul class="dropdown-menu">
                       <li><a href="popular.html?brand=adidas">Adidas</a></li>
@@ -380,9 +387,9 @@
                   </li>
                 </ul>
               </li>
-              <li class="active"><a href="#">sell</a></li>
+              <li><a href="sell.html">sell</a></li>
               <li><a target=_blank href="http://heatswap.com/news">news</a>
-			 <li><a href="team.html">our team</a></li>
+              <li><a href="team.html">our team</a></li>
               <li><a href="story.html">a good story</a></li>
             </ul>
             
@@ -397,90 +404,103 @@
         </div><!--/.container-fluid -->
       </div>
 
-      <div id="main-wrap"><!-- Main content wrapper -->
+      <div class="pull-left">
+        <h1 style="margin-right:10px" class="red" id="nameStore">our team</h1>
+      </div>
 
-        <ol class="breadcrumb pull-right breadcrumb-right">
-          <li><a href="index.html">home</a></li>
-          <li class="active">sell</li>
-        </ol>
-
-        <div class="clearfix">
-          <div class="pull-left">
-            <h1 style="margin-right:10px" class="red">sell</h1>
-          </div>
-          <hr class="breadcrumb-hr" />
+      <script>
+          Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+          var currentUser = Parse.User.current();
+          var currentName = currentUser.get("username");
+          nameStore.innerHTML=currentName+"'s Dashboard";
+        </script>
+  
+        <div class="clearfix">      
+          <ol class="breadcrumb pull-right breadcrumb-right">
+            <li><a href="index.html">home</a></li>
+            <li class="active">account</li>
+          </ol>
+          <hr class="breadcrumb-hr">
         </div>
-        
-        <div class="well text-center" id="spread-heat-well">
-          <h2 class="blue">spread some heat</h2>
-		      <p>
-		        <a class="btn btn-primary btn-lg" href="sellItem.html">open your store</a>
-		      </p>
-          <img src="http://placehold.it/900x400" class="thumbnail img-responsive" alt="start here video" style="margin-left:auto; margin-right:auto">
-          <h3>want to sell some shoes? check this out first</h3>
-        </div><!-- /well -->
-        
-        
-        <div class="row">
-          <img style="width:60%; margin-left: 20%;"src="images/smallerCollage-final.jpeg">   
-        </div><!-- /row -->
-        
-        
-        <div id="why-heatswap">
-          <div class="page-header text-center">
-           <h2>why use heatswap?</h2>
-          </div>
-        
-          <div class="row">
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-money fa-3x pull-left fa-border"></i> you save money</h3>
-              <p>When you open up a store on HeatSwap you take home more money. We charge 8% per sale compared to 10-12% charged by eBay and Amazon.</p>
+         
+            <div id="main-wrap" style="float: left; width: 100%;"><!-- Main content wrapper -->
+              <div id="ownerInfo" class="dashboardDiv" style="float: left; width:20%; height: 100%">
+                <div>
+                    <div style="position: relative; height: 300px;">
+                      <div id="userImg" style="position:absolute; top:20px; left:55px; ">
+                        <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
+                      </div>
+                      <div id="innerBox" role="button" onClick="changePic()" onmouseover="imageAppear()">
+                        <p style="position: absolute; top: 50%;left: 10%;" id="prof"></p>
+                      </div>
+                    </div>
+                    <div style="position: relative;">
+                      <h3 class="red text-center">Danielle Ya</h3>
+                      <p class="text-center" style="color:#777">storename</p>
+                  </div>
+                  
+                  <ul class="nav nav-pills.nav-stacked">
+                    <li class="active"><a href="currentlylisted.html"><b>Currently Listed</b></a></li>
+                    <li><a href="sales.html">Sales</a></li>
+                    <li><a href="purchases.html">Purchases</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                  </ul>
+                  
+                  
+                  
+                </div>
             </div>
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-bullhorn fa-3x pull-left fa-border"></i> we help market your shoes</h3>
-              <p>Everyday we pick out select shoes on the site and show them off on Facebook, Instagram, and on YouTube. Even if your shoes are not among those featured you'll benefit from our promotional efforts.<p>
-            </div>
-          </div><!-- /row -->
-          <div class="row">
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-users fa-3x pull-left fa-border"></i> we're sneakerheads &ndash; like you</h3>
-              <p>Since we're Sneakerheads ourselves we understand what you want &ndash; a safe and secure way to buy and sell sneakers. Toward that end we make it easy to give feedback and allow payment through trusted sources. Plus our customer service team is on standby to help make the experience a good one for you.</p>
-            </div>
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-heart-o fa-3x pull-left fa-border"></i> you get to help kids</h3>
-              <p>We've pledged to throw some heat to communities who need a little help.  We give one percent of every sale to support healthy play and educational opportunities for kids who could use a break. Please join us.</p>
-            </div>        
-          </div><!-- /row -->
-        </div><!-- /why-heatswap -->
-        
-        <div class="row">
-          <img style="width:75%; margin-left: 12.5%;"src="images/collage-final.jpeg">   
-        </div><!-- /row -->
-        
-        <div id="sell-bottom-faqs">
-          <div class="page-header text-center">
-           <h2>FAQs</h2>
-          </div>
-        
-          <div class="row">
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-money fa-3x pull-left fa-border"></i>how much will it cost to set up shop on HeatSwap?</h3>
-              <p>Setting up shop on HeatSwap won’t cost you anything. And we won’t charge you a fee to list each pair of sneakers. Once you’ve posted your shoes the listing lasts for three months or until your item is sold. As soon as a payment comes through from your buyer we take 8% of the sale price through your paypal account – and that’s it. There are no monthly sales statements to worry about. No reminders to pay your seller’s fees. We take care of it so you don’t have to think about it again.</p>
-            </div>
-            <div class="col-sm-6">
-              <h3 class="blue"><i class="fa fa-bullhorn fa-3x pull-left fa-border"></i>do I need a credit card to sign up?</h3>
-              <p>You don’t need a credit card to set up a store on HeatSwap. To become a seller you need to set up an account on Paypal. (Here’s how to open an account on Paypal.)<p>
-              <h3 class="blue"><i class="fa fa-users fa-3x pull-left fa-border"></i>how do I get the money from my sales?</h3>
-              <p>When your item sells and your buyer pays up, the funds will appear in your PayPal account. You can withdraw them at any time.</p>
-            </div>
-          </div><!-- /row -->
-          <div class="row" style="margin-bottom:2.0em; margin-top:1.5em">
-            <p class="text-center"><strong>More questions? Visit our Help center.</strong></p>
-          </div>
-
-      </div><!-- /main -->
+              <div id="currentListed" class="dashboardDiv" style="float: right; width:76%">
+                <div>
+                  <h3 id="listedNumber" class="blue">Currently Listed</h3>
+                  <div id="forSale">
+                  
+                  </div>
+                </div>
+                <script>
+                  Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                  var Courrier = Parse.Object.extend("courrier");
+                  var query = new Parse.Query(Courrier);
+                  query.equalTo("userNameStuff", Parse.User.current().get("username"));
+                  query.find({
+                    success: function(results) {
+                      //alert("Successfully retrieved " + results.length + " scores.");
+                      listedNumber.innerHTML="Currently Listed ("+results.length+")";
+                      // Do something with the returned Parse.Object values
+                      var finalObj="";
+                      if(results.length!=0){
+                      for (var i = 0; i < results.length; i++) { 
+                        var object = results[i];
+                        //alert(object.get("item"))
+                        finalObj += "<div>\n"
+                        finalObj += "<h3 class='red'>" + object.get("item") + "</h3>\n"
+                        finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
+                        finalObj += "<p><strong>Price:</strong> $"+object.get("price")+"</p>\n"
+                        finalObj += "<p><strong>Brand: </strong>"+object.get("brand")+"</p>\n"
+                        finalObj += "<p><strong>Size: </strong>"+object.get("size")+"</p>\n"
+                        finalObj += "<p><strong>Listed Date: </strong>"+object.get("listedDate")+"</p>\n"
+                        finalObj += "</div>\n"
+                        if(i+1!=results.length){
+                          finalObj += "<hr>\n"
+                        }
       
-      <footer>
+                      }
+                    }else{
+                      finalObj += "No shoes currently listed"
+                    }
+                      var insertNonsense = document.getElementById("forSale");
+                        insertNonsense.innerHTML = finalObj
+                    },
+                    error: function(error) {
+                      alert("Error: " + error.code + " " + error.message);
+                    }
+                  });
+                </script>
+              </div>
+      
+      
+      
+      <footer style="clear:both;">
         <div class="row">
           <div class="col-md-4">
             <ul class="list-inline">
@@ -504,7 +524,7 @@
       
     </div> <!-- /container -->
 
-    <script>
+     <script>
       if(currentName!=null&&currentName!=""){
         var finalObj=document.getElementById("account");
         document.getElementById("myTabContent").innerHTML = finalObj.innerHTML;
