@@ -105,20 +105,24 @@
                  <h1 class="text-center blue">shipping</h1>
                  <hr class="alt-hr">
                  <div>
+                    <div>
+                         <div class="buyInput" style="float: left;">
+                             <input type="text" id="buyfirstname" placeholder="first name">
+                        </div>
+                        <div class="buyInput" style="float: left;">
+                             <input type="text" id="buylastname" placeholder="last name">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="buyInput">
+                            <input type="text" id="buyaddress1" placeholder="address line 1">
+                        </div>
+                    </div>
                  <div class="buyInput">
-                     <input type="text" id="buyfirstname" placeholder="FIRST NAME">
+                    <input type="text" id="buyaddress2" placeholder="address line 2">
                 </div>
                 <div class="buyInput">
-                     <input type="text" id="buylastname" placeholder="LAST NAME">
-                </div>
-                <div class="buyInput">
-                 <input type="text" id="buyaddress1" placeholder="ADDRESS LINE 1">
-                 </div>
-                 <div class="buyInput">
-                    <input type="text" id="buyaddress2" placeholder="ADDRESS LINE 2">
-                </div>
-                <div class="buyInput">
-                 <input type="text" id="buycity" placeholder="CITY">
+                 <input type="text" id="buycity" placeholder="city">
              </div>
              <div class="buyInput">
                  <select id="buystate">
@@ -427,7 +431,7 @@
                  </select>
              </div>
              <div class="buyInput">
-                <input type="text" id="buyemail" placeholder="EMAIL">
+                <input type="text" id="buyemail" placeholder="email">
             </div>
             <button onclick="paypalDetect(); return false;" class="btn btn-primary" style="width:100%">Pay Now</button>
         </div>
