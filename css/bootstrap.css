@@ -5813,3 +5813,27 @@ button.close {
 #alertsBadge{
   background-color: #D9562A;
 }
+
+#sweetStuffEdit::-webkit-input-placeholder{
+  font-size: 20px;
+}
+
+#userImg:hover + #innerBox{
+  display: block;
+}
+
+#innerBox.editable{
+  display:none;
+  position: absolute; 
+  top:20px; 
+  left:55px; 
+  width: 210px; 
+  height: 210px;
+  opacity: 0.8;
+  background-color: #7A7A7A;
+  z-index: 100;
+}
+
+#innerBox{
+  display:none;
+}

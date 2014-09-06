@@ -465,17 +465,24 @@
           
           <div class="col-md-4">
           
-            <div class="well">
-              <div id="userImg">
-                <img class="thumbnail img-responsive center-block" src="http://placehold.it/200x200" alt="store owner">
+            <div class="well" style="position:relative">
+              <div style="position: relative; height: 250px;">
+                <div id="userImg" style="position:absolute; top:20px; left:55px; ">
+                  <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
+                </div>
+                <div id="innerBox" role="button" onClick="changePic()">
+                  <p style="position: absolute; top: 45%;left: 10%;" id="prof"></p>
+                </div>
               </div>
-              <h3 class="red text-center">store owner</h3>
-              <p class="text-center" style="color:#777">Danielle San Francisco</p>
-              <p class="text-center">
-                <button type="button" class="btn btn-default btn-lg red">
-                <span class="glyphicon glyphicon-envelope"></span> contact owner
-                </button>
-            </p>
+              <div style="position: relative;">
+                <h3 class="red text-center">store owner</h3>
+                <p class="text-center" style="color:#777">Danielle San Francisco</p>
+                <p class="text-center">
+                  <button type="button" class="btn btn-default btn-lg red">
+                  <span class="glyphicon glyphicon-envelope"></span> contact owner
+                  </button>
+              </p>
+            </div>
             
             </div><!-- /well -->
                         
@@ -518,6 +525,11 @@
           storeName.innerHTML = "<input id='sweetStuffEdit' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
           userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
+          $("#innerBox").addClass("editable");
+          prof.innerHTML="Change profile picture"
+        }
+        var changePic = function() {
+          alert("hello");
         }
       </script>
 
