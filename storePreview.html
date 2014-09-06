@@ -475,7 +475,7 @@
                 <div id="userImg" style="position:absolute; top:20px; left:55px; ">
                   <img class="thumbnail img-responsive center-block" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
                 </div>
-                <div id="innerBox" role="button" onClick="changePic()">
+                <div id="innerBox" role="button" onClick="changePic()" onmouseover="imageAppear()">
                   <p style="position: absolute; top: 45%;left: 10%;" id="prof"></p>
                 </div>
               </div>
@@ -535,6 +535,11 @@
         }
         var changePic = function() {
           alert("hello");
+        }
+
+        var imageAppear = function(){
+          //$("#innerBox").css("display", "block");
+          alert("hiiiii")
         }
       </script>
 

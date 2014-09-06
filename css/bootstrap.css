@@ -5818,10 +5818,6 @@ button.close {
   font-size: 20px;
 }
 
-#userImg:hover + #innerBox{
-  display: block;
-}
-
 #innerBox.editable{
   display:none;
   position: absolute; 
