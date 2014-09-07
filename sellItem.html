@@ -547,7 +547,13 @@
                     </div>
                   </fieldset>
                 </form>
+                <div class="row" id="imagePreview1"> 
               </div>
+              <div class="row" id="imagePreview2"> 
+              </div>
+              </div>
+              
+            
             </div>
             <div class="form-group">
               <label for="shoeDescription" class="col-sm-2 col-sm-offset-1 control-label">shoe details</label>
@@ -686,10 +692,13 @@
     <script>
 
       $(function() {
+        var imageUploadPreview="";
           var file;
           // Set an event listener on the Choose File field.
           //figure out what e is, how to change. filePull[i] is the name of the file
           $('#fileselect1').bind("change", function(e) {
+            imageUploadPreview1="";
+            imageUploadPreview2="";
             var currentE;
             if(fileselect1.multiple == true){
               if(fileselect1.length>8){
@@ -729,8 +738,33 @@
               //alert("hello")
               success: function(data) {
                 //alert("File available at: " + data.url);
-                //alert(fileselect1)
+
                 images[i]=data.url;
+
+                var imageFloat;
+
+                var img = $('<img src="'+images[i]+'"/>').load(function(){
+                  var ratio=100/this.height;
+                  var ratioWidth=this.width*ratio;
+                  imageFloat=(150-ratioWidth)/2
+                  imageUploadPreview += "<div class='previewDiv'>";
+                  imageUploadPreview += "<img style='margin-left:"+imageFloat+"px' class='previewImage' src='"+ images[i] + "' alt='...''>"
+                  imageUploadPreview += "</div>";
+
+                  if(i<4){
+                    imageUploadPreview1 += imageUploadPreview;
+                    var insertNonsense=document.getElementById("imagePreview1")
+                    insertNonsense.innerHTML=imageUploadPreview1
+                  }else{
+                    imageUploadPreview2 += imageUploadPreview;
+                    var insertNonsense=document.getElementById("imagePreview2")
+                    insertNonsense.innerHTML=imageUploadPreview2
+                  }
+                  imageUploadPreview="";
+                });
+                
+
+                
                 //alert(images[i]);
               },
               error: function(data) {

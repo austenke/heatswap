@@ -5836,3 +5836,18 @@ button.close {
 #innerBox{
   display:none;
 }
+
+.previewDiv{
+  height: 100px;
+  width: 150px;
+  overflow: hidden;
+  border: 1px solid #D9562A;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 10px;
+  float: left;
+}
+
+.previewImage{
+  height:100px;
+}
