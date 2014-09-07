@@ -466,6 +466,33 @@
                   query.find({
                     success: function(results) {
                     listed.innerHTML="Currently Listed ("+results.length+")";
+
+                      //alert("Successfully retrieved " + results.length + " scores.");
+                      listedNumber.innerHTML="Currently Listed ("+results.length+")";
+                      // Do something with the returned Parse.Object values
+                      var finalObj="";
+                      if(results.length!=0){
+                      for (var i = 0; i < results.length; i++) { 
+                        var object = results[i];
+                        //alert(object.get("item"))
+                        finalObj += "<div>\n"
+                        finalObj += "<h3 class='red'>" + object.get("item") + "</h3>\n"
+                        finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
+                        finalObj += "<p><strong>Price:</strong> $"+object.get("price")+"</p>\n"
+                        finalObj += "<p><strong>Brand: </strong>"+object.get("brand")+"</p>\n"
+                        finalObj += "<p><strong>Size: </strong>"+object.get("size")+"</p>\n"
+                        finalObj += "<p><strong>Listed Date: </strong>"+object.get("listedDate")+"</p>\n"
+                        finalObj += "</div>\n"
+                        if(i+1!=results.length){
+                          finalObj += "<hr>\n"
+                        }
+      
+                      }
+                    }else{
+                      finalObj += "No shoes currently listed"
+                    }
+                      var insertNonsense = document.getElementById("forSale");
+                        insertNonsense.innerHTML = finalObj
                     },
                     error: function(error) {
                       alert("Error: " + error.code + " " + error.message);
