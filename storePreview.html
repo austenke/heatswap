@@ -25,11 +25,10 @@
     <![endif]-->
 
     <style>
-      .contenthover { padding:20px 20px 10px 20px; }
+      .contenthover { padding:20px 20px 500px 20px; cursor: pointer; }
       .contenthover, .contenthover h3, contenthover a { color:#fff; }
-      .contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0; }
-      .contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
-      .contenthover a.mybutton:hover { background:#34742d }
+      .contenthover h3, .contenthover p { line-height:1.4em; padding:0; text-align: center; margin-top: 35%; }
+      .contenthover a.mybutton:hover { background:#34742d; }
     </style>
   </head>
         
@@ -454,12 +453,12 @@
         <div class="row store-page-main-body">
           <div class="col-md-8">
             <div class="store-banner-image">
-              <img id="mainImg" src="http://placehold.it/500x400" style="cursor:pointer;" class="img-responsive center-block" alt="store">
-              <div class="contenthover">
-                <h3>Lorem ipsum dolor</h3>
-                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum pulvinar ante quis augue lobortis volutpat. </p>
-                <p><a href="#" class="mybutton">Lorem ipsum</a></p>
-              </div>
+              <center>
+                <img id="mainImg" src="images/500x400.gif" style="cursor:pointer;" class="img-responsive center-block" alt="store">
+                <div class="contenthover" id="mainImgClick">
+                  <h3>Click me to edit</h3>
+                </div>
+              </center>
               <input id="mainFile" type="file" accept="image/*" />
             </div>
             
@@ -521,7 +520,10 @@
             <div class="well" style="position:relative">
               <div style="position: relative; height: 250px;">
                 <div id="userImg" style="position:absolute; top:20px; left:55px; ">
-                  <img class="thumbnail img-responsive center-block" style="cursor: pointer;" id="ownerPic" src="http://placehold.it/200x200" alt="store owner">
+                  <img class="thumbnail img-responsive center-block" style="cursor: pointer;" id="ownerPic" src="images/200x200.gif" alt="store owner">
+                  <div class="contenthover" id="userImgClick">
+                    <h3>Click me to edit</h3>
+                  </div>
                 </div>
                 <input id="userFile" type="file" accept="image/*" />
                 <div id="innerBox" role="button" onClick="changePic()">
@@ -627,8 +629,8 @@
         
     }else{
 
-      if(main === undefined) main = "http://placehold.it/500x400";
-      if(prof === undefined) prof = "http://placehold.it/200x200";
+      if(main === undefined) main = "images/500x400.gif";
+      if(prof === undefined) prof = "images/200x200.gif";
       
       var d = new Date();
       var month = 0;
@@ -703,7 +705,7 @@ $(document).ready(function() {
     overlay_opacity:0.8
   });
 
-  $('#mainImg').contenthover({
+  $('#ownerPic').contenthover({
     overlay_background:'#000',
     overlay_opacity:0.8
   });
@@ -711,11 +713,11 @@ $(document).ready(function() {
   $('#mainFile').hide(); 
   $('#userFile').hide(); 
 
-  $('#mainImg').click(function() {
+  $('#mainImgClick').click(function() {
     $("#mainFile").click();
   });
 
-  $('#userImg').click(function() {
+  $('#userImgClick').click(function() {
     $("#userFile").click();
   });
 
@@ -775,7 +777,8 @@ $(document).ready(function() {
       if (e.target.files && e.target.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#mainImg').attr('src', e.target.result);
+            var foo = document.getElementsByClassName("img-responsive center-block");
+            $(foo[2]).attr('src', e.target.result);
         }
         reader.readAsDataURL(e.target.files[0]);
       }
@@ -783,7 +786,8 @@ $(document).ready(function() {
       if (e.target.files && e.target.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
-            $('#ownerPic').attr('src', e.target.result);
+            var foo = document.getElementsByClassName("thumbnail img-responsive center-block");
+            $(foo[1]).attr('src', e.target.result);
         }
         reader.readAsDataURL(e.target.files[0]);
       }      
