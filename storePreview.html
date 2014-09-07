@@ -53,21 +53,23 @@
             var currentUser=""
             var currentName=""
 
+
+            Parse.User.extend()
             if(Parse.User.current()!=null){
               currentUser = Parse.User.current();
               currentName=currentUser.get("username")
-              currentStore=Parse.User.current().get("storeId")
             }else{
             }
 
-            alert("location is "+storeId)
+            //alert(currentUser.get("firstName"))
+            //alert("location is "+storeInfo)
 
             if(currentUser.get("storeId"==null)||currentUser.get("storeId")==""){
               var existingStore=false;
               alert("false")
             }else{
               var existingStore=true;
-              //alert(currentUser.get("storeId"))
+              //alert(currentUser.get("storeInfo"))
             }            
             
 
@@ -480,18 +482,24 @@
             var currentName=""
             currentUser = Parse.User.current();
             currentName=currentUser.get("username");
+            var currentStoreName="";
+            
             var storeInfo = Parse.Object.extend("storeInfo");
             var query = new Parse.Query(storeInfo);
-            alert(currentUser.get("storeId"))
-            query.get(currentUser.get("storeId"), {
+            var storeIdNumber=currentUser.get("storeId")
+
+            query.get(storeIdNumber, {
               success: function(currentStore) {
                   alert("success")
+                  //alert(currentStore)
+                  alert(currentStore.get("coolName"))
+                  currentStoreName=currentStore.get("coolName")
+                  document.getElementById("storeName").innerHTML=currentStoreName
               },
               error: function(object, error) {
                 alert("fail")
               }
             });
-            document.getElementById("storeName").innerHTML=currentStore.get("coolName")
           </script>  
           
           <hr class="visible-xs visible-sm alt-hr" />
@@ -509,13 +517,21 @@
                 </div>
               </div>
               <div style="position: relative;">
-                <h3 class="red text-center">store owner</h3>
-                <p class="text-center" style="color:#777">Danielle San Francisco</p>
+                <h3 class="red text-center" id="ownerUsername">store owner</h3>
+                <p class="text-center" style="color:#777" id="ownerName">Danielle San Francisco</p>
                 <p class="text-center">
                   <button type="button" class="btn btn-default btn-lg red">
                   <span class="glyphicon glyphicon-envelope"></span> contact owner
                   </button>
               </p>
+              <script>
+              Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+              currentUser=Parse.User.current()
+
+              document.getElementById("ownerUsername").innerHTML=currentUser.get("username")
+              document.getElementById("ownerName").innerHTML=currentUser.get("firstName")
+
+              </script>
             </div>
             
             </div><!-- /well -->
@@ -557,6 +573,7 @@
           continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue";
           storeDesc.innerHTML = "<textarea id='storeDescr' rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
           storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
+
           //userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           //mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
         }
@@ -616,8 +633,10 @@
 
       Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
 
+      if(!existingStore){
       var courrier = Parse.Object.extend("storeInfo");
       var postOffice = new courrier();
+      }
 
       postOffice.set("coolDesc", storeDesc);
       postOffice.set("coolName", storeName);
@@ -631,6 +650,7 @@
           var postOfficeId=postOffice.id
           currentUser.set("storeId", postOfficeId)
           currentUser.save();
+          //alert("the store id is "+currentUser.get("storeId"))
           window.location.href = "sellItem.html";
           //alert('New object created with objectId: ' + postOffice.id);
         },
