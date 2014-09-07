@@ -77,8 +77,8 @@
                 finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
                 finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>"
+                finalObj += "<li><a href='currentlyListed.html'>Manage Shoes</a></li>"
+                finalObj += "<li><a href='settings.html' role='button' data-toggle='modal'>Account Settings</a></li>"
                 finalObj += "</ul>\n"
                 finalObj += "</li>\n"
                 finalObj += "</ul>\n"
@@ -1332,19 +1332,19 @@ Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fc
         if(Parse.User.current()!=null){
           //alert("hi")
           currentUser = Parse.User.current();
-          currentName=currentUser.get("username")
+          currentName=currentUser.get("username");
+          var verified=false;
+          verified=currentUser.get("emailVerified");
           //alert(currentUser.get("emailVerified"))
-          if(currentUser.get("emailVerified")==false){
-            alert(currentUser.get("emailVerified"))
+          if(!verified){
             alertSend += "<div style='background: #A00000; text-align: center; height: 40px;'>\n";
             alertSend += "<h3 id='headerAlert'><strong>Please verify your email</strong></h3>\n"
             alertSend += "</div>\n"
 
-            var insertAlert=document.getElementById("topAlert");
-            insertAlert.innerHTML=alertSend;
+            //var insertAlert=document.getElementById("topAlert");
+            //insertAlert.innerHTML=alertSend;
             //alert("hello")
           }else{
-            alert("Verified")
           }
         }else{
 

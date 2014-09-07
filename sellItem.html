@@ -52,6 +52,9 @@
             var currentUser = Parse.User.current()
             var currentName=""
 
+            var images = new Array(); 
+
+
             if(currentUser!=null) currentName=currentUser.get("username");
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
