@@ -440,8 +440,8 @@
                   </div>
                   
                   <ul class="nav nav-pills.nav-stacked">
-                    <li class="active"><a href="currentlylisted.html">Currently Listed</a></li>
-                    <li><a href="sales.html"><b id="listed">Sales</b></a></li>
+                    <li class="active"><a href="currentlylisted.html" id="listed">Currently Listed</a></li>
+                    <li><a href="sales.html"><b>Sales</b></a></li>
                     <li><a href="purchases.html">Purchases</a></li>
                     <li><a href="settings.html">Settings</a></li>
                   </ul>
@@ -459,39 +459,13 @@
                 </div>
                 <script>
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                  listed.innerHTML="Currently Listed ("+results.length+")";
                   dashUsername.innerHTML=Parse.User.current().get("username");
                   var Courrier = Parse.Object.extend("courrier");
                   var query = new Parse.Query(Courrier);
                   query.equalTo("userNameStuff", Parse.User.current().get("username"));
                   query.find({
                     success: function(results) {
-                      //alert("Successfully retrieved " + results.length + " scores.");
-                      listedNumber.innerHTML="Currently Listed ("+results.length+")";
-                      // Do something with the returned Parse.Object values
-                      var finalObj="";
-                      if(results.length!=0){
-                      for (var i = 0; i < results.length; i++) { 
-                        var object = results[i];
-                        //alert(object.get("item"))
-                        finalObj += "<div>\n"
-                        finalObj += "<h3 class='red'>" + object.get("item") + "</h3>\n"
-                        finalObj += "<img src='"+object.get("image")+"'style='width:50%'>\n"
-                        finalObj += "<p><strong>Price:</strong> $"+object.get("price")+"</p>\n"
-                        finalObj += "<p><strong>Brand: </strong>"+object.get("brand")+"</p>\n"
-                        finalObj += "<p><strong>Size: </strong>"+object.get("size")+"</p>\n"
-                        finalObj += "<p><strong>Listed Date: </strong>"+object.get("listedDate")+"</p>\n"
-                        finalObj += "</div>\n"
-                        if(i+1!=results.length){
-                          finalObj += "<hr>\n"
-                        }
-      
-                      }
-                    }else{
-                      finalObj += "No shoes currently listed"
-                    }
-                      var insertNonsense = document.getElementById("forSale");
-                        insertNonsense.innerHTML = finalObj
+                    listed.innerHTML="Currently Listed ("+results.length+")";
                     },
                     error: function(error) {
                       alert("Error: " + error.code + " " + error.message);
