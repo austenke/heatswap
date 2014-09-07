@@ -425,7 +425,8 @@
 
           var finalObj="";
           var currentUser=Parse.User.current();
-          if(currentUser.get("storeId")==null||currentUser.get("storeId"=="")){
+          if(currentUser.get("storeId")==null||currentUser.get("storeId")==""){
+            alert(currentUser.get("storeId"))
             finalObj+=" <a class='btn btn-primary btn-lg' href='storePreview.html'>open your store</a>"
           }else{
             finalObj+=" <a class='btn btn-primary btn-lg' href='storePreview.html'>sell a shoe</a>"
