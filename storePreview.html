@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/css/font-awesome.min.css">
     <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
 
-
     <title>Store</title>
 
     <!-- Bootstrap core CSS -->
@@ -24,6 +23,14 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+      .contenthover { padding:20px 20px 10px 20px; }
+      .contenthover, .contenthover h3, contenthover a { color:#fff; }
+      .contenthover h3, .contenthover p { margin:0 0 10px 0; line-height:1.4em; padding:0; }
+      .contenthover a.mybutton { display:block; float:left; padding:5px 10px; background:#3c9632; color:#fff; -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
+      .contenthover a.mybutton:hover { background:#34742d }
+    </style>
   </head>
         
   <body>
@@ -448,6 +455,11 @@
           <div class="col-md-8">
             <div class="store-banner-image">
               <img id="mainImg" src="http://placehold.it/500x400" style="cursor:pointer;" class="img-responsive center-block" alt="store">
+              <div class="contenthover">
+                <h3>Lorem ipsum dolor</h3>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum pulvinar ante quis augue lobortis volutpat. </p>
+                <p><a href="#" class="mybutton">Lorem ipsum</a></p>
+              </div>
               <input id="mainFile" type="file" accept="image/*" />
             </div>
             
@@ -572,7 +584,7 @@
           var continueButton = document.getElementById("continueButton");
           continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue";
           storeDesc.innerHTML = "<textarea id='storeDescr' rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
-          storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px; height:52px; width:244px;' placeholder='Sweet Stuff'></input>";
+          storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px;' placeholder='Sweet Stuff'></input>";
 
           //userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           //mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
@@ -680,10 +692,21 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.contenthover.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
 <script>
 $(document).ready(function() {
+
+  $('#mainImg').contenthover({
+    overlay_background:'#000',
+    overlay_opacity:0.8
+  });
+
+  $('#mainImg').contenthover({
+    overlay_background:'#000',
+    overlay_opacity:0.8
+  });
 
   $('#mainFile').hide(); 
   $('#userFile').hide(); 
