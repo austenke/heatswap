@@ -413,12 +413,26 @@
         
         <div class="well text-center" id="spread-heat-well">
           <h2 class="blue">spread some heat</h2>
-		      <p>
+		      <p id="openStore">
 		        <a class="btn btn-primary btn-lg" href="sellItem.html">open your store</a>
 		      </p>
           <img src="http://placehold.it/900x400" class="thumbnail img-responsive" alt="start here video" style="margin-left:auto; margin-right:auto">
           <h3>want to sell some shoes? check this out first</h3>
         </div><!-- /well -->
+
+        <script>
+         Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+
+          var finalObj="";
+          var currentUser=Parse.User.current();
+          if(currentUser.get("storeId")==null||currentUser.get("storeId"=="")){
+            finalObj+=" <a class='btn btn-primary btn-lg' href='storePreview.html'>open your store</a>"
+          }else{
+            finalObj+=" <a class='btn btn-primary btn-lg' href='storePreview.html'>sell a shoe</a>"
+          }
+          var insertNonsense=document.getElementById("openStore")
+          insertNonsense.innerHTML=finalObj
+        </script>
         
         
         <div class="row">

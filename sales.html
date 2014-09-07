@@ -459,6 +459,8 @@
                 </div>
                 <script>
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                  listed.innerHTML="Currently Listed ("+results.length+")";
+                  dashUsername.innerHTML=Parse.User.current().get("username");
                   var Courrier = Parse.Object.extend("courrier");
                   var query = new Parse.Query(Courrier);
                   query.equalTo("userNameStuff", Parse.User.current().get("username"));

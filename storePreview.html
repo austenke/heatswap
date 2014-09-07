@@ -599,6 +599,7 @@
       postOffice.set("iListedDate", iListedDate);
       postOffice.save(null, {
         success: function(postOffice) {
+          Parse.User.current().set("storeId", postOffice.id)
           window.location.href = "sellItem.html";
         },
         error: function(postOffice, error) {
