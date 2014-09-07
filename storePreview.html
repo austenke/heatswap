@@ -438,7 +438,7 @@
         </div>
           
         <div class="pull-left" >
-          <h1 id="storeName" style="margin-right:10px" class="red">sweet stuff</h1>
+          <h1 id="storeName" style="margin-right:10px" class="red">My Store</h1>
         </div>
   
         <div class="clearfix">      
@@ -504,7 +504,7 @@
               success: function(currentStore) {
                   //alert("success")
                   //alert(currentStore)
-                  alert(currentStore.get("coolName"))
+                  //alert(currentStore.get("coolName"))
                   currentStoreName=currentStore.get("coolName")
                   document.getElementById("storeName").innerHTML=currentStoreName
               },
@@ -584,13 +584,13 @@
           var continueButton = document.getElementById("continueButton");
           continueButton.innerHTML = "<span class='glyphicon glyphicon-ok'></span> save and continue";
           storeDesc.innerHTML = "<textarea id='storeDescr' rows='3' cols='99.5'>Sweet Stuff specializes in locating hard-to-find sneakers. All of our stuff is authenticated by our team of experts and ready to ship within 3 business days.</textarea>";
-          storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px;' placeholder='Sweet Stuff'></input>";
+          storeName.innerHTML = "<input id='storeNames' style='margin-top:20px; margin-bottom:10px; height:57x; width:500px;' placeholder='Sweet Stuff'></input>";
 
           //userImg.innerHTML = "<a href='#' onclick='alert(\"foo\"); return false;'><img class='thumbnail img-responsive center-block' src='http://placehold.it/200x200' alt='store owner'></a>"
           //mainImg.innerHTML = '<a href="#" onclick="return false;"><img src="http://placehold.it/500x400" class="img-responsive center-block" alt="store"></a><input type="file" id="mainUpload" style="display: none;" />'
         }
         var changePic = function() {
-          alert("hello");
+          //alert("hello");
         }
       </script>
 
