@@ -30,7 +30,6 @@
   <body>
     
     <div class="container">
-      <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
         <div class="col-xs-12 col-md-4" >
@@ -52,20 +51,25 @@
             var currentUser = Parse.User.current()
             var currentName=""
 
-            var images = new Array(); 
-
-
             if(currentUser!=null) currentName=currentUser.get("username");
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
+
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
+                finalObj += "<ul class='dropdown-menu'>\n"
+                finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
+                if(currentUser.get("storeId")!="")
+                finalObj += "<li><a href='currentlyListed.html'>Manage Shoes</a></li>"
+                finalObj += "<li><a href='settings.html' role='button'>Account Settings</a></li>"
+                finalObj += "</ul>\n"
 
                 var alerts=0;
                 if(currentUser.get("emailVerified")==false){
                   alerts=alerts+1;
                 }
 
-                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='badge' id='alertsBadge'>" + alerts + "</span>  alert box</a>\n"
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='badge' id='alertsBadge'>" + alerts + "</span>  alerts</a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
                 if(alerts==0){
                   finalObj += "<center style='cursor:default;'>No new alerts!</center>\n"
@@ -78,12 +82,7 @@
                 finalObj += "</ul>\n"
 
                 finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
-                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
-                finalObj += "<ul class='dropdown-menu'>\n"
-                finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>"
-                finalObj += "</ul>\n"
+
                 finalObj += "</li>\n"
                 finalObj += "</ul>\n"
                 var insertNonsense=document.getElementById("logTest")
@@ -199,7 +198,7 @@
                       
                       <!-- username input-->
                       <div class="form-group">
-                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
+                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="username">
                         <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
                       </div>
 
@@ -229,15 +228,15 @@
                       </div>
                       
                       <div>
-                        <a href="http://files.parsetfss.com/1a1cf959-22e3-411e-89c4-04692e5e621d/tfss-1aedca6f-26d0-42a8-b622-884294791e6c-heatswap.termsofuse.doc">
-                          <p>Click here to download terms and conditions</p>
+                        <a href="terms.html">
+                          <p>Click here to read terms and conditions</p>
                         </a>
                       </div>
 
                       <div class="form-group">                        
                         <div class="checkbox">
                           <label>
-                            <input type="checkbox" name="terms" id="terms" value="accept">I have read and accept the terms and conditions
+                            <input type="checkbox" name="terms" id="terms" value="accept" required>I have read and accept the terms and conditions
                           </label>
                         </div>
                       </div>
@@ -263,6 +262,7 @@
                               user.set("email", emailStuff);
                               user.set("firstName", firstStuff);
                               user.set("lastName", lastStuff);
+                              user.set("storeId", "")
 
 
                               user.signUp(null, {

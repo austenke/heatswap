@@ -30,7 +30,6 @@
     
     <div class="container">
       
-      <!-- logo row -->
       <div id="logo-navbar" class="row navbar">
         
         <div class="col-xs-12 col-md-4" >
@@ -49,33 +48,45 @@
           <script>
             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
             
-            var currentUser=""
+            var currentUser = Parse.User.current()
             var currentName=""
 
-            if(Parse.User.current()!=null){
-              currentUser = Parse.User.current();
-              currentName=currentUser.get("username")
-            }else{
-
-            }
-            
-            
-
+            if(currentUser!=null) currentName=currentUser.get("username");
               if(currentName!=null&&currentName!=""){
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
-                finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
-                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id=usernameDisplay><span class='glyphicon glyphicon-user'></span></a>\n"
+
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'>What's up <b>"+currentName+"</b>?</a>\n"
                 finalObj += "<ul class='dropdown-menu'>\n"
-                //finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
-                //finalObj += "<li><a href='dashboard.html'>Manage Shoes</a></li>\n"
-                finalObj += "<li><a href='#accountModal' role='button' data-toggle='modal'>Account Settings</a></li>\n"
+                finalObj += "<li><a href='storePreview.html'>View Store</a></li>\n"
+                if(currentUser.get("storeId")!="")
+                finalObj += "<li><a href='currentlyListed.html'>Manage Shoes</a></li>"
+                finalObj += "<li><a href='settings.html' role='button'>Account Settings</a></li>"
                 finalObj += "</ul>\n"
+
+                var alerts=0;
+                if(currentUser.get("emailVerified")==false){
+                  alerts=alerts+1;
+                }
+
+                finalObj += "<li class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='usernameDisplay'><span class='badge' id='alertsBadge'>" + alerts + "</span>  alerts</a>\n"
+                finalObj += "<ul class='dropdown-menu'>\n"
+                if(alerts==0){
+                  finalObj += "<center style='cursor:default;'>No new alerts!</center>\n"
+                }
+
+                if(currentUser.get("emailVerified")==false){
+                  finalObj += "<center style='cursor:default;'>Please verify your email</center>\n"
+                }
+
+                finalObj += "</ul>\n"
+
+                finalObj += "<li onClick='logOut()'><a href='#accountModal' role='button' data-toggle='modal'><span class='glyphicon glyphicon-lock'></span> log out</a></li>\n"
+
                 finalObj += "</li>\n"
                 finalObj += "</ul>\n"
                 var insertNonsense=document.getElementById("logTest")
                 insertNonsense.innerHTML=finalObj
-                document.getElementById("usernameDisplay").innerHTML="Welcome " + currentName
               }else{
                 var finalObj=""
                 finalObj += "<ul class='nav navbar-nav navbar-right'>\n"
@@ -94,7 +105,6 @@
                 var logOut = function() {
                   Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                   Parse.User.logOut();
-                  alert("You have been logged out")
                 var currentUser = Parse.User.current();
               location.reload();
             }
@@ -154,7 +164,7 @@
                           var logIn = function(){
                             
                             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                            var nameStuff = document.getElementById("usernameInput").value;
+                            var nameStuff = document.getElementById("usernameInput").value.toLowerCase();
                             var passStuff = document.getElementById("passwordInput").value;
 
                             Parse.User.logIn(nameStuff, passStuff, {
@@ -162,7 +172,6 @@
                                 location.reload();
                               },
                               error: function(user, error) {
-                                alert("login is no go" + error.code)
                                 loginPassError.innerHTML="Your username or password is incorrect"
                                 //alert(document.getElementById("loginPassError"))
                               }
@@ -189,7 +198,7 @@
                       
                       <!-- username input-->
                       <div class="form-group">
-                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="user name">
+                        <input required="" id="SUusernameInput" name="usernameInput" type="text" class="form-control input-lg" placeholder="username">
                         <p class="help-block"><em>this is the name that will appear next to your comments, etc.</em></p>
                       </div>
 
@@ -218,6 +227,20 @@
                         <p id="woahThere" class="errorAlert"></p>
                       </div>
                       
+                      <div>
+                        <a href="terms.html">
+                          <p>Click here to read terms and conditions</p>
+                        </a>
+                      </div>
+
+                      <div class="form-group">                        
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" name="terms" id="terms" value="accept" required>I have read and accept the terms and conditions
+                          </label>
+                        </div>
+                      </div>
+
                       <!-- Button -->
                       <div class="form-group">
                         <button class="btn btn-primary btn-lg btn-block" onclick="signUp();return false;"><span class="glyphicon glyphicon-ok"></span> sign up</button>
@@ -225,7 +248,7 @@
                         <script>
                           var signUp = function() {
                             Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
-                            var nameStuff = document.getElementById("SUusernameInput").value;
+                            var nameStuff = document.getElementById("SUusernameInput").value.toLowerCase();
                             var passStuff = document.getElementById("SUpasswordInput").value;
                             var passStuff2 = document.getElementById("SUpassword2Input").value;
                             var emailStuff = document.getElementById("SUemailInput").value;
@@ -239,6 +262,7 @@
                               user.set("email", emailStuff);
                               user.set("firstName", firstStuff);
                               user.set("lastName", lastStuff);
+                              user.set("storeId", "")
 
 
                               user.signUp(null, {
