@@ -737,7 +737,7 @@
           $('#fileselect1').bind("change", function(e) {
             var currentE;
             if(fileselect1.multiple == true){
-              pickFeature.innerHTML="Click an image to make it the featured image"
+              //pickFeature.innerHTML="Click an image to make it the featured image"
               if(fileselect1.length+images.length>8){
                 alert("Only 8 images can be uploaded at a time")
               }else{
@@ -789,7 +789,7 @@
                   var ratioWidth=this.width*ratio;
                   imageFloat=(150-ratioWidth)/2
                   imageUploadPreview += "<div class='previewDiv'>";
-                  imageUploadPreview += "<img style='margin-left:"+imageFloat+"px' class='previewImage' src='"+ images[i] + "' alt='...''>"
+                  imageUploadPreview += "<img style='margin-left:"+imageFloat+"px' class='previewImage onClick='makePrimary'' src='"+ images[i] + "' alt='...''>"
                   imageUploadPreview += "</div>";
 
                   if(i<4){
@@ -804,7 +804,9 @@
                   imageUploadPreview="";
                 });
                 
+                var makePrimary=function(){
 
+                }
                 
                 //alert(images[i]);
               },
