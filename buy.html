@@ -124,29 +124,30 @@
                  <h1 class="text-center blue">shipping</h1>
                  <hr class="alt-hr">
                  <div>
+                 <div style="width: 80%; margin-left: 10%">
                     <div class="buyInput">
-                      <p style="float: left; margin-right: 10px;">First Name: </p>
-                      <input type="text" id="buyfirstname">
+                      <p style="float: left; margin-right: 10px; clear: both; ">First Name: </p>
+                      <input type="text" id="buyfirstname" style="float: right" placeholder="first">
                     </div>
                     <div class="buyInput">
-                      <p style="float: left; margin-right: 10px;">Last Name: </p>
-                      <input type="text" id="buylastname">
+                      <p style="float: left; margin-right: 10px; clear: both; ">Last Name: </p>
+                      <input type="text" id="buylastname" style="float: right" placeholder="last">
                     </div>
                     <div class="buyInput">
-                      <p style="float: left; margin-right: 10px;">Address Line 1: </p>
-                      <input type="text" id="buyaddress1">
+                      <p style="float: left; margin-right: 10px; clear: both; ">Address 1: </p>
+                      <input type="text" id="buyaddress1" style="float: right" placeholder="address 1">
                     </div>
                     <div class="buyInput">
-                      <p style="float: left; margin-right: 10px;">Address Line 2 (Optional): </p>
-                      <input type="text" id="buyaddress2">
+                      <p style="float: left; margin-right: 10px; clear: both; ">Address 2 (Optional): </p>
+                      <input type="text" id="buyaddress2" style="float: right" placeholder="address 2">
                     </div>
                 <div class="buyInput">
-                  <p style="float: left; margin-right: 10px;">City: </p>
-                 <input type="text" id="buycity">
+                  <p style="float: left; margin-right: 10px; clear: both">City: </p>
+                 <input type="text" id="buycity"style="float: right">
              </div>
              <div class="buyInput">
-              <p style="float: left; margin-right: 10px;">State: </p>
-                 <select id="buystate">
+              <p style="float: left; margin-right: 10px; clear: both">State: </p>
+                 <select id="buystate" style="float: right">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
                   <option value="AZ">Arizona</option>
@@ -201,11 +202,12 @@
                  </select>  
                  </div>
                  <div class="buyInput">    
-                   <p style="float: left; margin-right: 10px;">Zip Code: </p>           
-                   <input type="text" id="buyzipcode">
+                   <p style="float: left; margin-right: 10px; clear:both">Zip Code: </p>           
+                   <input type="text" id="buyzipcode" style="float: right">
                 </div>
                 <div class="buyInput">
-                 <select id="buycountries" name="countries">
+                <p style="float: left; margin-right: 10px; clear: both">Country: </p>
+                 <select id="buycountries" name="countries" style="float: right">
                  <option value="United States">United States</option>
                  <option value="Afghanistan">Afghanistan</option>
                  <option value="Åland Islands">Åland Islands</option>
@@ -453,9 +455,18 @@
                  </select>
              </div>
              <div class="buyInput">
-                <p style="float: left; margin-right: 10px;">Email: </p>
-                <input type="text" id="buyemail">
+                <p style="float: left; margin-right: 10px; clear:both">Email: </p>
+                <input type="text" id="buyemail" style="float: right">
             </div>
+            <div class="form-group">                        
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="terms" id="terms" value="accept" required style="float: left; clear: both">
+                  <p style="float: left">I have read and accept the <a href="terms.html">terms and conditions</a><p>
+                </label>
+              </div>
+            </div>
+          </div>
             <button onclick="paypalDetect(); return false;" class="btn btn-primary" style="width:100%">Pay Now</button>
         </div>
 
@@ -868,7 +879,8 @@
           <div class="col-md-4">
             <div class="well buy-page-side-well">
               <h3 class="red text-center" id="itemName">Air Jordan 11s</h3>
-              <p class="text-center" style="color:#777" id="sellerName"><strong>seller</strong> Daniel Knickerbocker</p>
+              <!--<a href="" id="storeLink">--><p class="text-center" style="color:#777" id="sellerName"><strong>seller</strong> Daniel Knickerbocker</p>
+              <!--<a>-->
               <hr class="alt-hr" />
               <dl class="dl-horizontal">
                 <dt>price</dt>
@@ -1018,6 +1030,8 @@ return queryItem
           success: function(woot) {
             document.getElementById("itemName").innerHTML = woot.get("item");
             document.getElementById("sellerName").innerHTML = "<strong>seller</strong> " + woot.get("userNameStuff");
+            //document.getElementById("storeLink").href=""
+
             document.getElementById("itemPrice").innerHTML = "$"+woot.get("price");
             document.getElementById("itemSize").innerHTML = woot.get("size");
             //document.getElementById("releaseDate").innerHTML = woot.get("listedDate");

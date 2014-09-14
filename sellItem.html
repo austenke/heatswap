@@ -737,7 +737,11 @@
           $('#fileselect1').bind("change", function(e) {
             var currentE;
             if(fileselect1.multiple == true){
-              //pickFeature.innerHTML="Click an image to make it the featured image"
+              alert(image.length)
+              if(images.length+fileselect1.length>0){
+                alert("featured");
+                pickFeature.innerHTML="Click an image to make it the featured image"
+              }
               if(fileselect1.length+images.length>8){
                 alert("Only 8 images can be uploaded at a time")
               }else{
