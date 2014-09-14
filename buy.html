@@ -124,26 +124,28 @@
                  <h1 class="text-center blue">shipping</h1>
                  <hr class="alt-hr">
                  <div>
-                    <div>
-                         <div class="buyInput" style="float: left;">
-                             <input type="text" id="buyfirstname" placeholder="first name">
-                        </div>
-                        <div class="buyInput" style="float: left;">
-                             <input type="text" id="buylastname" placeholder="last name">
-                        </div>
+                    <div class="buyInput">
+                      <p style="float: left; margin-right: 10px;">First Name: </p>
+                      <input type="text" id="buyfirstname">
                     </div>
-                    <div>
-                        <div class="buyInput">
-                            <input type="text" id="buyaddress1" placeholder="address line 1">
-                        </div>
+                    <div class="buyInput">
+                      <p style="float: left; margin-right: 10px;">Last Name: </p>
+                      <input type="text" id="buylastname">
                     </div>
-                 <div class="buyInput">
-                    <input type="text" id="buyaddress2" placeholder="address line 2">
-                </div>
+                    <div class="buyInput">
+                      <p style="float: left; margin-right: 10px;">Address Line 1: </p>
+                      <input type="text" id="buyaddress1">
+                    </div>
+                    <div class="buyInput">
+                      <p style="float: left; margin-right: 10px;">Address Line 2 (Optional): </p>
+                      <input type="text" id="buyaddress2">
+                    </div>
                 <div class="buyInput">
-                 <input type="text" id="buycity" placeholder="city">
+                  <p style="float: left; margin-right: 10px;">City: </p>
+                 <input type="text" id="buycity">
              </div>
              <div class="buyInput">
+              <p style="float: left; margin-right: 10px;">State: </p>
                  <select id="buystate">
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -198,8 +200,9 @@
                   <option value="WY">Wyoming</option>
                  </select>  
                  </div>
-                 <div class="buyInput">               
-                 <input type="text" id="buyzipcode" placeholder="ZIP CODE">
+                 <div class="buyInput">    
+                   <p style="float: left; margin-right: 10px;">Zip Code: </p>           
+                   <input type="text" id="buyzipcode">
                 </div>
                 <div class="buyInput">
                  <select id="buycountries" name="countries">
@@ -450,7 +453,8 @@
                  </select>
              </div>
              <div class="buyInput">
-                <input type="text" id="buyemail" placeholder="email">
+                <p style="float: left; margin-right: 10px;">Email: </p>
+                <input type="text" id="buyemail">
             </div>
             <button onclick="paypalDetect(); return false;" class="btn btn-primary" style="width:100%">Pay Now</button>
         </div>

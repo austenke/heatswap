@@ -5851,3 +5851,7 @@ button.close {
 .previewImage{
   height:100px;
 }
+
+.tempDiv{
+  border:1px solid red;
+}

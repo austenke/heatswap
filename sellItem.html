@@ -490,10 +490,10 @@
 			<div class="form-group">
 			  <label for="gender" class="col-sm-2 col-sm-offset-1 control-label">gender</label>
 			  <div class="col-sm-4">
-			    <select id="shoeGender" class="form-control">
+			    <select id="shoeGender" class="form-control" onChange="changeSize()">
 			      <option>select size</option>
-			      <option>female</option>
-			      <option>male</option>
+			      <option>women</option>
+			      <option>men</option>
 			    </select>
 			  </div>
 			</div>
@@ -502,19 +502,50 @@
               <div class="col-sm-4">
                 <select id="shoeSizeSelect" class="form-control">
                   <option>select size</option>
-                  <option>8</option>
-                  <option>8.5</option>
-                  <option>9</option>
-                  <option>9.5</option>
-                  <option>10</option>
-                  <option>10.5</option>
-                  <option>11</option>
-                  <option>11.5</option>
-                  <option>12</option>
-                  <option>12.5</option>
-                  <option>13</option>
                 </select>
               </div>
+                  <script>
+                  function changeSize(){
+                    var finalObj;
+                    if(document.getElementById("shoeGender").value=="women"){
+                      finalObj += "<option>select size</option>"
+                      finalObj += "<option>5</option>"
+                      finalObj += "<option>5.5</option>"
+                      finalObj += "<option>6</option>"
+                      finalObj += "<option>6.5</option>"
+                      finalObj += "<option>7</option>"
+                      finalObj += "<option>7.5</option>"
+                      finalObj += "<option>8</option>"
+                      finalObj += "<option>8.5</option>"
+                      finalObj += "<option>9</option>"
+                      finalObj += "<option>9.5</option>"
+                      finalObj += "<option>10</option>"
+                      finalObj += "<option>10.5</option>"
+                      finalObj += "<option>11</option>"
+                      finalObj += "<option>11.5</option>"
+                      finalObj += "<option>12</option>"
+                      finalObj += "<option>12.5</option>"
+                      finalObj += "<option>13</option>"
+                      //finalObj +=
+                    }else if(document.getElementById("shoeGender").value=="men"){
+                      finalObj += "<option>select size</option>"
+                      finalObj += "<option>8</option>"
+                      finalObj += "<option>8.5</option>"
+                      finalObj += "<option>9</option>"
+                      finalObj += "<option>9.5</option>"
+                      finalObj += "<option>10</option>"
+                      finalObj += "<option>10.5</option>"
+                      finalObj += "<option>11</option>"
+                      finalObj += "<option>11.5</option>"
+                      finalObj += "<option>12</option>"
+                      finalObj += "<option>12.5</option>"
+                      finalObj += "<option>13</option>"
+                    }
+
+                    var insertNonsense = document.getElementById("shoeSizeSelect");
+                    insertNonsense.innerHTML = finalObj
+                  }
+                  </script>
             </div>
             <div class="form-group">
               <label for="shoeCondition" class="col-sm-2 col-sm-offset-1 control-label">condition</label>
