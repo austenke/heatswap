@@ -747,9 +747,9 @@
             var currentE;
             var filePull = e.target.files || e.dataTransfer.files;
             if(fileselect1.multiple == true){
-              alert(filePull.length + images.length)
+              //alert(filePull.length + images.length)
               if(images.length+filePull.length>1){
-                alert("featured");
+                //alert("featured");
                 pickFeature.innerHTML="Click an image to make it the featured image"
               }
               if(filePull.length+images.length>8){
@@ -896,12 +896,9 @@
         postOffice.set("seventhImage", images[6]);
         postOffice.set("eighthImage", images[7]);
         var featuredInt=0;
-        alert(images.length)
         for(var i=0; i<images.length; i++){
-          alert("previewDiv"+i)
           if(document.getElementById("previewDiv"+i).className.match(/(?:^|\s)featuredShoe(?!\S)/) ){
             featuredInt=i;
-            alert("hi?")
           }
         }
         postOffice.set("featuredImage", featuredInt)
