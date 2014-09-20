@@ -588,6 +588,15 @@
               </div>
               <p id="pickFeature"></p>
               </div>
+
+              <script>
+                var makePrimary=function(clickedId){
+                  //var clickedSplit=clickedId.split("v")
+                  //alert(clickedSplit[2])
+                    $("div").removeClass("featuredShoe");
+                    document.getElementById(clickedId).className += " featuredShoe";
+                }
+              </script>
               
             
             </div>
@@ -736,16 +745,17 @@
           //figure out what e is, how to change. filePull[i] is the name of the file
           $('#fileselect1').bind("change", function(e) {
             var currentE;
+            var filePull = e.target.files || e.dataTransfer.files;
             if(fileselect1.multiple == true){
-              alert(image.length)
-              if(images.length+fileselect1.length>0){
+              alert(filePull.length + images.length)
+              if(images.length+filePull.length>1){
                 alert("featured");
                 pickFeature.innerHTML="Click an image to make it the featured image"
               }
-              if(fileselect1.length+images.length>8){
+              if(filePull.length+images.length>8){
                 alert("Only 8 images can be uploaded at a time")
               }else{
-                var filePull = e.target.files || e.dataTransfer.files;
+                
                 for (var i = 0; i < filePull.length; i++){
                   //alert(i)
                   //alert(images.length+i)
@@ -788,12 +798,13 @@
 
                 var imageFloat;
 
+
                 var img = $('<img src="'+images[i]+'"/>').load(function(){
                   var ratio=100/this.height;
                   var ratioWidth=this.width*ratio;
                   imageFloat=(150-ratioWidth)/2
-                  imageUploadPreview += "<div class='previewDiv'>";
-                  imageUploadPreview += "<img style='margin-left:"+imageFloat+"px' class='previewImage onClick='makePrimary'' src='"+ images[i] + "' alt='...''>"
+                  imageUploadPreview += "<div class='previewDiv' id='previewDiv"+i+"' onClick='makePrimary(this.id)'>";
+                  imageUploadPreview += "<img style='margin-left:"+imageFloat+"px' class='previewImage' src='"+ images[i] + "' alt='...''>"
                   imageUploadPreview += "</div>";
 
                   if(i<4){
@@ -808,9 +819,7 @@
                   imageUploadPreview="";
                 });
                 
-                var makePrimary=function(){
-
-                }
+                
                 
                 //alert(images[i]);
               },
@@ -886,6 +895,16 @@
         postOffice.set("sixthImage", images[5]);
         postOffice.set("seventhImage", images[6]);
         postOffice.set("eighthImage", images[7]);
+        var featuredInt=0;
+        alert(images.length)
+        for(var i=0; i<images.length; i++){
+          alert("previewDiv"+i)
+          if(document.getElementById("previewDiv"+i).className.match(/(?:^|\s)featuredShoe(?!\S)/) ){
+            featuredInt=i;
+            alert("hi?")
+          }
+        }
+        postOffice.set("featuredImage", featuredInt)
         //postOffice.set("Location", iLocation);
         //postOffice.set("shipMethod", iShipMethod);
         //postOffice.set("shipPrice", iShipPrice);

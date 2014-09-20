@@ -440,7 +440,7 @@
         </div>
 
         <div class="pull-left">
-          <h1 style="margin-right:10px" class="red">popular</h1>
+          <h1 style="margin-right:10px" class="red" id="popularTitle">popular</h1>
         </div>
   
         <div class="clearfix">      
@@ -584,6 +584,26 @@ var queryGender = urlParams["gender"];
 var queryCondition = urlParams["condition"];
 var queryBrand = urlParams["brand"];
 var queryPage = urlParams["page"];
+
+if(queryBrand=="adidas"){
+  popularTitle.innerHTML="Adidas";
+}else if(queryBrand=="airjordan"){
+  popularTitle.innerHTML="Air Jordan";
+}else if(queryBrand=="asics"){
+  popularTitle.innerHTML="Asics";
+}else if(queryBrand=="newbalance"){
+  popularTitle.innerHTML="New Balance";
+}else if(queryBrand=="nike"){
+  popularTitle.innerHTML="Nike";
+}else if(queryBrand=="puma"){
+  popularTitle.innerHTML="Puma";
+}else if(queryBrand=="reebok"){
+  popularTitle.innerHTML="Reebok";
+}else if(queryBrand=="Saucony"){
+  popularTitle.innerHTML="saucony";
+}else if(queryBrand=="vans"){
+  popularTitle.innerHTML="Vans";
+}
 
 if (queryPage === undefined) queryPage = 1;
 
