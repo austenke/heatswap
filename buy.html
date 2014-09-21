@@ -1117,7 +1117,6 @@ return queryItem
             if(woot.get("secondImage")!=""&&woot.get("secondImage")!=null){
               var imgURL = woot.get("secondImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                      if(this.width/this.height<1.45){
                         $("#image2").css("height", "500px");
                         $("#image2").css("width", "auto");
@@ -1126,7 +1125,6 @@ return queryItem
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image2").css("left", floatDistance+"%");
                     }
-                }
             });  
 
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
@@ -1146,7 +1144,6 @@ return queryItem
              if(woot.get("thirdImage")!=""&&woot.get("thirdImage")!=null){
                 var imgURL = woot.get("thirdImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                       if(this.width/this.height<1.45){
                         $("#image3").css("height", "500px");
                         $("#image3").css("width", "auto");
@@ -1155,11 +1152,10 @@ return queryItem
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image3").css("left", floatDistance+"%");
                     }
-                    }
                 }); 
 
               finalObj += "<div class='item' style='width:100%; height:500px; overflow:hidden; text-align: center;'>\n"
-              finalObj += "<img  id='image3' src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
+              finalObj += "<img id='image3' src='"+woot.get("thirdImage")+"' style='position:relative; left:100%;margin-left:-100%;' height='500px'>\n"
               finalObj += "<div class='carousel-caption'>"
               finalObj += "</div>"
               finalObj += "</div>"
@@ -1168,7 +1164,6 @@ return queryItem
              if(woot.get("fourthImage")!=""&&woot.get("fourthImage")!=null){
                 var imgURL = woot.get("fourthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                       if(this.width/this.height<1.45){
                         $("#image4").css("height", "500px");
                         $("#image4").css("width", "auto");
@@ -1176,7 +1171,6 @@ return queryItem
                         var ratioWidth=this.width*ratio;
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image4").css("left", floatDistance+"%");
-                    }
                     }
                 }); 
 
@@ -1190,7 +1184,6 @@ return queryItem
              if(woot.get("fifthImage")!=""&&woot.get("fifthImage")!=null){
                 var imgURL = woot.get("fifthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                       if(this.width/this.height<1.45){
                         $("#image5").css("height", "500px");
                         $("#image5").css("width", "auto");
@@ -1198,7 +1191,6 @@ return queryItem
                         var ratioWidth=this.width*ratio;
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image5").css("left", floatDistance+"%");
-                    }
                     }
                 }); 
 
@@ -1212,7 +1204,6 @@ return queryItem
             if(woot.get("sixthImage")!=""&&woot.get("sixthImage")!=null){
                 var imgURL = woot.get("sixthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                     if(this.width/this.height<1.45){
                         $("#image6").css("height", "500px");
                         $("#image6").css("width", "auto");
@@ -1220,7 +1211,6 @@ return queryItem
                         var ratioWidth=this.width*ratio;
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image6").css("left", floatDistance+"%");
-                    }
                     }
                 }); 
 
@@ -1234,7 +1224,6 @@ return queryItem
             if(woot.get("seventhImage")!=""&&woot.get("seventhImage")!=null){
                 var imgURL = woot.get("seventhImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                       if(this.width/this.height<1.45){
                         $("#image7").css("height", "500px");
                         $("#image7").css("width", "auto");
@@ -1242,7 +1231,6 @@ return queryItem
                         var ratioWidth=this.width*ratio;
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image7").css("left", floatDistance+"%");
-                    }
                     }
                 }); 
 
@@ -1256,7 +1244,6 @@ return queryItem
             if(woot.get("eighthImage")!=""&&woot.get("eighthImage")!=null){
                 var imgURL = woot.get("eighthImage");
                 var img = $('<img src="'+imgURL+'"/>').load(function(){
-                if(this.height>this.width){
                        if(this.width/this.height<1.45){
                         $("#image8").css("height", "500px");
                         $("#image8").css("width", "auto");
@@ -1264,7 +1251,6 @@ return queryItem
                         var ratioWidth=this.width*ratio;
                         var floatDistance=(748-ratioWidth)/748*100/2+100;
                         $("#image8").css("left", floatDistance+"%");
-                    }
                     }
                 }); 
 
