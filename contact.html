@@ -436,16 +436,17 @@
           <hr class="breadcrumb-hr">
         </div>
         <div id="contactForm">
-          <p>Name</p>
-          <input type="text" id="contactName">
-          <p>Email</p>
-          <input type="email" id="contactEmail">
-          <p>Subject</p>
-          <input type="text" id="contactSubject">
-          <p>Details</p>     
-          <input type="text" id="contactDetails">
-        </br>
-          <button onClick="sendQuestion()">Send Question</button>
+          <p class="contactP">Name</p>
+          <input class="contactInput" type="text" id="contactName">
+          <p class="contactP">Email</p>
+          <input class="contactInput" type="email" id="contactEmail">
+          <p class="contactP">Subject</p>
+          <input class="contactInput" type="text" id="contactSubject">
+          <p class="contactP">Details</p>     
+           <textarea id="contactDetails" class="form-control contactInput" rows="5"></textarea>
+          <p id="confirmQuestion" class="red" style="margin-top: 10px" class="contactP"></p>
+          
+          <button onClick="sendQuestion()" style="margin-top: 5px; margin-bottom: 15px">Send Question</button>
         </div>
         <script>
         var sendQuestion = function(){
@@ -461,6 +462,7 @@
 
           contactUs.save(null, {            
           });
+          confirmQuestion.innerHTML="Thank you for submitting your question or comment."
         }
         </script>
       </div><!-- /main -->

@@ -5859,3 +5859,12 @@ button.close {
 .featuredShoe{
   border: 4px solid #D9562A;
 }
+
+.contactP{
+  margin-top: 15px; 
+  margin-bottom: 3px;
+}
+
+.contactInput{
+  width: 300px;
+}
