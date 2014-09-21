@@ -5,7 +5,7 @@ Parse.Cloud.define("retrieveComments", function (request, response) {
  var messages = Parse.Object.extend("messages");
  var query = new Parse.Query(messages);
  var currentUser=Parse.User.current();
- query.equalTo("user", currentUser.id);
+ query.equalTo("shoe", request.params.shoe);
  query.find({
   success: function(results) {
   //alert("Successfully retrieved " + results.length + " users.");
@@ -14,7 +14,8 @@ Parse.Cloud.define("retrieveComments", function (request, response) {
    var object = results[i];
    //alert(object.id + ' - ' + object.get('playerName'));
    }
-   response.success(results.length)
+   //response.success(results.length)
+   response.success()
   },
   error: function(error) {
    alert("Error: " + error.code + " " + error.message);

@@ -876,7 +876,9 @@
             </div>
             <div id="commentSection">
               <h3 class="red">Comments</h3>
-              <textarea id="comment" class="form-control" rows="3" style="margin-bottom: 20px" maxLength="100"></textarea>
+              <div>
+                <textarea id="comment" class="form-control" rows="3" style="margin-bottom: 20px" maxLength="100"></textarea>
+              </div>
               <button style="margin-bottom: 20px" onClick="postComment()">Submit</button>
               <div id="commentArea">
               </div>
@@ -885,7 +887,7 @@
               var postComment = function(){
                 Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
                 var message =  Parse.Object.extend("messages");
-                var tempMessage = new message;
+                var tempMessage = new message();
 
                 var urlParams;
                   (window.onpopstate = function () {
@@ -900,7 +902,7 @@
                       urlParams[decode(match[1])] = decode(match[2]);
                   })();
 
-                var holdMessage = comment;
+                var holdMessage = comment.value;
                 var holdUser = Parse.User.current().id
                 var holdUsing = urlParams["item"];
 
@@ -911,7 +913,14 @@
                   tempMessage.save();
                 }
 
-
+                Parse.Cloud.run('retrieveComments', {"shoe": holdUsing}, {
+                  success: function(result) {
+                    // result is 'Hello world!'
+                  },
+                  error: function(error) {
+                    alert("hello")
+                  }
+                });
               }
             </script>
           </div><!-- col-md-7 -->
