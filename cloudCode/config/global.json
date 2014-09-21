@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "srs-Heatswap"
+        }, 
+        "srs-Heatswap": {
+            "applicationId": "tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", 
+            "masterKey": "MQZ5ZMVgeNN1UVuuB58XpIpt5lc1Biqo9ZPcCBgo"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.0"
+    }
+}

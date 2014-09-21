@@ -874,7 +874,51 @@
                 <p>Portland leggings meggings, selvage Pinterest Williamsburg semiotics Godard before they sold out. Mumblecore roof party pour-over narwhal, Portland kogi viral polaroid fap banjo single-origin coffee keytar. Authentic chia craft beer ugh Kickstarter artisan.</p>
               </div>
             </div>
-          </div><!-- col-md-7 -->          
+            <div id="commentSection">
+              <h3 class="red">Comments</h3>
+              <textarea id="comment" class="form-control" rows="3" style="margin-bottom: 20px" maxLength="100"></textarea>
+              <button style="margin-bottom: 20px" onClick="postComment()">Submit</button>
+              <div id="commentArea">
+              </div>
+            </div>
+            <script>
+              var postComment = function(){
+                Parse.initialize("tl9Ud0lSR5yZp7Fh30tZSgfCJrGEURKe3PMWHGCn", "zvZ345M8m9y136I9fcDtMMG1kP732SPItGFnj8zr");
+                var message =  Parse.Object.extend("messages");
+                var tempMessage = new message;
+
+                var urlParams;
+                  (window.onpopstate = function () {
+                    var match,
+                      pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                      search = /([^&=]+)=?([^&]*)/g,
+                      decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                      query  = window.location.search.substring(1);
+
+                    urlParams = {};
+                    while (match = search.exec(query))
+                      urlParams[decode(match[1])] = decode(match[2]);
+                  })();
+
+                var holdMessage = comment;
+                var holdUser = Parse.User.current().id
+                var holdUsing = urlParams["item"];
+
+                if(holdMessage!=""){
+                  tempMessage.set("comment", holdMessage);
+                  tempMessage.set("user", holdUser);
+                  tempMessage.set("shoe", holdUsing)
+                  tempMessage.save();
+                }
+
+
+              }
+            </script>
+          </div><!-- col-md-7 -->
+
+          <script>
+
+          </script>          
           
           <div class="col-md-4">
             <div class="well buy-page-side-well">
